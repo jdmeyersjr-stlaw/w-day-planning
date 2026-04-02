@@ -16,9 +16,12 @@
   --rule:rgba(42,35,24,0.1);
   --serif:'Playfair Display',Georgia,serif;
   --sans:'DM Sans',sans-serif;
-  /* Partner identity colors */
-  --p1:#4a9b7f; --p1-bg:rgba(74,155,127,.1); --p1-border:rgba(74,155,127,.35);
-  --p2:#4a7bb5; --p2-bg:rgba(74,123,181,.1); --p2-border:rgba(74,123,181,.35);
+  /* Partner identity colors — set at neutral until role pill is picked */
+  --p1:#2a2318; --p1-bg:rgba(42,35,24,.06); --p1-border:rgba(42,35,24,.2);
+  --p2:#2a2318; --p2-bg:rgba(42,35,24,.06); --p2-border:rgba(42,35,24,.2);
+  /* Role colors */
+  --groom:#2c4a7c; --groom-bg:rgba(44,74,124,.08); --groom-border:rgba(44,74,124,.3); --groom-shadow:rgba(44,74,124,.25);
+  --bride:#5c3470; --bride-bg:rgba(92,52,112,.08); --bride-border:rgba(92,52,112,.3); --bride-shadow:rgba(92,52,112,.25);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
@@ -111,29 +114,37 @@ input.invalid{border-bottom-color:var(--terra2)!important;animation:shake .35s e
 /* DIVIDER */
 .field-divider{height:1px;background:var(--rule);margin:36px 0;}
 
-/* PARTNER COLOR ACCENTS */
+/* PARTNER COLOR ACCENTS — driven by JS swapping --p1/--p2 vars on root */
 .p1-accent{color:var(--p1);}
 .p2-accent{color:var(--p2);}
-.p1-tag{display:inline-block;font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--p1);background:var(--p1-bg);border:1px solid var(--p1-border);border-radius:100px;padding:2px 9px;}
-.p2-tag{display:inline-block;font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--p2);background:var(--p2-bg);border:1px solid var(--p2-border);border-radius:100px;padding:2px 9px;}
-.p1-input{border-bottom-color:var(--p1) !important;}
-.p2-input{border-bottom-color:var(--p2) !important;}
-.p1-input:focus{box-shadow:0 4px 12px rgba(74,155,127,.1) !important;}
-.p2-input:focus{box-shadow:0 4px 12px rgba(74,123,181,.1) !important;}
+.p1-tag{display:inline-block;font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--p1);background:var(--p1-bg);border:1px solid var(--p1-border);border-radius:100px;padding:2px 9px;transition:all .3s;}
+.p2-tag{display:inline-block;font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--p2);background:var(--p2-bg);border:1px solid var(--p2-border);border-radius:100px;padding:2px 9px;transition:all .3s;}
+.p1-input{border-bottom-color:var(--p1) !important;transition:border-color .3s;}
+.p2-input{border-bottom-color:var(--p2) !important;transition:border-color .3s;}
 /* PARTY MEMBER ROWS */
-.party-member.p1-member input[type="text"]{border-bottom-color:var(--p1);}
-.party-member.p1-member input[type="text"]:focus{box-shadow:0 4px 12px rgba(74,155,127,.08);}
-.party-member.p2-member input[type="text"]{border-bottom-color:var(--p2);}
-.party-member.p2-member input[type="text"]:focus{box-shadow:0 4px 12px rgba(74,123,181,.08);}
-/* ROLE AUTOCOMPLETE — portal rendered at body level, fixed position */
+.party-member.p1-member input[type="text"]{border-bottom-color:var(--p1);transition:border-color .3s;}
+.party-member.p2-member input[type="text"]{border-bottom-color:var(--p2);transition:border-color .3s;}
+/* ROLE PILLS — neutral until picked, then role color */
+.p1-pill-label,.p2-pill-label{font-size:12px;padding:5px 16px;border-color:var(--cream3);color:var(--muted);transition:all .2s;}
+.p1-pill-label:hover{border-color:var(--tan2);color:var(--charcoal);}
+.p1-pill-input:checked+.p1-pill-label{background:var(--p1);border-color:var(--p1);color:#fff;box-shadow:0 4px 10px var(--p1-shadow,rgba(42,35,24,.2));}
+.p2-pill-label:hover{border-color:var(--tan2);color:var(--charcoal);}
+.p2-pill-input:checked+.p2-pill-label{background:var(--p2);border-color:var(--p2);color:#fff;box-shadow:0 4px 10px var(--p2-shadow,rgba(42,35,24,.2));}
+/* SHOT BUILDER TOKENS */
+.person-label.token-p1{border-color:var(--p1-border);color:var(--p1);transition:all .3s;}
+.person-label.token-p1:hover{background:var(--p1-bg);}
+.person-toggle.token-p1:checked+.person-label.token-p1{background:var(--p1);border-color:var(--p1);color:#fff;}
+.person-label.token-p2{border-color:var(--p2-border);color:var(--p2);transition:all .3s;}
+.person-label.token-p2:hover{background:var(--p2-bg);}
+.person-toggle.token-p2:checked+.person-label.token-p2{background:var(--p2);border-color:var(--p2);color:#fff;}
+/* ROLE AUTOCOMPLETE PORTAL */
 .role-datalist-wrap{flex:1;}
 #roleSuggestPortal{position:fixed;background:#fff;border:1px solid var(--cream3);border-radius:6px;z-index:9999;box-shadow:0 8px 24px rgba(42,35,24,.14);display:none;min-width:220px;max-height:220px;overflow-y:auto;}
 #roleSuggestPortal.open{display:block;}
 .role-suggest-item{padding:9px 14px;font-size:13px;color:var(--charcoal);cursor:pointer;transition:background .1s;border-bottom:1px solid var(--cream3);}
 .role-suggest-item:last-child{border-bottom:none;}
 .role-suggest-item:hover{background:var(--cream2);}
-.role-suggest-item.role-honor-p1{color:var(--p1);font-weight:500;}
-.role-suggest-item.role-honor-p2{color:var(--p2);font-weight:500;}
+.role-suggest-item.role-honor{font-weight:600;}
 .role-suggest-item em{font-style:normal;font-weight:700;}
 
 /* BTN PRINT / SAVE */
@@ -143,7 +154,6 @@ input.invalid{border-bottom-color:var(--terra2)!important;animation:shake .35s e
 .party-section{margin-bottom:32px;}
 .party-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
 .party-title{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--charcoal2);}
-.party-side-tag{display:inline-block;font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);background:var(--cream3);border-radius:100px;padding:3px 10px;margin-left:10px;}
 .party-list{display:flex;flex-direction:column;gap:10px;}
 .party-member{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:center;animation:fadeUp .25s ease both;}
 .btn-remove-member{width:32px;height:32px;background:none;border:1px solid var(--cream3);border-radius:50%;cursor:pointer;color:var(--muted2);font-size:16px;line-height:1;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;}
@@ -151,7 +161,6 @@ input.invalid{border-bottom-color:var(--terra2)!important;animation:shake .35s e
 .btn-add-member{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--terra);background:none;border:1px dashed var(--tan);border-radius:4px;padding:9px 16px;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .18s;margin-top:4px;}
 .btn-add-member:hover{border-color:var(--terra);background:rgba(184,92,56,.06);}
 .btn-add-member::before{content:'+';font-size:16px;}
-
 /* CUSTOM PILL ADD/DROP */
 .pill-add-wrap{display:flex;gap:6px;align-items:center;margin-top:8px;}
 .pill-add-input{font-family:var(--sans);font-size:13px;background:var(--cream2);border:1px dashed var(--tan);border-bottom:2px solid var(--tan);border-radius:3px 3px 0 0;padding:6px 12px;color:var(--charcoal);outline:none;flex:1;min-width:0;transition:border-color .2s;}
@@ -161,23 +170,6 @@ input.invalid{border-bottom-color:var(--terra2)!important;animation:shake .35s e
 .btn-pill-add:hover{border-color:var(--terra);background:rgba(184,92,56,.06);}
 .pill-label.custom-pill{position:relative;padding-right:28px;}
 .pill-label.custom-pill .pill-remove{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:13px;line-height:1;color:inherit;opacity:.6;cursor:pointer;}
-/* PARTNER COLOR ROLE PILLS — p1 green, p2 blue on selection */
-.p1-pill-input:checked+.p1-pill-label{background:var(--p1);border-color:var(--p1);color:#fff;box-shadow:0 4px 10px rgba(74,155,127,.3);}
-.p1-pill-label{border-color:var(--p1-border);color:var(--p1);font-size:12px;padding:5px 14px;}
-.p1-pill-label:hover{background:var(--p1-bg);border-color:var(--p1);}
-.p2-pill-input:checked+.p2-pill-label{background:var(--p2);border-color:var(--p2);color:#fff;box-shadow:0 4px 10px rgba(74,123,181,.3);}
-.p2-pill-label{border-color:var(--p2-border);color:var(--p2);font-size:12px;padding:5px 14px;}
-.p2-pill-label:hover{background:var(--p2-bg);border-color:var(--p2);}
-
-/* SHOT BUILDER TOKEN COLORS — couple = neutral, p1 tokens = green, p2 tokens = blue, shared = tan */
-.person-label.token-p1{border-color:var(--p1-border);color:var(--p1);}
-.person-label.token-p1:hover{background:var(--p1-bg);}
-.person-toggle.token-p1:checked+.person-label.token-p1{background:var(--p1);border-color:var(--p1);color:#fff;box-shadow:0 3px 8px rgba(74,155,127,.25);}
-.person-label.token-p2{border-color:var(--p2-border);color:var(--p2);}
-.person-label.token-p2:hover{background:var(--p2-bg);}
-.person-toggle.token-p2:checked+.person-label.token-p2{background:var(--p2);border-color:var(--p2);color:#fff;box-shadow:0 3px 8px rgba(74,123,181,.25);}
-
-/* SHOT NUDGE PROGRESS BAR */
 .shot-nudge-wrap{margin-top:8px;}
 .shot-nudge-bar-track{height:3px;background:var(--cream3);border-radius:2px;overflow:hidden;margin-bottom:5px;}
 .shot-nudge-bar-fill{height:100%;border-radius:2px;transition:width .4s cubic-bezier(.4,0,.2,1),background .3s;}
@@ -1098,29 +1090,85 @@ function syncNames() {
   buildShotPeople(first1, first2);
 }
 
-// ── ROLE SYNC — updates side tags + ROLE_SUGGESTIONS based on bride/groom selection ──
+// ── ROLE SYNC — swaps CSS vars and updates all downstream elements ──
+var ROLE_COLORS = {
+  Groom: {
+    color:'#2c4a7c', bg:'rgba(44,74,124,.08)', border:'rgba(44,74,124,.3)', shadow:'rgba(44,74,124,.25)',
+    honor: ['Best Man','Best Woman'],
+    standard: ['Groomsman','Groomsmaid'],
+    all: ['Best Man','Best Woman','Groomsman','Groomsmaid'],
+    sideTag: 'Groomsmen', row0: 'Best Man', rowN: 'Groomsman'
+  },
+  Bride: {
+    color:'#5c3470', bg:'rgba(92,52,112,.08)', border:'rgba(92,52,112,.3)', shadow:'rgba(92,52,112,.25)',
+    honor: ['Maid of Honor','Matron of Honor','Man of Honor'],
+    standard: ['Bridesmaid','Junior Bridesmaid'],
+    all: ['Maid of Honor','Matron of Honor','Man of Honor','Bridesmaid','Junior Bridesmaid'],
+    sideTag: 'Bridesmaids', row0: 'Maid of Honor', rowN: 'Bridesmaid'
+  }
+};
+var NEUTRAL = { color:'#2a2318', bg:'rgba(42,35,24,.06)', border:'rgba(42,35,24,.2)', shadow:'rgba(42,35,24,.2)' };
+
+function getPaletteFor(role) {
+  return ROLE_COLORS[role] || NEUTRAL;
+}
+
 function syncRoles() {
   var r1 = gRadio('p1role'); // 'Bride' | 'Groom' | '—'
   var r2 = gRadio('p2role');
+  var pal1 = getPaletteFor(r1);
+  var pal2 = getPaletteFor(r2);
+  var root = document.documentElement;
 
-  // Side tag labels
+  // Swap CSS vars on :root — this cascades everywhere
+  root.style.setProperty('--p1', pal1.color);
+  root.style.setProperty('--p1-bg', pal1.bg);
+  root.style.setProperty('--p1-border', pal1.border);
+  root.style.setProperty('--p1-shadow', pal1.shadow);
+  root.style.setProperty('--p2', pal2.color);
+  root.style.setProperty('--p2-bg', pal2.bg);
+  root.style.setProperty('--p2-border', pal2.border);
+  root.style.setProperty('--p2-shadow', pal2.shadow);
+
+  // Side tags
   var tag1 = document.getElementById('p1-side-tag');
   var tag2 = document.getElementById('p2-side-tag');
-  if (tag1) tag1.textContent = r1 === 'Bride' ? 'Bridesmaids' : r1 === 'Groom' ? 'Groomsmen' : 'Bridesmaids';
-  if (tag2) tag2.textContent = r2 === 'Bride' ? 'Bridesmaids' : r2 === 'Groom' ? 'Groomsmen' : 'Groomsmen';
+  if (tag1) tag1.textContent = r1 !== '—' ? (ROLE_COLORS[r1]||{sideTag:'Bridesmaids'}).sideTag : 'Bridesmaids';
+  if (tag2) tag2.textContent = r2 !== '—' ? (ROLE_COLORS[r2]||{sideTag:'Groomsmen'}).sideTag : 'Groomsmen';
 
-  // Update ROLE_SUGGESTIONS per side based on selected role
-  ROLE_SUGGESTIONS.side1 = r1 === 'Groom'
-    ? ['Best Man','Groomsman','Groomsman','Groomsman','Groomsman','Groomsman']
-    : ['Maid of Honor','Bridesmaid','Bridesmaid','Bridesmaid','Bridesmaid','Bridesmaid'];
-  ROLE_SUGGESTIONS.side2 = r2 === 'Groom'
-    ? ['Best Man','Groomsman','Groomsman','Groomsman','Groomsman','Groomsman']
-    : ['Maid of Honor','Bridesmaid','Bridesmaid','Bridesmaid','Bridesmaid','Bridesmaid'];
+  // Update ROLE_SUGGESTIONS per side
+  ROLE_SUGGESTIONS.side1 = buildRoleSuggestionsFor(r1, 'side1');
+  ROLE_SUGGESTIONS.side2 = buildRoleSuggestionsFor(r2, 'side2');
 
-  // Re-run shot builder with updated names
+  // Update role field placeholders for existing rows
+  updateRolePlaceholders('side1', ROLE_SUGGESTIONS.side1);
+  updateRolePlaceholders('side2', ROLE_SUGGESTIONS.side2);
+
+  // Rebuild shot builder with new colors
   var n1 = document.getElementById('p1name').value.trim();
   var n2 = document.getElementById('p2name').value.trim();
   buildShotPeople(n1 ? n1.split(' ')[0] : 'Partner 1', n2 ? n2.split(' ')[0] : 'Partner 2');
+}
+
+function buildRoleSuggestionsFor(role, side) {
+  if (role === 'Groom') return ['Best Man','Groomsman','Groomsman','Groomsman','Groomsman','Groomsman'];
+  if (role === 'Bride') return ['Maid of Honor','Bridesmaid','Bridesmaid','Bridesmaid','Bridesmaid','Bridesmaid'];
+  // Default: side1 = bridesmaid side, side2 = groomsman side
+  return side === 'side1'
+    ? ['Maid of Honor','Bridesmaid','Bridesmaid','Bridesmaid','Bridesmaid','Bridesmaid']
+    : ['Best Man','Groomsman','Groomsman','Groomsman','Groomsman','Groomsman'];
+}
+
+function updateRolePlaceholders(side, suggestions) {
+  var list = document.getElementById('party-' + side);
+  if (!list) return;
+  var rows = list.querySelectorAll('.party-member');
+  rows.forEach(function(row, i) {
+    var roleInput = row.querySelector('.role-datalist-wrap input');
+    if (roleInput && !roleInput.value.trim()) {
+      roleInput.placeholder = suggestions[i] || suggestions[suggestions.length - 1];
+    }
+  });
 }
 
 // ── QUICK FILL ──
@@ -1159,15 +1207,14 @@ var ROLE_SUGGESTIONS = {
   side1: ['Maid of Honor','Bridesmaid','Bridesmaid','Bridesmaid','Bridesmaid','Bridesmaid'],
   side2: ['Best Man','Groomsman','Groomsman','Groomsman','Groomsman','Groomsman']
 };
-// Honor roles (shown in partner colors), standard roles
-var HONOR_ROLES_P1 = ['Maid of Honor','Matron of Honor','Best Woman','Man of Honor'];
-var HONOR_ROLES_P2 = ['Best Man','Best Woman','Maid of Honor','Man of Honor'];
+// Honor roles (shown in partner colors), standard roles — fallback when no role selected
 var ROLE_ALL = ['Maid of Honor','Matron of Honor','Best Man','Best Woman','Bridesmaid','Groomsman','Groomsmaid','Bridesman','Flower Girl','Ring Bearer','Junior Bridesmaid','Man of Honor'];
 
 // Single shared portal dropdown
 var _rolePortal = null;
 var _activeRoleInput = null;
 var _activeRoleSide = null;
+var _pickingRole = false; // flag to prevent blur reopening after mousedown pick
 
 function getRolePortal() {
   if (!_rolePortal) {
@@ -1184,7 +1231,7 @@ function getRolePortal() {
 }
 
 function initParty() {
-  getRolePortal(); // create portal early
+  getRolePortal();
   for (var i = 0; i < 5; i++) { addMember('side1'); addMember('side2'); }
 }
 
@@ -1205,10 +1252,24 @@ function addMember(side) {
     '</div>' +
     '<button class="btn-remove-member" type="button" onclick="removeMember(\'' + side + '\',' + idx + ')">×</button>';
   list.appendChild(div);
-  // Wire role input after DOM insert
   var roleEl = document.getElementById(roleId);
   roleEl.addEventListener('input', function() { showRoleSuggest(this, side); });
-  roleEl.addEventListener('blur', function() { setTimeout(hideRoleSuggest, 160); });
+  roleEl.addEventListener('blur', function() {
+    // Only hide if we're not in the middle of a pick — prevents flicker
+    if (!_pickingRole) setTimeout(hideRoleSuggest, 120);
+  });
+}
+
+function getUsedHonorRoles(side) {
+  // Returns set of honor roles already entered on this side
+  var list = document.getElementById('party-' + side);
+  if (!list) return {};
+  var used = {};
+  list.querySelectorAll('.role-datalist-wrap input').forEach(function(inp) {
+    var v = inp.value.trim();
+    if (v) used[v.toLowerCase()] = true;
+  });
+  return used;
 }
 
 function showRoleSuggest(input, side) {
@@ -1216,31 +1277,47 @@ function showRoleSuggest(input, side) {
   var val = input.value.trim().toLowerCase();
   if (val === '') { hideRoleSuggest(); return; }
 
-  var honorSet = side === 'side1' ? HONOR_ROLES_P1 : HONOR_ROLES_P2;
-  var matches = ROLE_ALL.filter(function(r){ return r.toLowerCase().indexOf(val) === 0; });
+  var r = side === 'side1' ? gRadio('p1role') : gRadio('p2role');
+  var roleData = ROLE_COLORS[r] || null;
+  var listToSearch = roleData ? roleData.all : ROLE_ALL;
+  var honorSet = roleData ? roleData.honor : [];
+  var usedRoles = getUsedHonorRoles(side);
+
+  var matches = listToSearch.filter(function(role) {
+    if (!role.toLowerCase().startsWith(val)) return false;
+    // Suppress honor roles already used elsewhere on this side
+    // (but not the current input's own value — allow editing)
+    var isHonor = honorSet.indexOf(role) !== -1;
+    if (isHonor && usedRoles[role.toLowerCase()] && input.value.trim().toLowerCase() !== role.toLowerCase()) return false;
+    return true;
+  });
+
   if (!matches.length) { hideRoleSuggest(); return; }
 
   _activeRoleInput = input;
   _activeRoleSide = side;
 
-  portal.innerHTML = matches.map(function(r) {
-    var isHonor = honorSet.indexOf(r) !== -1;
-    var colorCls = isHonor ? (side === 'side1' ? ' role-honor-p1' : ' role-honor-p2') : '';
-    var highlighted = '<em>' + r.slice(0, val.length) + '</em>' + r.slice(val.length);
-    return '<div class="role-suggest-item' + colorCls + '" data-value="' + r + '">' + highlighted + '</div>';
+  var sideColor = getComputedStyle(document.documentElement)
+    .getPropertyValue(side === 'side1' ? '--p1' : '--p2').trim();
+
+  portal.innerHTML = matches.map(function(role) {
+    var isHonor = honorSet.indexOf(role) !== -1;
+    var highlighted = '<em>' + role.slice(0, val.length) + '</em>' + role.slice(val.length);
+    return '<div class="role-suggest-item' + (isHonor ? ' role-honor' : '') + '" data-value="' + role + '">' + highlighted + '</div>';
   }).join('');
 
-  // Position portal under the input using fixed coords
+  portal.querySelectorAll('.role-honor').forEach(function(el) { el.style.color = sideColor; });
+
   var rect = input.getBoundingClientRect();
   portal.style.left = rect.left + 'px';
-  portal.style.top  = (rect.bottom + 4) + 'px';
+  portal.style.top = (rect.bottom + 4) + 'px';
   portal.style.width = rect.width + 'px';
   portal.classList.add('open');
 
-  // Mousedown picks without triggering blur
   portal.querySelectorAll('.role-suggest-item').forEach(function(item) {
     item.addEventListener('mousedown', function(e) {
       e.preventDefault();
+      _pickingRole = true; // block the blur handler
       pickRole(input, item.getAttribute('data-value'));
     });
   });
@@ -1249,6 +1326,7 @@ function showRoleSuggest(input, side) {
 function hideRoleSuggest() {
   if (_rolePortal) { _rolePortal.classList.remove('open'); _rolePortal.innerHTML = ''; }
   _activeRoleInput = null;
+  _pickingRole = false;
 }
 
 function pickRole(input, value) {
