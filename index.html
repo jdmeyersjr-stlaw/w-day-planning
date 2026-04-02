@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Planning Guide — JD Meyers Productions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream:#f5f0e8; --cream2:#ede6d6; --cream3:#e2d9c4;
+  --tan:#c9b99a; --tan2:#a8956f;
+  --terra:#b85c38; --terra2:#8f3e20;
+  --charcoal:#2a2318; --charcoal2:#3d3426;
+  --muted:#7a6e5f; --muted2:#9e9182;
+  --rule:rgba(42,35,24,0.1);
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+  /* Partner identity colors */
+  --p1:#4a9b7f; --p1-bg:rgba(74,155,127,.1); --p1-border:rgba(74,155,127,.35);
+  --p2:#4a7bb5; --p2-bg:rgba(74,123,181,.1); --p2-border:rgba(74,123,181,.35);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--charcoal);font-family:var(--sans);font-size:15px;line-height:1.6;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.025;pointer-events:none;z-index:0;}
+.page{position:relative;z-index:1;max-width:740px;margin:0 auto;padding:0 24px 100px;}
+
+/* HEADER */
+.site-header{padding:56px 0 44px;border-bottom:1px solid var(--rule);margin-bottom:0;opacity:0;animation:fadeUp .8s ease .1s forwards;}
+.site-eyebrow{font-size:10px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--terra);display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+.site-eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--terra);}
+.site-title{font-family:var(--serif);font-size:clamp(34px,6vw,56px);font-weight:400;line-height:1.08;color:var(--charcoal);margin-bottom:16px;}
+.site-title em{font-style:italic;color:var(--terra);}
+.site-sub{font-size:14px;font-weight:300;color:var(--muted);line-height:1.75;max-width:500px;}
+
+/* PROGRESS */
+.progress-outer{position:sticky;top:0;z-index:100;background:var(--cream);padding:14px 0 0;margin-bottom:48px;opacity:0;animation:fadeDown .6s ease .4s forwards;}
+.progress-track{height:2px;background:var(--cream3);margin-bottom:12px;border-radius:2px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--terra);border-radius:2px;transition:width .45s cubic-bezier(.4,0,.2,1);width:0%;}
+.progress-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding-bottom:12px;border-bottom:1px solid var(--rule);}
+.step-connector{display:none;}
+.step-item{display:flex;}
+.step-btn{display:flex;align-items:center;gap:8px;background:none;border:none;cursor:pointer;padding:6px 8px;border-radius:6px;transition:background .2s;width:100%;}
+.step-btn:hover{background:var(--cream2);}
+.step-num{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--cream3);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:500;color:var(--muted2);transition:all .3s cubic-bezier(.4,0,.2,1);flex-shrink:0;}
+.step-label{font-size:11px;font-weight:400;color:var(--muted2);white-space:nowrap;transition:color .2s;}
+.step-item.active .step-num{background:var(--terra);border-color:var(--terra);color:#fff;transform:scale(1.1);}
+.step-item.active .step-label{color:var(--charcoal);font-weight:500;}
+.step-item.done .step-num{background:var(--cream3);border-color:var(--tan2);color:var(--tan2);}
+.step-item.done .step-num .sn{display:none;}
+.step-item.done .step-num::after{content:'✓';font-size:10px;}
+.step-item.done .step-label{color:var(--tan2);}
+@media(max-width:480px){.progress-steps{grid-template-columns:repeat(2,1fr);}}
+
+/* SECTIONS */
+.form-section{display:none;}
+.form-section.entering{display:block;animation:slideInRight .38s cubic-bezier(.4,0,.2,1) both;}
+.form-section.leaving{display:block;animation:slideOutLeft .28s cubic-bezier(.4,0,.2,1) both;}
+.form-section.active{display:block;}
+.form-section.entering-back{display:block;animation:slideInLeft .38s cubic-bezier(.4,0,.2,1) both;}
+.form-section.leaving-fwd{display:block;animation:slideOutRight .28s cubic-bezier(.4,0,.2,1) both;}
+
+.section-header{margin-bottom:40px;}
+.section-num-label{font-size:10px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--terra);display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.section-num-label::after{content:'';flex:1;height:1px;background:linear-gradient(to right,var(--rule),transparent);}
+.section-title{font-family:var(--serif);font-size:clamp(26px,4.5vw,38px);font-weight:400;line-height:1.12;color:var(--charcoal);margin-bottom:10px;}
+.section-title em{font-style:italic;color:var(--muted);}
+.section-desc{font-size:14px;font-weight:300;color:var(--muted);line-height:1.7;}
+
+/* FIELDS */
+.field-group{margin-bottom:30px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.field{display:flex;flex-direction:column;gap:7px;}
+.field-label{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--charcoal2);}
+.field-label .req{color:var(--terra);margin-left:2px;}
+.field-hint{font-size:12px;font-weight:300;color:var(--muted2);font-style:italic;margin-top:-3px;}
+input[type="text"],input[type="email"],input[type="tel"],input[type="date"],input[type="time"],textarea,select{font-family:var(--sans);font-size:14px;font-weight:400;background:var(--cream2);border:1px solid transparent;border-bottom:2px solid var(--tan);border-radius:3px 3px 0 0;padding:11px 14px;color:var(--charcoal);outline:none;width:100%;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none;}
+input:focus,textarea:focus,select:focus{background:#fff;border-bottom-color:var(--terra);box-shadow:0 4px 12px rgba(184,92,56,.08);}
+input::placeholder,textarea::placeholder{color:var(--muted2);font-weight:300;}
+textarea{resize:vertical;min-height:90px;line-height:1.6;}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6' fill='none' stroke='%237a6e5f' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;cursor:pointer;background-color:var(--cream2);}
+input.invalid{border-bottom-color:var(--terra2)!important;animation:shake .35s ease;}
+
+/* PILLS */
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px;}
+.pill-input{display:none;}
+.pill-label{display:inline-flex;align-items:center;font-size:13px;font-weight:400;color:var(--muted);border:1px solid var(--cream3);border-radius:100px;padding:7px 18px;cursor:pointer;background:var(--cream2);transition:all .18s;user-select:none;}
+.pill-label:hover{border-color:var(--tan2);color:var(--charcoal);transform:translateY(-1px);}
+.pill-input:checked+.pill-label{background:var(--terra);border-color:var(--terra);color:#fff;transform:translateY(-1px);box-shadow:0 4px 12px rgba(184,92,56,.25);}
+
+/* QUICK-FILL PILLS */
+.quickfill{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.qf-btn{font-family:var(--sans);font-size:12px;font-weight:400;color:var(--muted);border:1px dashed var(--tan);border-radius:100px;padding:5px 14px;cursor:pointer;background:transparent;transition:all .15s;white-space:nowrap;}
+.qf-btn:hover{border-color:var(--terra);color:var(--terra);background:rgba(184,92,56,.06);}
+.qf-btn.qf-none{border-color:var(--cream3);color:var(--muted2);}
+.qf-btn.qf-none:hover{border-color:var(--muted);color:var(--charcoal);}
+.qf-label{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);margin-bottom:4px;display:block;}
+
+/* TOGGLE */
+.toggle-wrap{display:flex;gap:10px;}
+.toggle-input{display:none;}
+.toggle-label{flex:1;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:400;color:var(--muted);border:1px solid var(--cream3);border-radius:4px;padding:10px;cursor:pointer;background:var(--cream2);transition:all .18s;user-select:none;}
+.toggle-label:hover{border-color:var(--tan2);color:var(--charcoal);}
+.toggle-input:checked+.toggle-label{background:var(--charcoal);border-color:var(--charcoal);color:var(--cream);box-shadow:0 4px 12px rgba(42,35,24,.2);}
+
+/* CONDITIONAL */
+.conditional{display:none;margin-top:16px;}
+.conditional.visible{display:block;animation:fadeUp .28s ease both;}
+
+/* DIVIDER */
+.field-divider{height:1px;background:var(--rule);margin:36px 0;}
+
+/* PARTNER COLOR ACCENTS */
+.p1-accent{color:var(--p1);}
+.p2-accent{color:var(--p2);}
+.p1-tag{display:inline-block;font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--p1);background:var(--p1-bg);border:1px solid var(--p1-border);border-radius:100px;padding:2px 9px;}
+.p2-tag{display:inline-block;font-size:9px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--p2);background:var(--p2-bg);border:1px solid var(--p2-border);border-radius:100px;padding:2px 9px;}
+.p1-input{border-bottom-color:var(--p1) !important;}
+.p2-input{border-bottom-color:var(--p2) !important;}
+.p1-input:focus{box-shadow:0 4px 12px rgba(74,155,127,.1) !important;}
+.p2-input:focus{box-shadow:0 4px 12px rgba(74,123,181,.1) !important;}
+/* PARTY MEMBER ROWS */
+.party-member.p1-member input[type="text"]{border-bottom-color:var(--p1);}
+.party-member.p1-member input[type="text"]:focus{box-shadow:0 4px 12px rgba(74,155,127,.08);}
+.party-member.p2-member input[type="text"]{border-bottom-color:var(--p2);}
+.party-member.p2-member input[type="text"]:focus{box-shadow:0 4px 12px rgba(74,123,181,.08);}
+/* ROLE AUTOCOMPLETE — portal rendered at body level, fixed position */
+.role-datalist-wrap{flex:1;}
+#roleSuggestPortal{position:fixed;background:#fff;border:1px solid var(--cream3);border-radius:6px;z-index:9999;box-shadow:0 8px 24px rgba(42,35,24,.14);display:none;min-width:220px;max-height:220px;overflow-y:auto;}
+#roleSuggestPortal.open{display:block;}
+.role-suggest-item{padding:9px 14px;font-size:13px;color:var(--charcoal);cursor:pointer;transition:background .1s;border-bottom:1px solid var(--cream3);}
+.role-suggest-item:last-child{border-bottom:none;}
+.role-suggest-item:hover{background:var(--cream2);}
+.role-suggest-item.role-honor-p1{color:var(--p1);font-weight:500;}
+.role-suggest-item.role-honor-p2{color:var(--p2);font-weight:500;}
+.role-suggest-item em{font-style:normal;font-weight:700;}
+
+/* BTN PRINT / SAVE */
+.btn-secondary{font-family:var(--sans);font-size:12px;font-weight:400;color:var(--muted);background:none;border:1px solid var(--cream3);border-radius:4px;padding:10px 18px;cursor:pointer;transition:all .15s;white-space:nowrap;}
+.btn-secondary:hover{border-color:var(--tan2);color:var(--charcoal);background:var(--cream2);}
+.nav-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.party-section{margin-bottom:32px;}
+.party-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.party-title{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--charcoal2);}
+.party-side-tag{display:inline-block;font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted2);background:var(--cream3);border-radius:100px;padding:3px 10px;margin-left:10px;}
+.party-list{display:flex;flex-direction:column;gap:10px;}
+.party-member{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:center;animation:fadeUp .25s ease both;}
+.btn-remove-member{width:32px;height:32px;background:none;border:1px solid var(--cream3);border-radius:50%;cursor:pointer;color:var(--muted2);font-size:16px;line-height:1;display:flex;align-items:center;justify-content:center;transition:all .15s;flex-shrink:0;}
+.btn-remove-member:hover{border-color:var(--terra);color:var(--terra);background:rgba(184,92,56,.08);}
+.btn-add-member{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--terra);background:none;border:1px dashed var(--tan);border-radius:4px;padding:9px 16px;cursor:pointer;width:100%;display:flex;align-items:center;justify-content:center;gap:6px;transition:all .18s;margin-top:4px;}
+.btn-add-member:hover{border-color:var(--terra);background:rgba(184,92,56,.06);}
+.btn-add-member::before{content:'+';font-size:16px;}
+
+/* CUSTOM PILL ADD/DROP */
+.pill-add-wrap{display:flex;gap:6px;align-items:center;margin-top:8px;}
+.pill-add-input{font-family:var(--sans);font-size:13px;background:var(--cream2);border:1px dashed var(--tan);border-bottom:2px solid var(--tan);border-radius:3px 3px 0 0;padding:6px 12px;color:var(--charcoal);outline:none;flex:1;min-width:0;transition:border-color .2s;}
+.pill-add-input:focus{background:#fff;border-bottom-color:var(--terra);}
+.pill-add-input::placeholder{color:var(--muted2);font-weight:300;}
+.btn-pill-add{font-family:var(--sans);font-size:12px;font-weight:500;color:var(--terra);background:none;border:1px dashed var(--tan);border-radius:4px;padding:7px 14px;cursor:pointer;white-space:nowrap;transition:all .15s;flex-shrink:0;}
+.btn-pill-add:hover{border-color:var(--terra);background:rgba(184,92,56,.06);}
+.pill-label.custom-pill{position:relative;padding-right:28px;}
+.pill-label.custom-pill .pill-remove{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:13px;line-height:1;color:inherit;opacity:.6;cursor:pointer;}
+/* PARTNER COLOR ROLE PILLS — p1 green, p2 blue on selection */
+.p1-pill-input:checked+.p1-pill-label{background:var(--p1);border-color:var(--p1);color:#fff;box-shadow:0 4px 10px rgba(74,155,127,.3);}
+.p1-pill-label{border-color:var(--p1-border);color:var(--p1);font-size:12px;padding:5px 14px;}
+.p1-pill-label:hover{background:var(--p1-bg);border-color:var(--p1);}
+.p2-pill-input:checked+.p2-pill-label{background:var(--p2);border-color:var(--p2);color:#fff;box-shadow:0 4px 10px rgba(74,123,181,.3);}
+.p2-pill-label{border-color:var(--p2-border);color:var(--p2);font-size:12px;padding:5px 14px;}
+.p2-pill-label:hover{background:var(--p2-bg);border-color:var(--p2);}
+
+/* SHOT BUILDER TOKEN COLORS — couple = neutral, p1 tokens = green, p2 tokens = blue, shared = tan */
+.person-label.token-p1{border-color:var(--p1-border);color:var(--p1);}
+.person-label.token-p1:hover{background:var(--p1-bg);}
+.person-toggle.token-p1:checked+.person-label.token-p1{background:var(--p1);border-color:var(--p1);color:#fff;box-shadow:0 3px 8px rgba(74,155,127,.25);}
+.person-label.token-p2{border-color:var(--p2-border);color:var(--p2);}
+.person-label.token-p2:hover{background:var(--p2-bg);}
+.person-toggle.token-p2:checked+.person-label.token-p2{background:var(--p2);border-color:var(--p2);color:#fff;box-shadow:0 3px 8px rgba(74,123,181,.25);}
+
+/* SHOT NUDGE PROGRESS BAR */
+.shot-nudge-wrap{margin-top:8px;}
+.shot-nudge-bar-track{height:3px;background:var(--cream3);border-radius:2px;overflow:hidden;margin-bottom:5px;}
+.shot-nudge-bar-fill{height:100%;border-radius:2px;transition:width .4s cubic-bezier(.4,0,.2,1),background .3s;}
+.shot-nudge{font-size:11px;font-weight:300;font-style:italic;transition:color .2s;}
+.shot-nudge.nudge-low{color:var(--muted2);}
+.shot-nudge.nudge-ok{color:var(--tan2);}
+.shot-nudge.nudge-high{color:var(--terra);}
+.shot-builder{background:var(--cream2);border:1px solid var(--cream3);border-radius:8px;padding:20px;margin-bottom:16px;}
+.shot-builder-title{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--charcoal2);margin-bottom:6px;}
+.shot-builder-hint{font-size:12px;font-weight:300;color:var(--muted2);font-style:italic;margin-bottom:14px;}
+.shot-people-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;}
+.person-toggle{display:none;}
+.person-label{display:inline-flex;align-items:center;font-size:13px;color:var(--muted);border:1px solid var(--cream3);border-radius:100px;padding:6px 16px;cursor:pointer;background:var(--cream);transition:all .15s;user-select:none;}
+.person-label:hover{border-color:var(--tan2);color:var(--charcoal);}
+.person-toggle:checked+.person-label{background:var(--charcoal2);border-color:var(--charcoal2);color:#fff;box-shadow:0 3px 8px rgba(42,35,24,.2);}
+.shot-build-row{display:flex;gap:8px;align-items:center;margin-bottom:4px;}
+.shot-preview{flex:1;font-size:13px;color:var(--muted);background:var(--cream);border:1px solid var(--cream3);border-radius:4px;padding:8px 12px;min-height:38px;display:flex;align-items:center;}
+.shot-preview.has-content{color:var(--charcoal);font-weight:400;}
+.btn-add-shot{font-family:var(--sans);font-size:12px;font-weight:500;color:#fff;background:var(--terra);border:none;border-radius:4px;padding:8px 16px;cursor:pointer;white-space:nowrap;transition:all .15s;flex-shrink:0;}
+.btn-add-shot:hover{background:var(--terra2);}
+.btn-add-shot:disabled{opacity:.35;cursor:default;}
+/* Shot output is now a plain textarea */
+#shotListTextarea{min-height:120px;font-size:13px;line-height:1.7;margin-top:12px;}
+
+/* VENDOR CARDS */
+.vendor-grid{display:flex;flex-direction:column;gap:16px;}
+.vendor-card{background:var(--cream2);border:1px solid var(--cream3);border-radius:6px;padding:18px 20px;animation:fadeUp .3s ease both;transition:box-shadow .2s;}
+.vendor-card:hover{box-shadow:0 4px 20px rgba(42,35,24,.07);}
+.vendor-card-header{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.vendor-card-icon{width:32px;height:32px;background:rgba(184,92,56,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.vendor-card-type{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--charcoal2);}
+.vendor-card-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.vendor-card-fields input{font-size:13px;padding:9px 12px;}
+.vendor-na{display:flex;justify-content:flex-end;margin-top:6px;}
+.vendor-na-btn{font-family:var(--sans);font-size:11px;color:var(--muted2);background:none;border:none;cursor:pointer;text-decoration:underline;text-underline-offset:2px;transition:color .15s;}
+.vendor-na-btn:hover{color:var(--muted);}
+
+/* NAV */
+.section-nav{display:flex;align-items:center;justify-content:space-between;margin-top:52px;padding-top:28px;border-top:1px solid var(--rule);}
+.btn-back{font-family:var(--sans);font-size:13px;font-weight:400;color:var(--muted);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:7px;padding:10px 4px;transition:color .15s,transform .15s;}
+.btn-back:hover{color:var(--charcoal);transform:translateX(-3px);}
+.btn-back::before{content:'←';font-size:16px;}
+.btn-next,.btn-submit{font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.07em;color:#fff;border:none;border-radius:4px;padding:13px 32px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .18s;position:relative;overflow:hidden;}
+.btn-next{background:var(--terra);}
+.btn-next::after{content:'→';font-size:16px;transition:transform .18s;}
+.btn-next:hover{background:var(--terra2);}
+.btn-next:hover::after{transform:translateX(3px);}
+.btn-submit{background:var(--charcoal);}
+.btn-submit:hover{background:var(--charcoal2);transform:translateY(-1px);box-shadow:0 6px 20px rgba(42,35,24,.25);}
+.btn-submit:disabled{opacity:.5;cursor:default;transform:none;box-shadow:none;}
+
+.field-error{font-size:11px;color:var(--terra2);display:none;margin-top:-3px;}
+
+/* PACKAGE CARDS */
+.package-grid{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+.pkg-input{display:none;}
+.pkg-card{display:flex;flex-direction:column;gap:3px;background:var(--cream2);border:1.5px solid var(--cream3);border-radius:6px;padding:10px 16px;cursor:pointer;transition:all .18s;user-select:none;min-width:120px;}
+.pkg-card:hover{border-color:var(--tan2);background:#fff;}
+.pkg-input:checked+.pkg-card{border-color:var(--terra);background:#fff;box-shadow:0 3px 10px rgba(184,92,56,.12);}
+.pkg-name{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted2);}
+.pkg-popular{display:inline-block;font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);background:rgba(184,92,56,.1);border-radius:100px;padding:2px 8px;margin-left:6px;vertical-align:middle;}
+.pkg-hours{font-size:20px;font-family:var(--serif);font-weight:400;color:var(--charcoal);line-height:1.15;}
+.pkg-price{font-size:11px;font-weight:300;color:var(--muted2);}
+.pkg-desc{display:none;}
+.pkg-feature{display:none;}
+
+/* TIME GAP WARNING */
+.time-warning{display:none;margin-top:10px;background:rgba(184,92,56,.07);border:1px solid rgba(184,92,56,.2);border-radius:4px;padding:10px 14px;font-size:12px;color:var(--terra2);line-height:1.5;}
+.time-warning.visible{display:block;animation:fadeUp .2s ease both;}
+
+/* SUCCESS */
+.success-screen{display:none;text-align:center;padding:100px 24px;}
+.success-mark{width:72px;height:72px;border:1px solid var(--terra);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 32px;font-size:28px;color:var(--terra);animation:popIn .5s cubic-bezier(.4,0,.2,1) both;}
+.success-title{font-family:var(--serif);font-size:42px;font-weight:400;color:var(--charcoal);margin-bottom:14px;animation:fadeUp .5s ease .2s both;}
+.success-sub{font-size:15px;font-weight:300;color:var(--muted);line-height:1.75;max-width:420px;margin:0 auto;animation:fadeUp .5s ease .35s both;}
+
+/* FOOTER */
+.site-footer{margin-top:80px;padding-top:28px;border-top:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;animation:fadeUp .5s ease .5s both;}
+.footer-brand{font-family:var(--serif);font-size:16px;color:var(--charcoal);}
+.footer-contact{font-size:12px;font-weight:300;color:var(--muted2);display:flex;gap:20px;flex-wrap:wrap;}
+.footer-contact a{color:var(--muted2);text-decoration:none;transition:color .15s;}
+.footer-contact a:hover{color:var(--terra);}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+@keyframes slideInRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:none}}
+@keyframes slideOutLeft{from{opacity:1;transform:none}to{opacity:0;transform:translateX(-40px)}}
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:none}}
+@keyframes slideOutRight{from{opacity:1;transform:none}to{opacity:0;transform:translateX(40px)}}
+@keyframes shake{0%,100%{transform:none}20%{transform:translateX(-5px)}40%{transform:translateX(5px)}60%{transform:translateX(-3px)}80%{transform:translateX(3px)}}
+@keyframes popIn{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+
+.form-section.active .field-group{animation:fadeUp .4s ease both;}
+.form-section.active .field-group:nth-child(2){animation-delay:.06s;}
+.form-section.active .field-group:nth-child(3){animation-delay:.12s;}
+.form-section.active .field-group:nth-child(4){animation-delay:.18s;}
+.form-section.active .field-group:nth-child(5){animation-delay:.24s;}
+
+@media(max-width:580px){
+  .field-row{grid-template-columns:1fr;}
+  .vendor-card-fields{grid-template-columns:1fr;}
+  .party-member{grid-template-columns:1fr auto;}
+  .party-member input:last-of-type{grid-column:1;}
+  .step-label{display:none;}
+  .step-connector{width:10px;}
+  .shot-build-row{flex-direction:column;align-items:stretch;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="site-header">
+  <div class="site-eyebrow">JD Meyers Productions</div>
+  <h1 class="site-title">Wedding Day<br><em>Planning Guide</em></h1>
+  <p class="site-sub">Now that we're locked in, this is where I get to know your day inside and out. The more detail you share, the better prepared I'll be.</p>
+</header>
+
+<div class="progress-outer" id="progressOuter">
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-steps" id="progressSteps">
+    <div class="step-item active" data-step="0"><button class="step-btn" onclick="goToStep(0)"><div class="step-num"><span class="sn">1</span></div><span class="step-label">Couple</span></button></div>
+    <div class="step-item" data-step="1"><button class="step-btn" onclick="goToStep(1)"><div class="step-num"><span class="sn">2</span></div><span class="step-label">Wedding</span></button></div>
+    <div class="step-item" data-step="2"><button class="step-btn" onclick="goToStep(2)"><div class="step-num"><span class="sn">3</span></div><span class="step-label">Timeline</span></button></div>
+    <div class="step-item" data-step="3"><button class="step-btn" onclick="goToStep(3)"><div class="step-num"><span class="sn">4</span></div><span class="step-label">Bridal Party</span></button></div>
+    <div class="step-item" data-step="4"><button class="step-btn" onclick="goToStep(4)"><div class="step-num"><span class="sn">5</span></div><span class="step-label">Key Shots</span></button></div>
+    <div class="step-item" data-step="5"><button class="step-btn" onclick="goToStep(5)"><div class="step-num"><span class="sn">6</span></div><span class="step-label">Vendors</span></button></div>
+    <div class="step-item" data-step="6"><button class="step-btn" onclick="goToStep(6)"><div class="step-num"><span class="sn">7</span></div><span class="step-label">Logistics</span></button></div>
+    <div class="step-item" data-step="7"><button class="step-btn" onclick="goToStep(7)"><div class="step-num"><span class="sn">8</span></div><span class="step-label">Vision</span></button></div>
+  </div>
+</div>
+
+<div class="success-screen" id="successScreen">
+  <div class="success-mark">✓</div>
+  <div class="success-title" id="successTitle">All set.</div>
+  <p class="success-sub" id="successSub">I have everything I need to show up fully prepared for your day. I'll follow up if I have any questions. Text me anytime at (315) 244-4155.</p>
+</div>
+
+<!-- ══ 1: COUPLE ══ -->
+<div class="form-section active" id="section-0">
+  <div class="section-header">
+    <div class="section-num-label">01 of 08</div>
+    <h2 class="section-title">The two<br><em>of you</em></h2>
+    <p class="section-desc">Names and contact info for both partners — I'll use these on all planning documents.</p>
+  </div>
+  <div class="field-group">
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label" for="p1name">Partner 1 — Full Name <span class="req">*</span></label>
+        <input type="text" id="p1name" class="p1-input" placeholder="First and last name" oninput="syncNames()">
+        <span class="field-error" id="err-p1name">Please enter a name.</span>
+        <div class="pills p1-role-pills" style="margin-top:8px;">
+          <input class="pill-input p1-pill-input" type="radio" name="p1role" id="p1r-bride" value="Bride" onchange="syncRoles()"><label class="pill-label p1-pill-label" for="p1r-bride">Bride</label>
+          <input class="pill-input p1-pill-input" type="radio" name="p1role" id="p1r-groom" value="Groom" onchange="syncRoles()"><label class="pill-label p1-pill-label" for="p1r-groom">Groom</label>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label" for="p2name">Partner 2 — Full Name</label>
+        <input type="text" id="p2name" class="p2-input" placeholder="First and last name" oninput="syncNames()">
+        <div class="pills p2-role-pills" style="margin-top:8px;">
+          <input class="pill-input p2-pill-input" type="radio" name="p2role" id="p2r-bride" value="Bride" onchange="syncRoles()"><label class="pill-label p2-pill-label" for="p2r-bride">Bride</label>
+          <input class="pill-input p2-pill-input" type="radio" name="p2role" id="p2r-groom" value="Groom" onchange="syncRoles()"><label class="pill-label p2-pill-label" for="p2r-groom">Groom</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label" for="p1email">Best Email <span class="req">*</span></label>
+        <input type="email" id="p1email" placeholder="your@email.com" autocomplete="email">
+        <span class="field-error" id="err-p1email">Please enter a valid email.</span>
+      </div>
+      <div class="field">
+        <label class="field-label" for="p1phone">Best Phone</label>
+        <input type="tel" id="p1phone" placeholder="(315) 000-0000" autocomplete="tel">
+      </div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label">How did you find me?</label>
+      <div class="pills">
+        <input class="pill-input" type="radio" name="source" id="src-ig" value="Instagram"><label class="pill-label" for="src-ig">Instagram</label>
+        <input class="pill-input" type="radio" name="source" id="src-google" value="Google"><label class="pill-label" for="src-google">Google</label>
+        <input class="pill-input" type="radio" name="source" id="src-ref" value="Referral"><label class="pill-label" for="src-ref">Referral</label>
+        <input class="pill-input" type="radio" name="source" id="src-venue" value="Venue recommendation"><label class="pill-label" for="src-venue">Venue</label>
+        <input class="pill-input" type="radio" name="source" id="src-other" value="Other"><label class="pill-label" for="src-other">Other</label>
+      </div>
+      <div class="conditional" id="referral-wrap">
+        <label class="field-label" for="referral-name" style="margin-bottom:6px;">Who referred you?</label>
+        <input type="text" id="referral-name" placeholder="Name of the person who sent you my way">
+      </div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label">Package booked <span class="req">*</span></label>
+      <p class="field-hint" style="margin-bottom:10px;">This helps me confirm coverage hours as we plan the day</p>
+      <div class="package-grid">
+        <input class="pkg-input" type="radio" name="package" id="pkg-essential" value="Essential (4 hrs — from $1,200)"><label class="pkg-card" for="pkg-essential"><span class="pkg-name">Essential</span><span class="pkg-hours">4 hrs</span><span class="pkg-price">from $1,200</span></label>
+        <input class="pkg-input" type="radio" name="package" id="pkg-signature" value="Signature (8 hrs — from $1,800)"><label class="pkg-card" for="pkg-signature"><span class="pkg-name">Signature</span><span class="pkg-hours">8 hrs</span><span class="pkg-price">from $1,800</span></label>
+        <input class="pkg-input" type="radio" name="package" id="pkg-premiere" value="Premiere (no hour cap — from $2,800)"><label class="pkg-card" for="pkg-premiere"><span class="pkg-name">Premiere</span><span class="pkg-hours">No cap</span><span class="pkg-price">from $2,800</span></label>
+      </div>
+    </div>
+  </div>
+  <div class="section-nav"><span></span><button class="btn-next" onclick="nextStep(0)">The Wedding</button></div>
+</div>
+
+<!-- ══ 2: WEDDING ══ -->
+<div class="form-section" id="section-1">
+  <div class="section-header">
+    <div class="section-num-label">02 of 08</div>
+    <h2 class="section-title">The wedding<br><em>details</em></h2>
+    <p class="section-desc">Date, venue, and the shape of the day.</p>
+  </div>
+  <div class="field-group">
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label" for="wed-date">Wedding Date <span class="req">*</span></label>
+        <input type="date" id="wed-date">
+        <span class="field-error" id="err-wed-date">Please select your date.</span>
+      </div>
+      <div class="field">
+        <label class="field-label" for="guest-count">Guest Count</label>
+        <select id="guest-count">
+          <option value="" disabled selected>Approximate number</option>
+          <option>Under 50</option><option>50–100</option><option>100–200</option><option>200+</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label" for="venue-name">Venue Name <span class="req">*</span></label>
+      <input type="text" id="venue-name" placeholder="e.g. Shindigz on the River" oninput="updateVenueEcho()">
+      <span class="field-error" id="err-venue-name">Please enter a venue.</span>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label" for="venue-addr">Venue Address</label>
+        <input type="text" id="venue-addr" placeholder="Street address">
+      </div>
+      <div class="field">
+        <label class="field-label" for="venue-city">City / Town</label>
+        <input type="text" id="venue-city" placeholder="e.g. Canton, NY" oninput="updateVenueEcho()">
+      </div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label">Ceremony type</label>
+      <div class="pills">
+        <input class="pill-input" type="radio" name="ceremony-type" id="ct-outdoor" value="Outdoor"><label class="pill-label" for="ct-outdoor">Outdoor</label>
+        <input class="pill-input" type="radio" name="ceremony-type" id="ct-indoor" value="Indoor"><label class="pill-label" for="ct-indoor">Indoor</label>
+        <input class="pill-input" type="radio" name="ceremony-type" id="ct-both" value="Mix of both"><label class="pill-label" for="ct-both">Mix of both</label>
+      </div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label">Weather / rain backup plan?</label>
+      <div class="toggle-wrap">
+        <input class="toggle-input" type="radio" name="weather-plan" id="wp-yes" value="Yes"><label class="toggle-label" for="wp-yes">Yes, we have one</label>
+        <input class="toggle-input" type="radio" name="weather-plan" id="wp-no" value="Not yet"><label class="toggle-label" for="wp-no">Not yet</label>
+      </div>
+      <div class="conditional" id="weather-detail-wrap">
+        <input type="text" id="weather-detail" placeholder="Briefly describe the backup plan">
+      </div>
+    </div>
+  </div>
+  <div class="section-nav"><button class="btn-back" onclick="prevStep(1)">Couple</button><button class="btn-next" onclick="nextStep(1)">Timeline</button></div>
+</div>
+
+<!-- ══ 3: TIMELINE ══ -->
+<div class="form-section" id="section-2">
+  <div class="section-header">
+    <div class="section-num-label">03 of 08</div>
+    <h2 class="section-title">Coverage &<br><em>timeline</em></h2>
+    <p class="section-desc">Walk me through the shape of the day so I can plan my time and positioning.</p>
+  </div>
+  <div class="field-group">
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label" for="arrival-time">My Arrival Time <span class="req">*</span></label>
+        <input type="time" id="arrival-time" oninput="onTimeChange()">
+        <span class="field-hint" id="arrival-hint">When you'd like me on-site</span>
+        <span class="field-error" id="err-arrival-time">Please set an arrival time.</span>
+      </div>
+      <div class="field">
+        <label class="field-label" for="end-time">Coverage End Time</label>
+        <input type="time" id="end-time" oninput="onTimeChange()">
+        <span class="field-hint" id="end-hint">Approximate wrap time</span>
+      </div>
+    </div>
+    <div class="time-warning" id="timeWarning"></div>
+  </div>
+
+  <!-- Ceremony details -->
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label">First look?</label>
+      <div class="pills">
+        <input class="pill-input" type="radio" name="first-look" id="fl-yes" value="Yes"><label class="pill-label" for="fl-yes">Yes</label>
+        <input class="pill-input" type="radio" name="first-look" id="fl-no" value="No"><label class="pill-label" for="fl-no">No</label>
+        <input class="pill-input" type="radio" name="first-look" id="fl-tbd" value="TBD"><label class="pill-label" for="fl-tbd">TBD</label>
+      </div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label" for="ceremony-structure">Ceremony structure / notes</label>
+      <p class="field-hint" style="margin-bottom:8px;">Processional order, readings, unity rituals, length — anything that affects my positioning</p>
+      <div class="quickfill">
+        <button type="button" class="qf-btn qf-none" onclick="qfSet('ceremony-structure','Standard — processional, vows, rings, kiss, recessional')">Standard</button>
+        <button type="button" class="qf-btn qf-none" onclick="qfSet('ceremony-structure','TBD — will send details closer to date')">TBD</button>
+      </div>
+      <textarea id="ceremony-structure" rows="3" placeholder="e.g. Processional: bridesmaids walk first, bride walks with both parents. Unity candle lighting. Two readings. Approx 25 min ceremony."></textarea>
+    </div>
+  </div>
+
+  <!-- Reception events checklist -->
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label">Reception events happening</label>
+      <p class="field-hint" style="margin-bottom:8px;">Select all that apply — add your own if something's missing</p>
+      <div class="quickfill">
+        <button type="button" class="qf-btn" onclick="checkAllReception()">All of the above</button>
+        <button type="button" class="qf-btn qf-none" onclick="uncheckAllReception()">Clear</button>
+      </div>
+      <div class="pills" id="reception-pills">
+        <input class="pill-input" type="checkbox" name="reception-events" id="re-entrance" value="Grand entrance"><label class="pill-label" for="re-entrance">Grand entrance</label>
+        <input class="pill-input" type="checkbox" name="reception-events" id="re-firstdance" value="First dance"><label class="pill-label" for="re-firstdance">First dance</label>
+        <input class="pill-input" type="checkbox" name="reception-events" id="re-parentdance" value="Parent dances"><label class="pill-label" for="re-parentdance">Parent dances</label>
+        <input class="pill-input" type="checkbox" name="reception-events" id="re-toasts" value="Toasts / speeches"><label class="pill-label" for="re-toasts">Toasts / speeches</label>
+        <input class="pill-input" type="checkbox" name="reception-events" id="re-cake" value="Cake cutting"><label class="pill-label" for="re-cake">Cake cutting</label>
+        <input class="pill-input" type="checkbox" name="reception-events" id="re-bouquet" value="Bouquet toss"><label class="pill-label" for="re-bouquet">Bouquet toss</label>
+        <input class="pill-input" type="checkbox" name="reception-events" id="re-sendoff" value="Send-off / sparkler exit"><label class="pill-label" for="re-sendoff">Send-off / sparkler exit</label>
+      </div>
+      <div class="pill-add-wrap">
+        <input type="text" class="pill-add-input" id="re-custom-input" placeholder="Add your own event…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomPill('reception-pills','reception-events','re-custom-input');}">
+        <button type="button" class="btn-pill-add" onclick="addCustomPill('reception-pills','reception-events','re-custom-input')">+ Add</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label">What should I cover?</label>
+      <p class="field-hint" style="margin-bottom:8px;">Select all that apply — add your own if needed</p>
+      <div class="pills" id="coverage-pills">
+        <input class="pill-input" type="checkbox" name="coverage" id="cov-prep" value="Getting ready"><label class="pill-label" for="cov-prep">Getting ready</label>
+        <input class="pill-input" type="checkbox" name="coverage" id="cov-ceremony" value="Ceremony"><label class="pill-label" for="cov-ceremony">Ceremony</label>
+        <input class="pill-input" type="checkbox" name="coverage" id="cov-portraits" value="Couple portraits"><label class="pill-label" for="cov-portraits">Couple portraits</label>
+        <input class="pill-input" type="checkbox" name="coverage" id="cov-family" value="Family formals"><label class="pill-label" for="cov-family">Family formals</label>
+        <input class="pill-input" type="checkbox" name="coverage" id="cov-cocktail" value="Cocktail hour"><label class="pill-label" for="cov-cocktail">Cocktail hour</label>
+        <input class="pill-input" type="checkbox" name="coverage" id="cov-reception" value="Reception"><label class="pill-label" for="cov-reception">Reception</label>
+        <input class="pill-input" type="checkbox" name="coverage" id="cov-send" value="Send-off"><label class="pill-label" for="cov-send">Send-off</label>
+      </div>
+      <div class="pill-add-wrap">
+        <input type="text" class="pill-add-input" id="cov-custom-input" placeholder="Add your own…" onkeydown="if(event.key==='Enter'){event.preventDefault();addCustomPill('coverage-pills','coverage','cov-custom-input');}">
+        <button type="button" class="btn-pill-add" onclick="addCustomPill('coverage-pills','coverage','cov-custom-input')">+ Add</button>
+      </div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label" for="timeline-detail">Day-of timeline</label>
+      <p class="field-hint" style="margin-bottom:8px;">As specific as you have — times, locations, order of events</p>
+      <div class="quickfill">
+        <span class="qf-label">Quick fill:</span>
+        <button type="button" class="qf-btn qf-none" onclick="qfSet('timeline-detail','TBD — will send closer to date')">TBD</button>
+        <button type="button" class="qf-btn" id="templateBtn" onclick="toggleTemplate()">Load template</button>
+      </div>
+      <textarea id="timeline-detail" rows="6" placeholder="e.g.&#10;10:00 AM — Getting ready&#10;12:00 PM — First look&#10;1:00 PM — Ceremony&#10;2:00 PM — Cocktail hour&#10;3:00 PM — Reception&#10;6:00 PM — Send-off"></textarea>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label">Second location for portraits?</label>
+      <div class="toggle-wrap">
+        <input class="toggle-input" type="radio" name="second-loc" id="sl-yes" value="Yes"><label class="toggle-label" for="sl-yes">Yes</label>
+        <input class="toggle-input" type="radio" name="second-loc" id="sl-no" value="No"><label class="toggle-label" for="sl-no">No</label>
+      </div>
+      <div class="conditional" id="second-loc-detail">
+        <input type="text" id="second-loc-name" placeholder="Where were you thinking?">
+      </div>
+    </div>
+  </div>
+  <div class="section-nav"><button class="btn-back" onclick="prevStep(2)">Wedding</button><button class="btn-next" onclick="nextStep(2)">Bridal Party</button></div>
+</div>
+
+<!-- ══ 4: BRIDAL PARTY ══ -->
+<div class="form-section" id="section-3">
+  <div class="section-header">
+    <div class="section-num-label">04 of 08</div>
+    <h2 class="section-title" id="party-section-title">The bridal<br><em>party</em></h2>
+    <p class="section-desc">Names help me call people over quickly and put together shot lists. Add or remove members as needed on each side.</p>
+  </div>
+  <div class="field-group">
+    <div class="party-section">
+      <div class="party-header">
+        <div class="party-title"><span id="p1-side-label" class="p1-accent">Partner 1</span>'s Side <span class="p1-tag" id="p1-side-tag">Bridesmaids</span></div>
+      </div>
+      <div class="party-list" id="party-side1"></div>
+      <button class="btn-add-member" onclick="addMember('side1')">Add person</button>
+    </div>
+    <div class="field-divider"></div>
+    <div class="party-section">
+      <div class="party-header">
+        <div class="party-title"><span id="p2-side-label" class="p2-accent">Partner 2</span>'s Side <span class="p2-tag" id="p2-side-tag">Groomsmen</span></div>
+      </div>
+      <div class="party-list" id="party-side2"></div>
+      <button class="btn-add-member" onclick="addMember('side2')">Add person</button>
+    </div>
+  </div>
+  <div class="field-divider"></div>
+  <div class="field-group">
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label" for="flower-kids">Flower girl(s) / Ring bearer(s)</label>
+        <div class="quickfill"><button type="button" class="qf-btn qf-none" onclick="qfSet('flower-kids','None')">None</button></div>
+        <input type="text" id="flower-kids" placeholder="Names and ages, e.g. Lily (5), James (7)">
+      </div>
+      <div class="field">
+        <label class="field-label" for="officiant">Officiant</label>
+        <div class="quickfill"><button type="button" class="qf-btn qf-none" onclick="qfSet('officiant','TBD')">TBD</button></div>
+        <input type="text" id="officiant" placeholder="Full name">
+      </div>
+    </div>
+  </div>
+  <div class="section-nav"><button class="btn-back" onclick="prevStep(3)">Timeline</button><button class="btn-next" onclick="nextStep(3)">Key Shots</button></div>
+</div>
+
+<!-- ══ 5: KEY SHOTS ══ -->
+<div class="form-section" id="section-4">
+  <div class="section-header">
+    <div class="section-num-label">05 of 08</div>
+    <h2 class="section-title">Key people &<br><em>must-have shots</em></h2>
+    <p class="section-desc">This section is worth taking your time on. The more specific you are here, the better your gallery will reflect what mattered most.</p>
+  </div>
+
+  <!-- FORMAL SHOT BUILDER — no presets, output to textarea -->
+  <div class="field-group">
+    <label class="field-label">Family formal combinations</label>
+    <p class="field-hint" style="margin-bottom:12px;">Use the builder to add groupings — they'll load into the text box below so you can edit freely</p>
+
+    <div class="shot-builder">
+      <div class="shot-builder-title">Shot builder</div>
+      <div class="shot-builder-hint">Select people and hit + Add. Combinations will appear in the editable list below.</div>
+
+      <span class="preset-label" style="font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);margin-bottom:8px;display:block;">Select people</span>
+      <div class="shot-people-row" id="shotPeople"></div>
+
+      <div class="shot-build-row">
+        <div class="shot-preview" id="shotPreview">Select people above…</div>
+        <button type="button" class="btn-add-shot" id="btnAddShot" onclick="addShot()" disabled>+ Add</button>
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="field-label" for="shotListTextarea" style="margin-top:4px;">Formal shot list — edit freely</label>
+      <p class="field-hint" style="margin-bottom:6px;">Built from the selector above — add, remove, or reword anything here</p>
+      <textarea id="shotListTextarea" rows="6" placeholder="Your formal combinations will appear here as you add them above. You can also type directly."></textarea>
+      <div class="shot-nudge-wrap" id="shotNudgeWrap" style="display:none;">
+        <div class="shot-nudge-bar-track"><div class="shot-nudge-bar-fill" id="shotNudgeBar"></div></div>
+        <div class="shot-nudge" id="shotNudge"></div>
+      </div>
+    </div>
+
+    <div class="field" style="margin-top:16px;">
+      <label class="field-label" for="family-combos">Additional combinations or notes</label>
+      <textarea id="family-combos" rows="3" placeholder="Anything else not covered above…"></textarea>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label" for="must-haves">Must-have moments & details</label>
+      <p class="field-hint" style="margin-bottom:8px;">Décor, heirlooms, people, moments — non-negotiable captures</p>
+      <div class="quickfill">
+        <button type="button" class="qf-btn qf-none" onclick="qfSet('must-haves','No specific requests — use your judgment')">No specific requests</button>
+      </div>
+      <textarea id="must-haves" placeholder="e.g. My grandmother's ring on my hand, the handmade centerpieces, the view from the ceremony hill..."></textarea>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label" for="do-not-photo">Anyone NOT to photograph</label>
+      <div class="quickfill">
+        <button type="button" class="qf-btn qf-none" onclick="qfSet('do-not-photo','No restrictions')">No restrictions</button>
+      </div>
+      <input type="text" id="do-not-photo" placeholder="Name and brief reason if comfortable sharing">
+    </div>
+  </div>
+
+  <!-- Family dynamics -->
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label" for="family-dynamics">Family dynamics to be aware of</label>
+      <p class="field-hint" style="margin-bottom:8px;">Share as much or as little as you'd like.</p>
+      <div class="quickfill">
+        <button type="button" class="qf-btn qf-none" onclick="qfSet('family-dynamics','Nothing to flag')">Nothing to flag</button>
+      </div>
+      <textarea id="family-dynamics" rows="3" placeholder=""></textarea>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label" for="special-notes">Anything else about people or moments</label>
+      <div class="quickfill">
+        <button type="button" class="qf-btn qf-none" onclick="qfSet('special-notes','N/A')">N/A</button>
+      </div>
+      <textarea id="special-notes" placeholder="Mobility considerations, surprise moments planned, anyone who will be especially emotional..."></textarea>
+    </div>
+  </div>
+
+  <div class="section-nav"><button class="btn-back" onclick="prevStep(4)">Bridal Party</button><button class="btn-next" onclick="nextStep(4)">Vendors</button></div>
+</div>
+
+<!-- ══ 6: VENDORS ══ -->
+<div class="form-section" id="section-5">
+  <div class="section-header">
+    <div class="section-num-label">06 of 08</div>
+    <h2 class="section-title">Your vendor<br><em>team</em></h2>
+    <p class="section-desc">Knowing who's who helps me coordinate on the day. Hit "Not applicable" on any that don't apply.</p>
+  </div>
+  <div class="field-group">
+    <div class="vendor-grid" id="vendorGrid"></div>
+  </div>
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label" for="other-vendors">Any other vendors</label>
+      <div class="quickfill"><button type="button" class="qf-btn qf-none" onclick="qfSet('other-vendors','None')">None</button></div>
+      <textarea id="other-vendors" rows="3" placeholder="Photo booth, transportation, cake delivery — name and contact if you have it"></textarea>
+    </div>
+  </div>
+  <div class="section-nav"><button class="btn-back" onclick="prevStep(5)">Key Shots</button><button class="btn-next" onclick="nextStep(5)">Logistics</button></div>
+</div>
+
+<!-- ══ 7: LOGISTICS ══ -->
+<div class="form-section" id="section-6">
+  <div class="section-header">
+    <div class="section-num-label">07 of 08</div>
+    <h2 class="section-title">Venue &<br><em>logistics</em></h2>
+    <p class="section-desc">The practical stuff that affects how the day runs.</p>
+  </div>
+
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label">Venue contact person</label>
+      <div class="field-row" style="margin-top:2px;">
+        <input type="text" id="venue-contact" placeholder="Name">
+        <input type="tel" id="venue-contact-phone" placeholder="Phone">
+      </div>
+    </div>
+  </div>
+
+  <!-- NEW: Day-of emergency contact -->
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label">Day-of emergency contact</label>
+      <p class="field-hint" style="margin-bottom:8px;">Who should I call if something urgent comes up — coordinator, best man, maid of honor?</p>
+      <div class="field-row" style="margin-top:2px;">
+        <input type="text" id="emergency-contact-name" placeholder="Name & role (e.g. Sarah — MOH)">
+        <input type="tel" id="emergency-contact-phone" placeholder="Phone">
+      </div>
+      <div class="quickfill" style="margin-top:8px;">
+        <button type="button" class="qf-btn qf-none" onclick="copyVenueContact()">Same as venue contact</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEW: Getting ready split -->
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label">Getting ready location(s)</label>
+      <p class="field-hint" style="margin-bottom:8px;">Are both sides getting ready at the same place?</p>
+      <div class="toggle-wrap">
+        <input class="toggle-input" type="radio" name="gr-same" id="gr-yes" value="Same location"><label class="toggle-label" for="gr-yes">Same location</label>
+        <input class="toggle-input" type="radio" name="gr-same" id="gr-no" value="Different locations"><label class="toggle-label" for="gr-no">Different locations</label>
+      </div>
+      <div class="conditional" id="gr-same-detail">
+        <div class="quickfill" style="margin-bottom:6px;">
+          <button type="button" class="qf-btn qf-none" id="gr-same-venue-btn" onclick="copyVenueToGR()">Same as venue</button>
+        </div>
+        <input type="text" id="getting-ready-loc" placeholder="Address or venue name">
+      </div>
+      <div class="conditional" id="gr-split-detail">
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
+          <input type="text" id="gr-loc-1" placeholder="Partner 1's getting ready location">
+          <input type="text" id="gr-loc-2" placeholder="Partner 2's getting ready location">
+        </div>
+        <div style="margin-top:14px;">
+          <label class="field-label" style="margin-bottom:8px;">Which side should I start with?</label>
+          <div class="toggle-wrap">
+            <input class="toggle-input" type="radio" name="gr-start" id="grs-p1" value="Partner 1"><label class="toggle-label" id="grs-p1-lbl" for="grs-p1">Partner 1</label>
+            <input class="toggle-input" type="radio" name="gr-start" id="grs-p2" value="Partner 2"><label class="toggle-label" id="grs-p2-lbl" for="grs-p2">Partner 2</label>
+            <input class="toggle-input" type="radio" name="gr-start" id="grs-tbd" value="TBD"><label class="toggle-label" for="grs-tbd">TBD</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label" for="venue-restrictions">Venue restrictions or rules</label>
+      <p class="field-hint" style="margin-bottom:8px;">Flash restrictions, no-go zones, insurance requirements, etc.</p>
+      <div class="quickfill">
+        <button type="button" class="qf-btn qf-none" onclick="qfSet('venue-restrictions','No restrictions')">No restrictions</button>
+        <button type="button" class="qf-btn" onclick="qfAppend('venue-restrictions','No flash during ceremony')">No flash during ceremony</button>
+        <button type="button" class="qf-btn" onclick="qfAppend('venue-restrictions','Insurance certificate required')">Insurance cert required</button>
+      </div>
+      <textarea id="venue-restrictions" id="venue-restrictions"></textarea>
+    </div>
+  </div>
+
+  <!-- NEW: Lighting & venue notes -->
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label" for="lighting-notes">Lighting & space notes</label>
+      <p class="field-hint" style="margin-bottom:8px;">Anything about the light or physical space I should prep for before I arrive</p>
+      <div class="quickfill">
+        <button type="button" class="qf-btn qf-none" onclick="qfSet('lighting-notes','No special conditions')">No special conditions</button>
+        <button type="button" class="qf-btn" onclick="qfAppend('lighting-notes','Dark reception hall / Edison bulbs only')">Dark reception hall</button>
+        <button type="button" class="qf-btn" onclick="qfAppend('lighting-notes','Outdoor ceremony, no shade or coverage')">Outdoor, no shade</button>
+        <button type="button" class="qf-btn" onclick="qfAppend('lighting-notes','Window-lit bridal suite')">Window-lit suite</button>
+      </div>
+      <textarea id="lighting-notes" rows="3"></textarea>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field-row">
+      <div class="field">
+        <label class="field-label">Vendor meal provided?</label>
+        <div class="toggle-wrap">
+          <input class="toggle-input" type="radio" name="vendor-meal" id="vm-yes" value="Yes"><label class="toggle-label" for="vm-yes">Yes</label>
+          <input class="toggle-input" type="radio" name="vendor-meal" id="vm-no" value="No"><label class="toggle-label" for="vm-no">No</label>
+        </div>
+      </div>
+      <div class="field">
+        <label class="field-label">Overnight stay needed?</label>
+        <div class="toggle-wrap">
+          <input class="toggle-input" type="radio" name="overnight" id="on-yes" value="Yes"><label class="toggle-label" for="on-yes">Yes</label>
+          <input class="toggle-input" type="radio" name="overnight" id="on-no" value="No"><label class="toggle-label" for="on-no">No</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label" for="parking-notes">Parking & load-in</label>
+      <div class="quickfill">
+        <button type="button" class="qf-btn qf-none" onclick="qfSet('parking-notes','No special instructions')">No special instructions</button>
+      </div>
+      <input type="text" id="parking-notes">
+    </div>
+  </div>
+  <div class="section-nav"><button class="btn-back" onclick="prevStep(6)">Vendors</button><button class="btn-next" onclick="nextStep(6)">Vision</button></div>
+</div>
+
+<!-- ══ 8: VISION ══ -->
+<div class="form-section" id="section-7">
+  <div class="section-header">
+    <div class="section-num-label">08 of 08</div>
+    <h2 class="section-title">Your vision &<br><em>last thoughts</em></h2>
+    <p class="section-desc">Final section. Tell me about the look and feel you're after.</p>
+  </div>
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label">Overall photography vibe</label>
+      <div class="pills">
+        <input class="pill-input" type="radio" name="vibe" id="vibe-candid" value="Candid and documentary"><label class="pill-label" for="vibe-candid">Candid & documentary</label>
+        <input class="pill-input" type="radio" name="vibe" id="vibe-editorial" value="Editorial and posed"><label class="pill-label" for="vibe-editorial">Editorial & posed</label>
+        <input class="pill-input" type="radio" name="vibe" id="vibe-mix" value="Mix of both"><label class="pill-label" for="vibe-mix">Mix of both</label>
+        <input class="pill-input" type="radio" name="vibe" id="vibe-jd" value="Trust your judgment"><label class="pill-label" for="vibe-jd">Trust your judgment</label>
+      </div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label">Edit style preference</label>
+      <div class="pills">
+        <input class="pill-input" type="radio" name="edit-style" id="es-natural" value="Natural and true-to-life"><label class="pill-label" for="es-natural">Natural & true-to-life</label>
+        <input class="pill-input" type="radio" name="edit-style" id="es-moody" value="Moody and dramatic"><label class="pill-label" for="es-moody">Moody & dramatic</label>
+        <input class="pill-input" type="radio" name="edit-style" id="es-bright" value="Bright and airy"><label class="pill-label" for="es-bright">Bright & airy</label>
+        <input class="pill-input" type="radio" name="edit-style" id="es-warm" value="Warm and film-inspired"><label class="pill-label" for="es-warm">Warm & film-inspired</label>
+        <input class="pill-input" type="radio" name="edit-style" id="es-jd" value="Whatever fits the day"><label class="pill-label" for="es-jd">Whatever fits</label>
+      </div>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label" for="inspiration">Inspiration or references</label>
+      <p class="field-hint" style="margin-bottom:8px;">Links, Instagram accounts, words, Pinterest boards</p>
+      <div class="quickfill">
+        <button type="button" class="qf-btn qf-none" onclick="qfSet('inspiration','No specific references — use your style')">No specific references</button>
+      </div>
+      <textarea id="inspiration" placeholder="e.g. We love the golden-hour look from your Shindigz gallery. Pinterest board: [link]..."></textarea>
+    </div>
+  </div>
+  <div class="field-group">
+    <div class="field">
+      <label class="field-label" for="anything-else">Anything else</label>
+      <div class="quickfill">
+        <button type="button" class="qf-btn qf-none" onclick="qfSet('anything-else','Nothing else — covered everything above')">Nothing else</button>
+      </div>
+      <textarea id="anything-else" placeholder="Open field — questions, concerns, things that don't fit anywhere else..."></textarea>
+    </div>
+  </div>
+  <div class="section-nav">
+    <button class="btn-back" onclick="prevStep(7)">Logistics</button>
+    <div class="nav-actions">
+      <button type="button" class="btn-secondary" onclick="printSummary()">🖨 Print</button>
+      <button type="button" class="btn-secondary" onclick="savePDF()">↓ Save PDF</button>
+      <button class="btn-submit" id="submitBtn" onclick="submitForm()">Send to JD</button>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-brand">JD Meyers Productions</div>
+  <div class="footer-contact">
+    <a href="tel:3152444155">(315) 244-4155</a>
+    <a href="/cdn-cgi/l/email-protection#94fef0f9f1edf1e6e7fee6d4f3f9f5fdf8baf7fbf9"><span class="__cf_email__" data-cfemail="b3d9d7ded6cad6c1c0d9c1f3d4ded2dadf9dd0dcde">[email&#160;protected]</span></a>
+    <a href="https://jdmeyersjr.com" target="_blank">jdmeyersjr.com</a>
+  </div>
+</footer>
+
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+var W3F_KEY = '781c53a2-15da-410c-aebc-8f3ee4d827d9';
+var currentStep = 0;
+var totalSteps = 8;
+var memberCounts = {side1:0, side2:0};
+var templateLoaded = false;
+
+// Package → hours map (Premiere = 12 as a generous no-cap estimate for end-time suggestion)
+var PACKAGE_HOURS = {
+  'Essential (4 hrs — from $1,200)': 4,
+  'Signature (8 hrs — from $1,800)': 8,
+  'Premiere (no hour cap — from $2,800)': 12
+};
+
+// ── VENUE ECHO — updates placeholders in logistics with venue/city ──
+function updateVenueEcho() {
+  var vname = document.getElementById('venue-name').value.trim();
+  var vcity = document.getElementById('venue-city').value.trim();
+  var loc = vname || vcity || null;
+  var restr = document.getElementById('venue-restrictions');
+  var lighting = document.getElementById('lighting-notes');
+  var parking = document.getElementById('parking-notes');
+  if (restr) restr.placeholder = loc
+    ? 'e.g. Any rules or restrictions at ' + vname + '…'
+    : 'e.g. No flash during ceremony, vendor must submit COI 30 days out…';
+  if (lighting) lighting.placeholder = loc
+    ? 'e.g. Anything about the light or space at ' + vname + ' I should know before arriving…'
+    : 'e.g. The barn reception is lit only by string lights, ceremony faces west so we\'ll be shooting into the sun at 4pm…';
+  if (parking) parking.placeholder = loc
+    ? 'e.g. Parking and load-in at ' + (vcity || vname) + '…'
+    : 'e.g. Park in rear lot, check in with coordinator, load-in door is on the east side';
+}
+
+// ── TIME CHANGE — suggests end time from arrival + package, warns on gaps ──
+function onTimeChange() {
+  suggestEndTime();
+  checkTimeWarning();
+}
+
+function suggestEndTime() {
+  var arrival = document.getElementById('arrival-time').value;
+  var endEl = document.getElementById('end-time');
+  if (!arrival || endEl.value) return; // don't overwrite if already set
+  var pkg = gRadio('package');
+  var hrs = pkg && PACKAGE_HOURS[pkg] ? PACKAGE_HOURS[pkg] : null;
+  if (!hrs) return;
+  var parts = arrival.split(':');
+  var h = parseInt(parts[0]) + hrs;
+  var m = parts[1];
+  if (h >= 24) h = 23;
+  endEl.value = String(h).padStart(2,'0') + ':' + m;
+  var hint = document.getElementById('end-hint');
+  if (hint) hint.textContent = 'Auto-suggested from your ' + hrs + '-hour package — adjust freely';
+  checkTimeWarning();
+}
+
+function checkTimeWarning() {
+  var arrival = document.getElementById('arrival-time').value;
+  var end = document.getElementById('end-time').value;
+  var warn = document.getElementById('timeWarning');
+  if (!warn) return;
+  if (!arrival || !end) { warn.classList.remove('visible'); return; }
+
+  var aMin = timeToMins(arrival);
+  var eMin = timeToMins(end);
+  var pkg = gRadio('package');
+  var pkgHrs = pkg && PACKAGE_HOURS[pkg] ? PACKAGE_HOURS[pkg] : null;
+  var actualHrs = (eMin - aMin) / 60;
+  var msgs = [];
+
+  if (eMin <= aMin) {
+    msgs.push('Your end time is before or the same as your arrival time — double-check these.');
+  } else if (pkgHrs && Math.abs(actualHrs - pkgHrs) > 0.5) {
+    if (actualHrs < pkgHrs) {
+      msgs.push('Your times span ' + actualHrs.toFixed(1) + ' hrs but your package is ' + pkgHrs + ' hrs — you may be leaving coverage on the table.');
+    } else {
+      msgs.push('Your times span ' + actualHrs.toFixed(1) + ' hrs which is over your ' + pkgHrs + '-hr package — we should confirm if overtime applies.');
+    }
+  }
+
+  // Check if send-off is checked but end time seems early
+  var sendoff = document.getElementById('re-sendoff');
+  if (sendoff && sendoff.checked && eMin < timeToMins('21:00')) {
+    msgs.push('You\'ve selected a send-off — most run past 9 PM. Your current end time is ' + fmtTime(end) + '.');
+  }
+
+  if (msgs.length) {
+    warn.textContent = '⚠ ' + msgs.join(' ');
+    warn.classList.add('visible');
+  } else {
+    warn.classList.remove('visible');
+  }
+}
+
+function timeToMins(t) {
+  if (!t) return 0;
+  var p = t.split(':');
+  return parseInt(p[0]) * 60 + parseInt(p[1]);
+}
+
+// Also re-check warnings when reception events change
+document.addEventListener('change', function(e) {
+  if (e.target && e.target.name === 'reception-events') checkTimeWarning();
+  if (e.target && e.target.name === 'package') {
+    // If arrival is set but end isn't, suggest end time
+    var endEl = document.getElementById('end-time');
+    if (document.getElementById('arrival-time').value && !endEl.value) {
+      suggestEndTime();
+    }
+  }
+});
+
+// ── PERSONALIZED SUCCESS SCREEN ──
+function showSuccess() {
+  var n1 = document.getElementById('p1name').value.trim();
+  var n2 = document.getElementById('p2name').value.trim();
+  var dateRaw = document.getElementById('wed-date').value;
+  var couple = n2 ? n1.split(' ')[0] + ' & ' + n2.split(' ')[0] : n1.split(' ')[0];
+  var dateStr = dateRaw ? fmtDate(dateRaw) : null;
+
+  var title = document.getElementById('successTitle');
+  var sub = document.getElementById('successSub');
+  if (title) title.textContent = 'All set, ' + couple + '.';
+  if (sub) {
+    var dayLine = dateStr ? ' I\'ll be there on ' + dateStr + '.' : '';
+    sub.textContent = 'I have everything I need to show up fully prepared for your day.' + dayLine + ' I\'ll follow up if I have any questions. Text me anytime at (315) 244-4155.';
+  }
+  document.querySelectorAll('.form-section').forEach(function(s){s.style.display='none';});
+  document.getElementById('progressOuter').style.display='none';
+  document.getElementById('successScreen').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── TEMPLATE TOGGLE ──
+function toggleTemplate() {
+  var el = document.getElementById('timeline-detail');
+  var btn = document.getElementById('templateBtn');
+  if (!templateLoaded) {
+    var arrival = document.getElementById('arrival-time').value;
+    var startH = arrival ? parseInt(arrival.split(':')[0]) : 10;
+    var startM = arrival ? arrival.split(':')[1] : '00';
+    function slot(h, m, label) {
+      if (h >= 24) return null;
+      var disp = (h % 12 || 12) + ':' + m + ' ' + (h >= 12 ? 'PM' : 'AM');
+      return disp + ' — ' + label;
+    }
+    var lines = [
+      slot(startH,     startM, 'Getting ready'),
+      slot(startH + 1, startM, ''),
+      slot(startH + 2, startM, ''),
+      slot(startH + 3, startM, 'Ceremony'),
+      slot(startH + 4, startM, 'Family formals'),
+      slot(startH + 5, startM, 'Couple portraits'),
+      slot(startH + 6, startM, 'Cocktail hour'),
+      slot(startH + 7, startM, 'Reception begins'),
+      slot(startH + 8, startM, 'Dinner & toasts'),
+    ].filter(Boolean);
+    el.value = lines.join('\n');
+    btn.textContent = 'Undo';
+    templateLoaded = true;
+  } else {
+    el.value = '';
+    btn.textContent = 'Load template';
+    templateLoaded = false;
+  }
+}
+
+// ── NAME SYNC ──
+function syncNames() {
+  var n1 = document.getElementById('p1name').value.trim();
+  var n2 = document.getElementById('p2name').value.trim();
+  var first1 = n1 ? n1.split(' ')[0] : 'Partner 1';
+  var first2 = n2 ? n2.split(' ')[0] : 'Partner 2';
+  document.getElementById('p1-side-label').textContent = first1;
+  document.getElementById('p2-side-label').textContent = first2;
+  var lbl1 = document.getElementById('grs-p1-lbl');
+  var lbl2 = document.getElementById('grs-p2-lbl');
+  if (lbl1) lbl1.textContent = first1 + '\'s side';
+  if (lbl2) lbl2.textContent = first2 + '\'s side';
+  syncRoles();
+  buildShotPeople(first1, first2);
+}
+
+// ── ROLE SYNC — updates side tags + ROLE_SUGGESTIONS based on bride/groom selection ──
+function syncRoles() {
+  var r1 = gRadio('p1role'); // 'Bride' | 'Groom' | '—'
+  var r2 = gRadio('p2role');
+
+  // Side tag labels
+  var tag1 = document.getElementById('p1-side-tag');
+  var tag2 = document.getElementById('p2-side-tag');
+  if (tag1) tag1.textContent = r1 === 'Bride' ? 'Bridesmaids' : r1 === 'Groom' ? 'Groomsmen' : 'Bridesmaids';
+  if (tag2) tag2.textContent = r2 === 'Bride' ? 'Bridesmaids' : r2 === 'Groom' ? 'Groomsmen' : 'Groomsmen';
+
+  // Update ROLE_SUGGESTIONS per side based on selected role
+  ROLE_SUGGESTIONS.side1 = r1 === 'Groom'
+    ? ['Best Man','Groomsman','Groomsman','Groomsman','Groomsman','Groomsman']
+    : ['Maid of Honor','Bridesmaid','Bridesmaid','Bridesmaid','Bridesmaid','Bridesmaid'];
+  ROLE_SUGGESTIONS.side2 = r2 === 'Groom'
+    ? ['Best Man','Groomsman','Groomsman','Groomsman','Groomsman','Groomsman']
+    : ['Maid of Honor','Bridesmaid','Bridesmaid','Bridesmaid','Bridesmaid','Bridesmaid'];
+
+  // Re-run shot builder with updated names
+  var n1 = document.getElementById('p1name').value.trim();
+  var n2 = document.getElementById('p2name').value.trim();
+  buildShotPeople(n1 ? n1.split(' ')[0] : 'Partner 1', n2 ? n2.split(' ')[0] : 'Partner 2');
+}
+
+// ── QUICK FILL ──
+function qfSet(id, val) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.value = val;
+  el.style.animation = 'none';
+  el.offsetHeight;
+  el.style.animation = 'fadeUp .2s ease';
+}
+function qfAppend(id, val) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.value = el.value ? el.value + '\n' + val : val;
+}
+
+// ── RECEPTION EVENTS ──
+function checkAllReception() {
+  document.querySelectorAll('input[name="reception-events"]').forEach(function(c){ c.checked = true; });
+}
+function uncheckAllReception() {
+  document.querySelectorAll('input[name="reception-events"]').forEach(function(c){ c.checked = false; });
+}
+
+// ── EMERGENCY CONTACT COPY ──
+function copyVenueContact() {
+  var name = document.getElementById('venue-contact').value.trim();
+  var phone = document.getElementById('venue-contact-phone').value.trim();
+  if (name) document.getElementById('emergency-contact-name').value = name;
+  if (phone) document.getElementById('emergency-contact-phone').value = phone;
+}
+
+// ── BRIDAL PARTY ──
+var ROLE_SUGGESTIONS = {
+  side1: ['Maid of Honor','Bridesmaid','Bridesmaid','Bridesmaid','Bridesmaid','Bridesmaid'],
+  side2: ['Best Man','Groomsman','Groomsman','Groomsman','Groomsman','Groomsman']
+};
+// Honor roles (shown in partner colors), standard roles
+var HONOR_ROLES_P1 = ['Maid of Honor','Matron of Honor','Best Woman','Man of Honor'];
+var HONOR_ROLES_P2 = ['Best Man','Best Woman','Maid of Honor','Man of Honor'];
+var ROLE_ALL = ['Maid of Honor','Matron of Honor','Best Man','Best Woman','Bridesmaid','Groomsman','Groomsmaid','Bridesman','Flower Girl','Ring Bearer','Junior Bridesmaid','Man of Honor'];
+
+// Single shared portal dropdown
+var _rolePortal = null;
+var _activeRoleInput = null;
+var _activeRoleSide = null;
+
+function getRolePortal() {
+  if (!_rolePortal) {
+    _rolePortal = document.createElement('div');
+    _rolePortal.id = 'roleSuggestPortal';
+    document.body.appendChild(_rolePortal);
+    document.addEventListener('click', function(e) {
+      if (_rolePortal && !_rolePortal.contains(e.target) && e.target !== _activeRoleInput) {
+        hideRoleSuggest();
+      }
+    });
+  }
+  return _rolePortal;
+}
+
+function initParty() {
+  getRolePortal(); // create portal early
+  for (var i = 0; i < 5; i++) { addMember('side1'); addMember('side2'); }
+}
+
+function addMember(side) {
+  var list = document.getElementById('party-' + side);
+  var idx = memberCounts[side]++;
+  var colorClass = side === 'side1' ? 'p1-member' : 'p2-member';
+  var defaultRole = ROLE_SUGGESTIONS[side][idx] || (side === 'side1' ? 'Bridesmaid' : 'Groomsman');
+  var div = document.createElement('div');
+  div.className = 'party-member ' + colorClass;
+  div.id = 'member-' + side + '-' + idx;
+  var nameId = side + '-name-' + idx;
+  var roleId = side + '-role-' + idx;
+  div.innerHTML =
+    '<input type="text" placeholder="Full name" id="' + nameId + '" oninput="refreshShotPeople()" autocomplete="off">' +
+    '<div class="role-datalist-wrap">' +
+      '<input type="text" placeholder="' + defaultRole + '" id="' + roleId + '" autocomplete="off">' +
+    '</div>' +
+    '<button class="btn-remove-member" type="button" onclick="removeMember(\'' + side + '\',' + idx + ')">×</button>';
+  list.appendChild(div);
+  // Wire role input after DOM insert
+  var roleEl = document.getElementById(roleId);
+  roleEl.addEventListener('input', function() { showRoleSuggest(this, side); });
+  roleEl.addEventListener('blur', function() { setTimeout(hideRoleSuggest, 160); });
+}
+
+function showRoleSuggest(input, side) {
+  var portal = getRolePortal();
+  var val = input.value.trim().toLowerCase();
+  if (val === '') { hideRoleSuggest(); return; }
+
+  var honorSet = side === 'side1' ? HONOR_ROLES_P1 : HONOR_ROLES_P2;
+  var matches = ROLE_ALL.filter(function(r){ return r.toLowerCase().indexOf(val) === 0; });
+  if (!matches.length) { hideRoleSuggest(); return; }
+
+  _activeRoleInput = input;
+  _activeRoleSide = side;
+
+  portal.innerHTML = matches.map(function(r) {
+    var isHonor = honorSet.indexOf(r) !== -1;
+    var colorCls = isHonor ? (side === 'side1' ? ' role-honor-p1' : ' role-honor-p2') : '';
+    var highlighted = '<em>' + r.slice(0, val.length) + '</em>' + r.slice(val.length);
+    return '<div class="role-suggest-item' + colorCls + '" data-value="' + r + '">' + highlighted + '</div>';
+  }).join('');
+
+  // Position portal under the input using fixed coords
+  var rect = input.getBoundingClientRect();
+  portal.style.left = rect.left + 'px';
+  portal.style.top  = (rect.bottom + 4) + 'px';
+  portal.style.width = rect.width + 'px';
+  portal.classList.add('open');
+
+  // Mousedown picks without triggering blur
+  portal.querySelectorAll('.role-suggest-item').forEach(function(item) {
+    item.addEventListener('mousedown', function(e) {
+      e.preventDefault();
+      pickRole(input, item.getAttribute('data-value'));
+    });
+  });
+}
+
+function hideRoleSuggest() {
+  if (_rolePortal) { _rolePortal.classList.remove('open'); _rolePortal.innerHTML = ''; }
+  _activeRoleInput = null;
+}
+
+function pickRole(input, value) {
+  input.value = value;
+  hideRoleSuggest();
+  input.dispatchEvent(new Event('input'));
+}
+
+function removeMember(side, idx) {
+  var el = document.getElementById('member-' + side + '-' + idx);
+  if (el) { el.style.animation='fadeUp .2s ease reverse'; setTimeout(function(){ if(el.parentNode) el.parentNode.removeChild(el); refreshShotPeople(); }, 180); }
+}
+
+function getPartyData(side) {
+  var list = document.getElementById('party-' + side);
+  if (!list) return [];
+  var members = list.querySelectorAll('.party-member');
+  var out = [];
+  members.forEach(function(m) {
+    var inputs = m.querySelectorAll('input[type="text"]');
+    var name = inputs[0] ? inputs[0].value.trim() : '';
+    var role = inputs[1] ? inputs[1].value.trim() : '';
+    if (name) out.push({ name: name, role: role });
+  });
+  return out;
+}
+
+// Refresh shot people tokens when party names change
+function refreshShotPeople() {
+  var n1 = document.getElementById('p1name').value.trim();
+  var n2 = document.getElementById('p2name').value.trim();
+  var first1 = n1 ? n1.split(' ')[0] : 'Partner 1';
+  var first2 = n2 ? n2.split(' ')[0] : 'Partner 2';
+  buildShotPeople(first1, first2);
+}
+
+// ── SHOT BUILDER ──
+function buildShotPeople(n1, n2) {
+  // token = [label, colorClass]  p1=green, p2=blue, shared=none
+  var tokens = [
+    [n1 + ' & ' + n2, ''],
+    [n1, 'token-p1'],
+    [n2, 'token-p2'],
+  ];
+
+  var s1 = getPartyData('side1');
+  var s2 = getPartyData('side2');
+  var moh = s1.find(function(m){ return m.name; });
+  var bm  = s2.find(function(m){ return m.name; });
+  if (moh) tokens.push([moh.role ? moh.name + ' (' + moh.role + ')' : moh.name, 'token-p1']);
+  if (bm)  tokens.push([bm.role  ? bm.name  + ' (' + bm.role  + ')' : bm.name,  'token-p2']);
+
+  // Family groups — color by which partner's family
+  [[n1 + '\'s Parents','token-p1'],[n1 + '\'s Mom','token-p1'],[n1 + '\'s Dad','token-p1'],[n1 + '\'s Siblings','token-p1'],
+   [n2 + '\'s Parents','token-p2'],[n2 + '\'s Mom','token-p2'],[n2 + '\'s Dad','token-p2'],[n2 + '\'s Siblings','token-p2'],
+   ['Both families',''],['Immediate families',''],['Full wedding party',''],['Bridal party only',''],['Groomsmen only','']
+  ].forEach(function(t){ tokens.push(t); });
+
+  var peopleEl = document.getElementById('shotPeople');
+  if (!peopleEl) return;
+  var prevChecked = {};
+  peopleEl.querySelectorAll('.person-toggle:checked').forEach(function(c){ prevChecked[c.value] = true; });
+  peopleEl.innerHTML = '';
+  tokens.forEach(function(t, i) {
+    var p = t[0], cls = t[1];
+    var id = 'sp-' + i;
+    var inp = document.createElement('input');
+    inp.type = 'checkbox'; inp.className = 'person-toggle' + (cls ? ' ' + cls : ''); inp.id = id; inp.value = p;
+    if (prevChecked[p]) inp.checked = true;
+    inp.onchange = function() { updateShotPreview(); };
+    var lbl = document.createElement('label');
+    lbl.className = 'person-label' + (cls ? ' ' + cls : ''); lbl.htmlFor = id; lbl.textContent = p;
+    peopleEl.appendChild(inp);
+    peopleEl.appendChild(lbl);
+  });
+  updateShotPreview();
+}
+
+function updateShotPreview() {
+  var checked = document.querySelectorAll('#shotPeople .person-toggle:checked');
+  var names = Array.from(checked).map(function(c){ return c.value; });
+  var preview = document.getElementById('shotPreview');
+  var addBtn = document.getElementById('btnAddShot');
+  if (names.length === 0) {
+    preview.textContent = 'Select people above…';
+    preview.classList.remove('has-content');
+    addBtn.disabled = true;
+  } else {
+    preview.textContent = names.join(' + ');
+    preview.classList.add('has-content');
+    addBtn.disabled = false;
+  }
+}
+
+function addShot() {
+  var preview = document.getElementById('shotPreview');
+  var text = preview.textContent;
+  if (!text || text === 'Select people above…') return;
+  var ta = document.getElementById('shotListTextarea');
+  ta.value = ta.value ? ta.value + '\n• ' + text : '• ' + text;
+  document.querySelectorAll('#shotPeople .person-toggle').forEach(function(c){ c.checked = false; });
+  updateShotPreview();
+  ta.style.animation = 'none'; ta.offsetHeight; ta.style.animation = 'fadeUp .2s ease';
+  updateShotNudge();
+}
+
+function updateShotNudge() {
+  var ta = document.getElementById('shotListTextarea');
+  var wrap = document.getElementById('shotNudgeWrap');
+  var bar = document.getElementById('shotNudgeBar');
+  var nudge = document.getElementById('shotNudge');
+  if (!ta || !nudge || !wrap || !bar) return;
+
+  var lines = ta.value.split('\n').filter(function(l){ return l.trim().length > 0; });
+  var count = lines.length;
+  var TARGET = 10; // sweet spot center
+
+  if (count === 0) {
+    wrap.style.display = 'none';
+    return;
+  }
+  wrap.style.display = 'block';
+
+  // Bar fills toward target (10), turns amber at 14, red past 16
+  var pct = Math.min(count / TARGET, 1.5) / 1.5 * 100;
+  bar.style.width = Math.min(pct, 100) + '%';
+
+  if (count < 4) {
+    bar.style.background = 'var(--tan)';
+    nudge.textContent = count + ' combination' + (count===1?'':'s') + ' — most weddings have 8–12. The builder above can help.';
+    nudge.className = 'shot-nudge nudge-low';
+  } else if (count <= 13) {
+    bar.style.background = 'var(--p1)';
+    nudge.textContent = count + ' combinations — looking solid.';
+    nudge.className = 'shot-nudge nudge-ok';
+  } else {
+    bar.style.background = 'var(--terra)';
+    nudge.textContent = count + ' is a lot — consider marking top priorities with ★ so we know where to start if time is tight.';
+    nudge.className = 'shot-nudge nudge-high';
+  }
+}
+
+// ── CUSTOM PILL ADD/DROP ──
+var customPillCounts = {};
+function addCustomPill(pillContainerId, inputName, inputId) {
+  var inp = document.getElementById(inputId);
+  if (!inp) return;
+  var val = inp.value.trim();
+  if (!val) return;
+  customPillCounts[pillContainerId] = (customPillCounts[pillContainerId] || 0) + 1;
+  var uid = pillContainerId + '-custom-' + customPillCounts[pillContainerId];
+  var container = document.getElementById(pillContainerId);
+  if (!container) return;
+  var checkbox = document.createElement('input');
+  checkbox.type = 'checkbox'; checkbox.className = 'pill-input'; checkbox.name = inputName;
+  checkbox.id = uid; checkbox.value = val; checkbox.checked = true;
+  var label = document.createElement('label');
+  label.className = 'pill-label custom-pill'; label.htmlFor = uid;
+  label.innerHTML = val + '<span class="pill-remove" onclick="removeCustomPill(event,\'' + uid + '\')">×</span>';
+  container.appendChild(checkbox);
+  container.appendChild(label);
+  inp.value = '';
+  inp.focus();
+}
+function removeCustomPill(e, uid) {
+  e.preventDefault(); e.stopPropagation();
+  var cb = document.getElementById(uid);
+  var lbl = document.querySelector('label[for="' + uid + '"]');
+  if (cb) cb.parentNode.removeChild(cb);
+  if (lbl) lbl.parentNode.removeChild(lbl);
+}
+
+// ── COPY VENUE TO GETTING READY ──
+function copyVenueToGR() {
+  var vname = document.getElementById('venue-name').value.trim();
+  var vaddr = document.getElementById('venue-addr').value.trim();
+  var vcity = document.getElementById('venue-city').value.trim();
+  var parts = [vname, vaddr, vcity].filter(Boolean).join(', ');
+  var el = document.getElementById('getting-ready-loc');
+  if (el && parts) { el.value = parts; el.style.animation='none'; el.offsetHeight; el.style.animation='fadeUp .2s ease'; }
+}
+
+// ── VENDORS ──
+var VENDORS = [
+  { id:'coord',  icon:'CO', label:'Wedding Coordinator / Planner' },
+  { id:'video',  icon:'VD', label:'Videographer' },
+  { id:'dj',     icon:'DJ', label:'DJ / Band' },
+  { id:'florist',icon:'FL', label:'Florist' },
+  { id:'cater',  icon:'CA', label:'Caterer / Baker' },
+  { id:'hmu',    icon:'HM', label:'Hair & Makeup' },
+];
+
+function buildVendors() {
+  var grid = document.getElementById('vendorGrid');
+  grid.innerHTML = '';
+  VENDORS.forEach(function(v, i) {
+    var card = document.createElement('div');
+    card.className = 'vendor-card';
+    card.style.setProperty('--i', (i * 0.05) + 's');
+    card.id = 'vcard-' + v.id;
+    card.innerHTML =
+      '<div class="vendor-card-header">' +
+        '<div class="vendor-card-icon" style="font-family:var(--sans);font-size:10px;font-weight:600;letter-spacing:.06em;color:var(--terra);">' + v.icon + '</div>' +
+        '<div class="vendor-card-type">' + v.label + '</div>' +
+      '</div>' +
+      '<div class="vendor-card-fields" id="vfields-' + v.id + '">' +
+        '<input type="text" id="' + v.id + '-name" placeholder="Name">' +
+        '<input type="tel" id="' + v.id + '-phone" placeholder="Phone / contact">' +
+        '<input type="text" id="' + v.id + '-company" placeholder="Company name">' +
+        '<input type="email" id="' + v.id + '-email" placeholder="Email (optional)">' +
+      '</div>' +
+      '<div class="vendor-na">' +
+        '<button type="button" class="vendor-na-btn" onclick="markVendorNA(\'' + v.id + '\')">Not applicable</button>' +
+      '</div>';
+    grid.appendChild(card);
+  });
+}
+
+function markVendorNA(id) {
+  var fields = document.getElementById('vfields-' + id);
+  var card = document.getElementById('vcard-' + id);
+  var inputs = fields.querySelectorAll('input');
+  var isNA = inputs[0].value === 'N/A';
+  inputs.forEach(function(inp){ inp.value = isNA ? '' : 'N/A'; inp.disabled = !isNA; });
+  card.style.opacity = isNA ? '1' : '0.45';
+  card.querySelector('.vendor-na-btn').textContent = isNA ? 'Not applicable' : 'Undo';
+}
+
+function vendorLine(v) {
+  var name = gid(v.id+'-name'), phone = gid(v.id+'-phone'), company = gid(v.id+'-company'), email = gid(v.id+'-email');
+  if (name === 'N/A') return v.label + ': Not applicable';
+  if (!name && !company) return null;
+  var parts = [name, company].filter(function(x){return x && x !== '—';}).join(' / ');
+  if (phone && phone !== '—') parts += ' · ' + phone;
+  if (email && email !== '—') parts += ' · ' + email;
+  return v.label + ': ' + parts;
+}
+
+// ── NAVIGATION ──
+function goToStep(step) {
+  if (step === currentStep) return;
+  var going = step > currentStep ? 'fwd' : 'back';
+  var cur = document.getElementById('section-' + currentStep);
+  var tgt = document.getElementById('section-' + step);
+  cur.classList.remove('active');
+  cur.classList.add(going === 'fwd' ? 'leaving' : 'leaving-fwd');
+  setTimeout(function(){ cur.classList.remove('leaving','leaving-fwd'); }, 300);
+  tgt.classList.add(going === 'fwd' ? 'entering' : 'entering-back');
+  setTimeout(function(){
+    tgt.classList.remove('entering','entering-back');
+    tgt.classList.add('active');
+  }, 380);
+  currentStep = step;
+  updateProgress();
+  setTimeout(function(){ window.scrollTo({top:0,behavior:'smooth'}); }, 60);
+}
+
+function nextStep(from) { if (!validateStep(from)) return; if (from < totalSteps-1) goToStep(from+1); }
+function prevStep(from) { if (from > 0) goToStep(from-1); }
+
+function updateProgress() {
+  document.getElementById('progressFill').style.width = (currentStep/(totalSteps-1)*100) + '%';
+  document.querySelectorAll('.step-item').forEach(function(item, i) {
+    item.classList.remove('active','done');
+    if (i < currentStep) item.classList.add('done');
+    if (i === currentStep) item.classList.add('active');
+  });
+}
+
+// ── VALIDATION ──
+function validateStep(s) {
+  var ok = true;
+  if (s===0){ ok=req('p1name','err-p1name')&&ok; ok=reqEmail('p1email','err-p1email')&&ok; }
+  if (s===1){ ok=req('wed-date','err-wed-date')&&ok; ok=req('venue-name','err-venue-name')&&ok; }
+  if (s===2){ ok=req('arrival-time','err-arrival-time')&&ok; }
+  return ok;
+}
+function req(id,errId){ var el=document.getElementById(id),er=errId?document.getElementById(errId):null; if(!el||!el.value.trim()){if(el){el.classList.add('invalid');el.focus();}if(er)er.style.display='block';return false;} el.classList.remove('invalid');if(er)er.style.display='none';return true; }
+function reqEmail(id,errId){ var el=document.getElementById(id),er=errId?document.getElementById(errId):null,v=el?el.value.trim():''; if(!v||!v.includes('@')){if(el){el.classList.add('invalid');el.focus();}if(er)er.style.display='block';return false;} el.classList.remove('invalid');if(er)er.style.display='none';return true; }
+
+document.querySelectorAll('input,textarea').forEach(function(el){
+  el.addEventListener('input',function(){ this.classList.remove('invalid'); var e=document.getElementById('err-'+this.id); if(e)e.style.display='none'; });
+});
+
+// ── CONDITIONALS ──
+document.querySelectorAll('input[name="source"]').forEach(function(r){
+  r.addEventListener('change',function(){ document.getElementById('referral-wrap').classList.toggle('visible',this.value==='Referral'); });
+});
+document.querySelectorAll('input[name="weather-plan"]').forEach(function(r){
+  r.addEventListener('change',function(){ document.getElementById('weather-detail-wrap').classList.toggle('visible',this.value==='Yes'); });
+});
+document.querySelectorAll('input[name="second-loc"]').forEach(function(r){
+  r.addEventListener('change',function(){ document.getElementById('second-loc-detail').classList.toggle('visible',this.value==='Yes'); });
+});
+document.querySelectorAll('input[name="gr-same"]').forEach(function(r){
+  r.addEventListener('change',function(){
+    document.getElementById('gr-same-detail').classList.toggle('visible', this.value==='Same location');
+    document.getElementById('gr-split-detail').classList.toggle('visible', this.value==='Different locations');
+  });
+});
+
+// ── HELPERS ──
+function gid(id){ var el=document.getElementById(id); return el&&el.value.trim()?el.value.trim():'—'; }
+function gRadio(name){ var el=document.querySelector('input[name="'+name+'"]:checked'); return el?el.value:'—'; }
+function gCheckboxes(name){ var c=document.querySelectorAll('input[name="'+name+'"]:checked'); return c.length?Array.from(c).map(function(x){return x.value;}).join(', '):'—'; }
+function fmtTime(v){ if(!v||v==='—')return '—'; var p=v.split(':'),h=parseInt(p[0]); return (h%12||12)+':'+p[1]+' '+(h>=12?'PM':'AM'); }
+function fmtDate(v){ if(!v||v==='—')return '—'; return new Date(v+'T12:00:00').toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'}); }
+
+// ── SUBMIT ──
+function submitForm() {
+  var btn = document.getElementById('submitBtn');
+  btn.disabled = true; btn.textContent = 'Sending…';
+  var n1=gid('p1name'), n2=gid('p2name');
+  var couple = n2!=='—' ? n1+' & '+n2 : n1;
+  var side1 = getPartyData('side1'), side2 = getPartyData('side2');
+  var vlines = VENDORS.map(vendorLine).filter(Boolean);
+  var shotText = gid('shotListTextarea');
+  var extraCombos = gid('family-combos');
+
+  var L = [];
+  L.push('WEDDING PHOTOGRAPHY PLANNING GUIDE');
+  L.push('══════════════════════════════════════════');
+  L.push('');
+  L.push('THE COUPLE');
+  L.push('──────────────────────────────────────────');
+  L.push('Partner 1: '+n1+(gRadio('p1role')!=='—'?' ('+gRadio('p1role')+')':''));
+  L.push('Partner 2: '+(n2!=='—'?n2+(gRadio('p2role')!=='—'?' ('+gRadio('p2role')+')':''):'Not provided'));
+  L.push('Email: '+gid('p1email'));
+  L.push('Phone: '+gid('p1phone'));
+  var src=gRadio('source'),ref=gid('referral-name');
+  L.push('Found me via: '+src+(src==='Referral'&&ref!=='—'?' — referred by '+ref:''));
+  L.push('Package: '+gRadio('package'));
+  L.push('');
+  L.push('THE WEDDING');
+  L.push('──────────────────────────────────────────');
+  L.push('Date: '+fmtDate(gid('wed-date')));
+  L.push('Venue: '+gid('venue-name'));
+  L.push('Address: '+gid('venue-addr')+', '+gid('venue-city'));
+  L.push('Guest count: '+gid('guest-count'));
+  L.push('Ceremony type: '+gRadio('ceremony-type'));
+  var wp=gRadio('weather-plan'),wd=gid('weather-detail');
+  L.push('Weather backup: '+wp+(wd!=='—'?' — '+wd:''));
+  L.push('');
+  L.push('COVERAGE & TIMELINE');
+  L.push('──────────────────────────────────────────');
+  L.push('Arrival: '+fmtTime(gid('arrival-time')));
+  L.push('End time: '+fmtTime(gid('end-time')));
+  L.push('First look: '+gRadio('first-look'));
+  L.push('Ceremony structure: '+gid('ceremony-structure'));
+  L.push('Reception events: '+gCheckboxes('reception-events'));
+  L.push('Coverage: '+gCheckboxes('coverage'));
+  var sl=gRadio('second-loc'),sln=gid('second-loc-name');
+  L.push('Second portrait location: '+sl+(sln!=='—'?' — '+sln:''));
+  L.push('Day-of timeline:');
+  gid('timeline-detail').split('\n').forEach(function(l){ L.push('  '+l); });
+  L.push('');
+  L.push('BRIDAL PARTY');
+  L.push('──────────────────────────────────────────');
+  L.push(n1+'\'s Side:');
+  (side1.length?side1.map(function(m){return m.role?m.name+' ('+m.role+')':m.name;}):['—']).forEach(function(m){ L.push('  · '+m); });
+  L.push(n2!=='—'?n2+'\'s Side:':'Partner 2\'s Side:');
+  (side2.length?side2.map(function(m){return m.role?m.name+' ('+m.role+')':m.name;}):['—']).forEach(function(m){ L.push('  · '+m); });
+  L.push('Flower girl(s) / Ring bearer(s): '+gid('flower-kids'));
+  L.push('Officiant: '+gid('officiant'));
+  L.push('');
+  L.push('FAMILY FORMALS SHOT LIST');
+  L.push('──────────────────────────────────────────');
+  L.push(shotText!=='—'?shotText:'— Not specified');
+  if (extraCombos!=='—') { L.push(''); L.push('Additional notes: '+extraCombos); }
+  L.push('');
+  L.push('KEY SHOTS & PEOPLE');
+  L.push('──────────────────────────────────────────');
+  L.push('Must-have moments: '+gid('must-haves'));
+  L.push('Do not photograph: '+gid('do-not-photo'));
+  L.push('Family dynamics: '+gid('family-dynamics'));
+  L.push('Special notes: '+gid('special-notes'));
+  L.push('');
+  L.push('VENDOR TEAM');
+  L.push('──────────────────────────────────────────');
+  (vlines.length?vlines:['—']).forEach(function(v){ L.push(v); });
+  L.push('Other vendors: '+gid('other-vendors'));
+  L.push('');
+  L.push('VENUE & LOGISTICS');
+  L.push('──────────────────────────────────────────');
+  L.push('Venue contact: '+gid('venue-contact')+' · '+gid('venue-contact-phone'));
+  L.push('Day-of emergency contact: '+gid('emergency-contact-name')+' · '+gid('emergency-contact-phone'));
+  var grSame=gRadio('gr-same');
+  if(grSame==='Same location'){ L.push('Getting ready: '+gid('getting-ready-loc')); }
+  else if(grSame==='Different locations'){
+    L.push('Getting ready — '+n1+'\'s side: '+gid('gr-loc-1'));
+    L.push('Getting ready — '+n2+'\'s side: '+gid('gr-loc-2'));
+    L.push('Start with: '+gRadio('gr-start'));
+  }
+  L.push('Restrictions: '+gid('venue-restrictions'));
+  L.push('Lighting / space notes: '+gid('lighting-notes'));
+  L.push('Vendor meal: '+gRadio('vendor-meal'));
+  L.push('Overnight: '+gRadio('overnight'));
+  L.push('Parking: '+gid('parking-notes'));
+  L.push('');
+  L.push('VISION & STYLE');
+  L.push('──────────────────────────────────────────');
+  L.push('Vibe: '+gRadio('vibe'));
+  L.push('Edit style: '+gRadio('edit-style'));
+  L.push('Inspiration: '+gid('inspiration'));
+  L.push('Anything else: '+gid('anything-else'));
+  L.push('');
+  L.push('— jdmeyersjr.com wedding planning guide');
+
+  fetch('https://api.web3forms.com/submit',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({
+      access_key: W3F_KEY,
+      subject: 'Wedding Planning Guide — '+couple+' · '+fmtDate(gid('wed-date')),
+      from_name: couple, email: gid('p1email'),
+      message: L.join('\n')
+    })
+  })
+  .then(function(r){return r.json();})
+  .then(function(data){
+    if(data.success){
+      showSuccess();
+    } else {
+      alert('Something went wrong. Please try again or text (315) 244-4155.');
+      btn.disabled=false; btn.textContent='Send to JD';
+    }
+  })
+  .catch(function(){
+    alert('Network error. Please try again or text (315) 244-4155.');
+    btn.disabled=false; btn.textContent='Send to JD';
+  });
+}
+
+// ── PRINT / SAVE PDF ──
+function buildSummaryHTML() {
+  var n1=gid('p1name'), n2=gid('p2name');
+  var couple = n2!=='—' ? n1+' & '+n2 : n1;
+  var side1 = getPartyData('side1'), side2 = getPartyData('side2');
+  var vlines = VENDORS.map(vendorLine).filter(Boolean);
+
+  function row(label, val) {
+    if (!val || val==='—') return '';
+    return '<tr><td style="padding:5px 12px 5px 0;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#9e9182;vertical-align:top;width:160px;white-space:nowrap;">'
+      + label + '</td><td style="padding:5px 0;font-size:13px;color:#2a2318;line-height:1.55;">' + val.replace(/\n/g,'<br>') + '</td></tr>';
+  }
+  function section(title, rows) {
+    return '<div style="margin-bottom:28px;"><div style="font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:#b85c38;border-bottom:1px solid #e2d9c4;padding-bottom:6px;margin-bottom:12px;">' + title + '</div>'
+      + '<table style="border-collapse:collapse;width:100%;">' + rows + '</table></div>';
+  }
+  var src=gRadio('source'),ref=gid('referral-name');
+  var grSame=gRadio('gr-same');
+  var grStr = grSame==='Same location' ? gid('getting-ready-loc')
+    : grSame==='Different locations' ? n1+'\'s side: '+gid('gr-loc-1')+'\n'+n2+'\'s side: '+gid('gr-loc-2') : '—';
+
+  return '<div style="font-family:Georgia,serif;max-width:680px;margin:0 auto;padding:40px 24px;color:#2a2318;">'
+    + '<div style="text-align:center;margin-bottom:36px;border-bottom:2px solid #e2d9c4;padding-bottom:24px;">'
+    + '<div style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#b85c38;margin-bottom:8px;">JD Meyers Productions</div>'
+    + '<div style="font-size:28px;font-weight:400;margin-bottom:4px;">' + couple + '</div>'
+    + '<div style="font-size:14px;color:#7a6e5f;">' + fmtDate(gid('wed-date')) + ' · ' + gid('venue-name') + '</div>'
+    + '</div>'
+    + section('The Couple',
+        row('Partner 1', n1) + row('Partner 2', n2!=='—'?n2:'') +
+        row('Email', gid('p1email')) + row('Phone', gid('p1phone')) +
+        row('Found via', src+(src==='Referral'&&ref!=='—'?' — '+ref:'')) +
+        row('Package', gRadio('package')))
+    + section('Wedding Details',
+        row('Date', fmtDate(gid('wed-date'))) + row('Venue', gid('venue-name')) +
+        row('Address', [gid('venue-addr'),gid('venue-city')].filter(function(x){return x!=='—';}).join(', ')) +
+        row('Guests', gid('guest-count')) + row('Ceremony type', gRadio('ceremony-type')) +
+        row('Weather backup', gRadio('weather-plan')+(gid('weather-detail')!=='—'?' — '+gid('weather-detail'):'')))
+    + section('Coverage & Timeline',
+        row('My arrival', fmtTime(gid('arrival-time'))) + row('End time', fmtTime(gid('end-time'))) +
+        row('First look', gRadio('first-look')) + row('Coverage', gCheckboxes('coverage')) +
+        row('Reception events', gCheckboxes('reception-events')) +
+        row('Ceremony notes', gid('ceremony-structure')) +
+        row('Day-of timeline', gid('timeline-detail')))
+    + section('Bridal Party',
+        row(n1+'\'s side', side1.length ? side1.map(function(m){return m.role?m.name+' ('+m.role+')':m.name;}).join('\n') : '') +
+        row(n2+'\'s side', side2.length ? side2.map(function(m){return m.role?m.name+' ('+m.role+')':m.name;}).join('\n') : '') +
+        row('Flower girl / Ring bearer', gid('flower-kids')) + row('Officiant', gid('officiant')))
+    + section('Key Shots & People',
+        row('Shot list', gid('shotListTextarea')) + row('Additional combos', gid('family-combos')) +
+        row('Must-haves', gid('must-haves')) + row('Do not photograph', gid('do-not-photo')) +
+        row('Family dynamics', gid('family-dynamics')) + row('Special notes', gid('special-notes')))
+    + section('Vendor Team',
+        vlines.map(function(v){ var p=v.indexOf(':'); return row(v.slice(0,p), v.slice(p+2)); }).join('') +
+        row('Other vendors', gid('other-vendors')))
+    + section('Logistics',
+        row('Venue contact', gid('venue-contact')+(gid('venue-contact-phone')!=='—'?' · '+gid('venue-contact-phone'):'')) +
+        row('Emergency contact', gid('emergency-contact-name')+(gid('emergency-contact-phone')!=='—'?' · '+gid('emergency-contact-phone'):'')) +
+        row('Getting ready', grStr) + row('Restrictions', gid('venue-restrictions')) +
+        row('Lighting notes', gid('lighting-notes')) + row('Vendor meal', gRadio('vendor-meal')) +
+        row('Parking', gid('parking-notes')))
+    + section('Vision & Style',
+        row('Vibe', gRadio('vibe')) + row('Edit style', gRadio('edit-style')) +
+        row('Inspiration', gid('inspiration')) + row('Anything else', gid('anything-else')))
+    + '<div style="text-align:center;font-size:11px;color:#9e9182;margin-top:32px;padding-top:16px;border-top:1px solid #e2d9c4;">jdmeyersjr.com · (315) 244-4155</div>'
+    + '</div>';
+}
+
+function printSummary() {
+  var win = window.open('', '_blank', 'width=780,height=900');
+  win.document.write('<!DOCTYPE html><html><head><title>Wedding Planning Guide</title>'
+    + '<style>@media print{body{margin:0;}}</style></head><body>'
+    + buildSummaryHTML() + '</body></html>');
+  win.document.close();
+  win.focus();
+  setTimeout(function(){ win.print(); }, 400);
+}
+
+function savePDF() {
+  var win = window.open('', '_blank', 'width=780,height=900');
+  var n1 = gid('p1name'); var n2 = gid('p2name');
+  var couple = n2!=='—' ? n1.split(' ')[0]+'_'+n2.split(' ')[0] : n1.split(' ')[0];
+  win.document.write('<!DOCTYPE html><html><head>'
+    + '<title>Wedding Planning Guide — ' + couple + '</title>'
+    + '<style>@media print{body{margin:0;} @page{size:A4;margin:18mm 16mm;}}</style>'
+    + '</head><body>' + buildSummaryHTML()
+    + '<script>window.onload=function(){window.print();}<\/script>'
+    + '</body></html>');
+  win.document.close();
+}
+function init() {
+  initParty();
+  buildVendors();
+  buildShotPeople('Partner 1','Partner 2');
+  updateProgress();
+
+  // Shot textarea live nudge
+  var shotTA = document.getElementById('shotListTextarea');
+  if (shotTA) shotTA.addEventListener('input', updateShotNudge);
+
+  // Conditionals
+  document.querySelectorAll('input[name="source"]').forEach(function(r){
+    r.addEventListener('change',function(){ document.getElementById('referral-wrap').classList.toggle('visible',this.value==='Referral'); });
+  });
+  document.querySelectorAll('input[name="weather-plan"]').forEach(function(r){
+    r.addEventListener('change',function(){ document.getElementById('weather-detail-wrap').classList.toggle('visible',this.value==='Yes'); });
+  });
+  document.querySelectorAll('input[name="second-loc"]').forEach(function(r){
+    r.addEventListener('change',function(){ document.getElementById('second-loc-detail').classList.toggle('visible',this.value==='Yes'); });
+  });
+  document.querySelectorAll('input[name="gr-same"]').forEach(function(r){
+    r.addEventListener('change',function(){
+      document.getElementById('gr-same-detail').classList.toggle('visible', this.value==='Same location');
+      document.getElementById('gr-split-detail').classList.toggle('visible', this.value==='Different locations');
+    });
+  });
+
+  // Clear invalid state on input
+  document.querySelectorAll('input,textarea').forEach(function(el){
+    el.addEventListener('input',function(){
+      this.classList.remove('invalid');
+      var e=document.getElementById('err-'+this.id);
+      if(e) e.style.display='none';
+    });
+  });
+
+  // Package selection → suggest end time
+  document.querySelectorAll('input[name="package"]').forEach(function(r){
+    r.addEventListener('change',function(){
+      var endEl = document.getElementById('end-time');
+      var arrival = document.getElementById('arrival-time').value;
+      if(arrival && !endEl.value) suggestEndTime();
+    });
+  });
+
+  // Reception events → re-check time warning
+  document.querySelectorAll('input[name="reception-events"]').forEach(function(r){
+    r.addEventListener('change', checkTimeWarning);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>
