@@ -165,7 +165,7 @@ input.invalid{border-bottom-color:#e05555!important;animation:shake .35s ease;}
 
 /* ── VENUE AUTOCOMPLETE ── */
 .venue-wrap{position:relative;}
-#venueDropdown{position:absolute;top:100%;left:0;right:0;background:var(--bg3);border:1px solid var(--line2);border-top:none;border-radius:0 0 5px 5px;z-index:9999;display:none;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,.85);}
+#venueDropdown{position:fixed;background:var(--bg3);border:1px solid var(--line2);border-radius:5px;z-index:9999;display:none;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,.9);min-width:200px;}
 #venueDropdown.open{display:block;}
 .venue-option{padding:11px 16px;font-family:var(--body);font-size:13px;color:var(--accent2);cursor:pointer;border-bottom:1px solid var(--line);transition:background .1s;}
 .venue-option:last-child{border-bottom:none;}
@@ -969,18 +969,21 @@ function onVenueInput() {
   var val = inp.value.trim().toLowerCase();
   var drop = document.getElementById('venueDropdown');
   if (!val) { drop.classList.remove('open'); drop.innerHTML=''; return; }
-  var matches = VENUES.filter(function(v){ return v.name.toLowerCase().indexOf(val) !== -1; });
+  var matches = VENUES.filter(function(v){ return v.name.toLowerCase().indexOf(val) !== -1; }).slice(0,3);
   if (!matches.length) { drop.classList.remove('open'); return; }
-  drop.innerHTML = matches.slice(0,8).map(function(v){
+  drop.innerHTML = matches.map(function(v){
+    var safeName = v.name.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
     var idx = v.name.toLowerCase().indexOf(val);
-    var highlighted = v.name.slice(0,idx) + '<em>' + v.name.slice(idx, idx+val.length) + '</em>' + v.name.slice(idx+val.length);
-    return '<div class="venue-item" onmousedown="selectVenue(\''+v.name.replace(/'/g,"\\'")+'\')">'
-      + highlighted
-      + '<div class="venue-item-addr">'+v.addr+', '+v.city+'</div>'
-      + '</div>';
+    var hi = v.name.slice(0,idx) + '<em>' + v.name.slice(idx,idx+val.length) + '</em>' + v.name.slice(idx+val.length);
+    return '<div class="venue-item" onmousedown="selectVenue(\'' + safeName + '\')">'+hi+'</div>';
   }).join('');
+  var rect = inp.getBoundingClientRect();
+  drop.style.top = rect.bottom + 'px';
+  drop.style.left = rect.left + 'px';
+  drop.style.width = rect.width + 'px';
   drop.classList.add('open');
 }
+
 function selectVenue(name) {
   var v = VENUES.find(function(x){ return x.name === name; });
   if (!v) return;
