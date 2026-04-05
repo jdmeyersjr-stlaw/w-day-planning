@@ -8,28 +8,28 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --ink:     #0f0d0a;
-  --ink2:    #1a1712;
-  --ink3:    #252118;
-  --ink4:    #302b20;
-  --gold:    #d4933a;
-  --gold2:   #b87a28;
-  --gold3:   rgba(212,147,58,.18);
-  --gold4:   rgba(212,147,58,.08);
-  --bright:  #f2ede4;
-  --bright2: #e8e0d2;
-  --bright3: #c8bfaa;
-  --dim:     rgba(242,237,228,.55);
-  --dim2:    rgba(242,237,228,.32);
-  --dim3:    rgba(242,237,228,.16);
-  --rule:    rgba(242,237,228,.1);
-  --rule2:   rgba(242,237,228,.06);
+  --ink:     #0a0a0a;
+  --ink2:    #141414;
+  --ink3:    #1e1e1e;
+  --ink4:    #2a2a2a;
+  --acc:     #e8e8e8;
+  --acc2:    #c0c0c0;
+  --acc3:    rgba(232,232,232,.15);
+  --acc4:    rgba(232,232,232,.06);
+  --bright:  #f5f5f5;
+  --bright2: #e0e0e0;
+  --bright3: #b0b0b0;
+  --dim:     rgba(245,245,245,.85);
+  --dim2:    rgba(245,245,245,.70);
+  --dim3:    rgba(245,245,245,.52);
+  --rule:    rgba(255,255,255,.1);
+  --rule2:   rgba(255,255,255,.06);
   --serif:   'Playfair Display', Georgia, serif;
   --body:    'Lora', Georgia, serif;
-  --p1:      #d4933a; --p1-bg:rgba(212,147,58,.1); --p1-border:rgba(212,147,58,.35); --p1-shadow:rgba(212,147,58,.3);
-  --p2:      #d4933a; --p2-bg:rgba(212,147,58,.1); --p2-border:rgba(212,147,58,.35); --p2-shadow:rgba(212,147,58,.3);
-  --groom-c: #6ea8d4; --groom-bg:rgba(110,168,212,.1); --groom-bd:rgba(110,168,212,.35); --groom-sh:rgba(110,168,212,.3);
-  --bride-c: #c47ab5; --bride-bg:rgba(196,122,181,.1); --bride-bd:rgba(196,122,181,.35); --bride-sh:rgba(196,122,181,.3);
+  --p1:      #e8e8e8; --p1-bg:rgba(232,232,232,.1); --p1-border:rgba(232,232,232,.35); --p1-shadow:rgba(232,232,232,.2);
+  --p2:      #e8e8e8; --p2-bg:rgba(232,232,232,.1); --p2-border:rgba(232,232,232,.35); --p2-shadow:rgba(232,232,232,.2);
+  --groom-c: #7ab8e8; --groom-bg:rgba(122,184,232,.1); --groom-bd:rgba(122,184,232,.35); --groom-sh:rgba(122,184,232,.25);
+  --bride-c: #d490c8; --bride-bg:rgba(212,144,200,.1); --bride-bd:rgba(212,144,200,.35); --bride-sh:rgba(212,144,200,.25);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -74,11 +74,11 @@ body::before {
   font-family: var(--body);
   font-size: 10px; font-weight: 500;
   letter-spacing: .3em; text-transform: uppercase;
-  color: var(--gold);
+  color: var(--bright2);
   display: flex; align-items: center; gap: 14px;
   margin-bottom: 24px;
 }
-.eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--gold); flex-shrink: 0; }
+.eyebrow::before { content: ''; width: 36px; height: 1px; background: var(--bright3); flex-shrink: 0; }
 
 .site-title {
   font-family: var(--serif);
@@ -88,7 +88,7 @@ body::before {
   letter-spacing: -.015em;
   margin-bottom: 24px;
 }
-.site-title em { font-style: italic; color: var(--gold); }
+.site-title em { font-style: italic; color: var(--bright2); }
 
 .site-intro {
   font-size: 15px; font-weight: 400;
@@ -105,7 +105,7 @@ body::before {
   font-size: 13px;
   color: var(--dim2);
   font-style: italic;
-  border-left: 2px solid var(--gold2);
+  border-left: 2px solid var(--bright3);
   padding-left: 14px;
   line-height: 1.6;
 }
@@ -128,10 +128,10 @@ body::before {
 }
 .progress-fill {
   height: 100%;
-  background: var(--gold);
+  background: var(--bright);
   transition: width .5s cubic-bezier(.4,0,.2,1);
   width: 0%;
-  box-shadow: 0 0 12px rgba(212,147,58,.5);
+  box-shadow: 0 0 8px rgba(245,245,245,.25);
 }
 
 .progress-steps {
@@ -171,12 +171,12 @@ body::before {
 }
 
 .step-item.active .step-num {
-  background: var(--gold); border-color: var(--gold);
+  background: var(--bright); border-color: var(--bright);
   color: var(--ink); transform: scale(1.12);
-  box-shadow: 0 0 16px rgba(212,147,58,.4);
+  box-shadow: 0 0 12px rgba(245,245,245,.2);
 }
 .step-item.active .step-label { color: var(--bright); font-weight: 500; }
-.step-item.done .step-num { background: var(--ink3); border-color: var(--dim3); color: var(--gold); }
+.step-item.done .step-num { background: var(--ink3); border-color: var(--dim3); color: var(--bright2); }
 .step-item.done .step-num .sn { display: none; }
 .step-item.done .step-num::after { content: '✓'; font-size: 10px; }
 .step-item.done .step-label { color: var(--dim2); }
@@ -197,7 +197,7 @@ body::before {
   font-family: var(--body);
   font-size: 10px; font-weight: 500;
   letter-spacing: .24em; text-transform: uppercase;
-  color: var(--gold);
+  color: var(--bright3);
   display: flex; align-items: center; gap: 12px;
   margin-bottom: 16px;
 }
@@ -284,9 +284,9 @@ input.invalid {
 }
 .pill-label:hover { border-color: var(--dim3); color: var(--bright2); transform: translateY(-1px); }
 .pill-input:checked + .pill-label {
-  background: var(--gold); border-color: var(--gold);
+  background: var(--bright); border-color: var(--bright);
   color: var(--ink); transform: translateY(-1px);
-  box-shadow: 0 4px 16px rgba(212,147,58,.3);
+  box-shadow: 0 4px 14px rgba(245,245,245,.18);
   font-weight: 500;
 }
 
@@ -310,7 +310,7 @@ input.invalid {
   cursor: pointer; background: transparent;
   transition: all .15s; white-space: nowrap;
 }
-.qf-btn:hover { border-color: var(--gold2); color: var(--gold); background: var(--gold4); }
+.qf-btn:hover { border-color: var(--bright3); color: var(--bright); background: var(--acc4); }
 .qf-btn.qf-na { border-color: var(--rule2); color: var(--dim3); }
 .qf-btn.qf-na:hover { border-color: var(--dim3); color: var(--dim); }
 
@@ -327,8 +327,8 @@ input.invalid {
 }
 .toggle-label:hover { border-color: var(--dim3); color: var(--bright2); background: var(--ink3); }
 .toggle-input:checked + .toggle-label {
-  background: var(--ink4); border-color: var(--dim2);
-  color: var(--bright); box-shadow: inset 0 0 0 1px var(--dim3);
+  background: var(--ink3); border-color: var(--bright3);
+  color: var(--bright); box-shadow: 0 0 0 1px rgba(255,255,255,.18);
 }
 
 /* ── CONDITIONAL ── */
@@ -349,8 +349,8 @@ input.invalid {
 }
 .pkg-card:hover { border-color: var(--dim3); background: var(--ink3); }
 .pkg-input:checked + .pkg-card {
-  border-color: var(--gold); background: var(--ink3);
-  box-shadow: 0 0 0 1px var(--gold), 0 6px 20px rgba(212,147,58,.15);
+  border-color: var(--bright2); background: var(--ink3);
+  box-shadow: 0 0 0 1px var(--bright3), 0 4px 16px rgba(255,255,255,.08);
 }
 .pkg-name { font-family: var(--body); font-size: 9px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--dim2); }
 .pkg-hours { font-family: var(--serif); font-size: 22px; font-weight: 400; color: var(--bright); line-height: 1.2; }
@@ -359,9 +359,9 @@ input.invalid {
 /* ── TIME WARNING ── */
 .time-warning {
   display: none; margin-top: 10px;
-  background: rgba(212,147,58,.07); border: 1px solid rgba(212,147,58,.2);
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.15);
   border-radius: 4px; padding: 10px 14px;
-  font-family: var(--body); font-size: 12px; color: var(--gold2); line-height: 1.6;
+  font-family: var(--body); font-size: 12px; color: var(--bright2); line-height: 1.6;
 }
 .time-warning.visible { display: block; animation: riseIn .25s ease both; }
 
@@ -369,8 +369,8 @@ input.invalid {
 .party-section { margin-bottom: 32px; }
 .party-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
 .party-title { font-family: var(--body); font-size: 10px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--bright3); }
-.party-tag { display: inline-block; font-family: var(--body); font-size: 9px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--p1); background: var(--p1-bg); border: 1px solid var(--p1-border); border-radius: 100px; padding: 2px 9px; margin-left: 10px; transition: all .3s; }
-.party-tag.p2t { color: var(--p2); background: var(--p2-bg); border-color: var(--p2-border); }
+.party-tag { display: inline-block; font-family: var(--body); font-size: 9px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--bright3); background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 100px; padding: 2px 9px; margin-left: 10px; transition: all .3s; }
+.party-tag.p2t { color: var(--bright3); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.12); }
 .party-list { display: flex; flex-direction: column; gap: 10px; }
 .party-member { display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: center; animation: riseIn .25s ease both; }
 .party-member.p1-member input[type="text"] { border-bottom-color: var(--p1); }
@@ -385,13 +385,13 @@ input.invalid {
 .btn-remove-member:hover { border-color: #e05555; color: #e05555; background: rgba(224,85,85,.08); }
 .btn-add-member {
   font-family: var(--body); font-size: 12px; font-weight: 400;
-  color: var(--gold); background: none;
-  border: 1px dashed var(--gold3); border-radius: 4px;
+  color: var(--bright2); background: none;
+  border: 1px dashed rgba(255,255,255,.2); border-radius: 4px;
   padding: 10px 16px; cursor: pointer; width: 100%;
   display: flex; align-items: center; justify-content: center; gap: 6px;
   transition: all .18s; margin-top: 4px;
 }
-.btn-add-member:hover { border-color: var(--gold2); background: var(--gold4); }
+.btn-add-member:hover { border-color: rgba(255,255,255,.35); background: rgba(255,255,255,.04); }
 .btn-add-member::before { content: '+'; font-size: 16px; }
 
 /* ── CUSTOM PILL ADD ── */
@@ -403,24 +403,24 @@ input.invalid {
   padding: 7px 13px; color: var(--bright); outline: none; flex: 1;
   transition: border-color .2s;
 }
-.pill-add-input:focus { background: var(--ink3); border-bottom-color: var(--gold); }
+.pill-add-input:focus { background: var(--ink3); border-bottom-color: var(--bright2); }
 .pill-add-input::placeholder { color: var(--dim3); font-style: italic; }
 .btn-pill-add {
   font-family: var(--body); font-size: 12px; font-weight: 400;
-  color: var(--gold); background: none;
-  border: 1px dashed var(--gold3); border-radius: 4px;
+  color: var(--bright2); background: none;
+  border: 1px dashed rgba(255,255,255,.2); border-radius: 4px;
   padding: 7px 14px; cursor: pointer; white-space: nowrap;
   transition: all .15s; flex-shrink: 0;
 }
-.btn-pill-add:hover { border-color: var(--gold2); background: var(--gold4); }
+.btn-pill-add:hover { border-color: rgba(255,255,255,.35); background: rgba(255,255,255,.04); }
 .pill-label.custom-pill { position: relative; padding-right: 28px; }
 .pill-label.custom-pill .pill-remove { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); font-size: 13px; line-height: 1; color: inherit; opacity: .6; cursor: pointer; }
 
 /* ── ROLE DROPDOWN ── */
 #roleSuggestPortal {
   position: fixed; background: var(--ink3);
-  border: 1px solid var(--rule); border-radius: 6px;
-  z-index: 9999; box-shadow: 0 16px 40px rgba(0,0,0,.6);
+  border: 1px solid rgba(255,255,255,.12); border-radius: 6px;
+  z-index: 9999; box-shadow: 0 16px 40px rgba(0,0,0,.7);
   display: none; min-width: 220px; max-height: 220px; overflow-y: auto;
 }
 #roleSuggestPortal.open { display: block; animation: riseIn .2s ease; }
@@ -436,7 +436,7 @@ input.invalid {
 
 /* ── SHOT BUILDER ── */
 .shot-builder {
-  background: var(--ink2); border: 1px solid var(--rule);
+  background: var(--ink2); border: 1px solid rgba(255,255,255,.08);
   border-radius: 8px; padding: 24px; margin-bottom: 16px;
 }
 .shot-builder-label {
@@ -457,8 +457,8 @@ input.invalid {
 }
 .person-label:hover { border-color: var(--dim3); color: var(--bright2); }
 .person-toggle:checked + .person-label {
-  background: var(--ink4); border-color: var(--dim2);
-  color: var(--bright); box-shadow: inset 0 0 0 1px var(--dim3);
+  background: var(--ink3); border-color: var(--bright3);
+  color: var(--bright); box-shadow: 0 0 0 1px rgba(255,255,255,.18);
 }
 .person-label.token-p1 { border-color: var(--p1-border); color: var(--p1); }
 .person-label.token-p1:hover { background: var(--p1-bg); }
@@ -478,12 +478,12 @@ input.invalid {
 .shot-preview.has-content { color: var(--bright2); font-style: normal; }
 .btn-add-shot {
   font-family: var(--body); font-size: 12px; font-weight: 500;
-  color: var(--ink); background: var(--gold);
+  color: var(--ink); background: var(--bright);
   border: none; border-radius: 4px; padding: 9px 18px;
   cursor: pointer; white-space: nowrap;
   transition: all .15s; flex-shrink: 0;
 }
-.btn-add-shot:hover { background: var(--gold2); box-shadow: 0 4px 14px rgba(212,147,58,.3); }
+.btn-add-shot:hover { background: var(--bright2); box-shadow: 0 4px 14px rgba(255,255,255,.12); }
 .btn-add-shot:disabled { opacity: .3; cursor: default; box-shadow: none; }
 #shotListTextarea { min-height: 120px; font-size: 13px; line-height: 1.75; margin-top: 12px; }
 
@@ -504,11 +504,11 @@ input.invalid {
 .vendor-card:hover { box-shadow: 0 4px 20px rgba(0,0,0,.4); border-color: var(--dim3); }
 .vendor-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
 .vendor-card-icon {
-  width: 32px; height: 32px; background: var(--gold4);
-  border: 1px solid var(--gold3); border-radius: 4px;
+  width: 32px; height: 32px; background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1); border-radius: 4px;
   display: flex; align-items: center; justify-content: center;
   font-family: var(--body); font-size: 9px; font-weight: 600;
-  letter-spacing: .06em; color: var(--gold); flex-shrink: 0;
+  letter-spacing: .06em; color: var(--bright2); flex-shrink: 0;
 }
 .vendor-card-type { font-family: var(--body); font-size: 10px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--bright3); }
 .vendor-card-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -543,12 +543,12 @@ input.invalid {
   display: flex; align-items: center; gap: 8px;
   transition: all .2s;
 }
-.btn-next { background: var(--gold); }
+.btn-next { background: var(--bright2); color: var(--ink); }
 .btn-next::after { content: '→'; font-size: 15px; transition: transform .2s; }
-.btn-next:hover { background: var(--gold2); box-shadow: 0 6px 24px rgba(212,147,58,.35); }
+.btn-next:hover { background: var(--bright); box-shadow: 0 6px 20px rgba(255,255,255,.12); color: var(--ink); }
 .btn-next:hover::after { transform: translateX(4px); }
-.btn-submit { background: var(--bright); color: var(--ink); }
-.btn-submit:hover { background: var(--bright2); transform: translateY(-1px); box-shadow: 0 8px 28px rgba(242,237,228,.2); }
+.btn-submit { background: var(--bright); color: var(--ink); font-weight: 600; }
+.btn-submit:hover { background: var(--bright2); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(255,255,255,.15); }
 .btn-submit:disabled { opacity: .4; cursor: default; transform: none; box-shadow: none; }
 .nav-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 
@@ -558,9 +558,9 @@ input.invalid {
 .success-screen { display: none; text-align: center; padding: 120px 24px; }
 .success-mark {
   width: 72px; height: 72px;
-  border: 1px solid var(--gold); border-radius: 50%;
+  border: 1px solid var(--bright2); border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 36px; font-size: 28px; color: var(--gold);
+  margin: 0 auto 36px; font-size: 28px; color: var(--bright);
   animation: popIn .6s cubic-bezier(.22,1,.36,1) both;
 }
 .success-title {
@@ -586,8 +586,39 @@ input.invalid {
 .footer-brand { font-family: var(--serif); font-size: 16px; color: var(--bright2); }
 .footer-contact { font-family: var(--body); font-size: 12px; font-weight: 400; color: var(--dim2); display: flex; gap: 20px; flex-wrap: wrap; }
 .footer-contact a { color: var(--dim2); text-decoration: none; transition: color .15s; }
-.footer-contact a:hover { color: var(--gold); }
+.footer-contact a:hover { color: var(--bright2); }
 .footer-note { font-family: var(--body); font-size: 12px; font-style: italic; color: var(--dim3); line-height: 1.7; border-top: 1px solid var(--rule2); padding-top: 16px; }
+
+
+/* ── VENUE AUTOCOMPLETE ── */
+.venue-wrap { position: relative; }
+.venue-dropdown {
+  position: absolute; left: 0; right: 0; top: 100%;
+  background: var(--ink3); border: 1px solid rgba(255,255,255,.12);
+  border-radius: 0 0 6px 6px; z-index: 500;
+  box-shadow: 0 16px 40px rgba(0,0,0,.7);
+  max-height: 240px; overflow-y: auto;
+  display: none;
+}
+.venue-dropdown.open { display: block; animation: riseIn .18s ease both; }
+.venue-item {
+  padding: 11px 16px; font-family: var(--body); font-size: 13px;
+  color: var(--bright2); cursor: pointer;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  transition: background .1s; line-height: 1.4;
+}
+.venue-item:last-child { border-bottom: none; }
+.venue-item:hover, .venue-item.focused { background: var(--ink4); }
+.venue-item-name { font-weight: 500; color: var(--bright); }
+.venue-item em { font-style: normal; background: rgba(255,255,255,.18); border-radius: 2px; padding: 0 2px; }
+.venue-item-addr { font-size: 11px; color: var(--dim2); margin-top: 2px; }
+
+/* ── TIME SELECT ── */
+.time-select-wrap { position: relative; }
+.time-select-wrap select {
+  font-size: 14px; padding: 12px 36px 12px 16px;
+  background-color: var(--ink2);
+}
 
 /* ── ANIMATIONS ── */
 @keyframes riseIn   { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
@@ -752,7 +783,10 @@ input.invalid {
   <div class="field-group">
     <div class="field">
       <label class="field-label" for="venue-name">Venue Name <span class="req">*</span></label>
-      <input type="text" id="venue-name" placeholder="e.g. Shindigz on the River" oninput="updateVenueEcho()">
+      <div class="venue-wrap">
+        <input type="text" id="venue-name" placeholder="Start typing a venue name…" oninput="venueInput()" onkeydown="venueKeydown(event)" autocomplete="off">
+        <div class="venue-dropdown" id="venueDropdown"></div>
+      </div>
       <span class="field-error" id="err-venue-name">Enter a venue to continue.</span>
     </div>
   </div>
@@ -798,19 +832,27 @@ input.invalid {
   <div class="section-header">
     <div class="section-eyebrow">03 of 08</div>
     <h2 class="section-title">Coverage &<br><em>timeline</em></h2>
-    <p class="section-desc">Walk me through the shape of the day. The more specific this is, the better I can position myself and plan transitions.</p>
+    <p class="section-desc">The timeline is your road map for the day. Fill in what you know — even a rough order of events helps me show up prepared.</p>
   </div>
   <div class="field-group">
     <div class="field-row">
       <div class="field">
         <label class="field-label" for="arrival-time">My Arrival Time <span class="req">*</span></label>
-        <input type="time" id="arrival-time" oninput="onTimeChange()">
+        <div class="time-select-wrap">
+          <select id="arrival-time" onchange="onTimeChange()">
+            <option value="">Select time…</option>
+          </select>
+        </div>
         <span class="field-hint" id="arrival-hint">When you'd like me on-site</span>
         <span class="field-error" id="err-arrival-time">Set an arrival time to continue.</span>
       </div>
       <div class="field">
         <label class="field-label" for="end-time">Coverage End Time</label>
-        <input type="time" id="end-time" oninput="onTimeChange()">
+        <div class="time-select-wrap">
+          <select id="end-time" onchange="onTimeChange()">
+            <option value="">Select time…</option>
+          </select>
+        </div>
         <span class="field-hint" id="end-hint">Approximate wrap time</span>
       </div>
     </div>
@@ -1688,116 +1730,133 @@ function exportPDF(){
   var vlines=VENDORS.map(vendorLine).filter(Boolean);
   var grSame=gRadio('gr-same');
   var shotText=gid('shotListTextarea');
-
-  function sec(title){
-    return '<tr><td colspan="2" style="padding:20px 0 8px;"><div style="font-size:9px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:#8a7a60;border-bottom:1px solid #e8e0d0;padding-bottom:7px;">'
-      +title+'</div></td></tr>';
-  }
-  function row(label,val){
-    if(!val||val==='—'||val==='')return'';
-    return '<tr><td style="padding:5px 20px 5px 0;font-family:Georgia,serif;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#8a7a60;vertical-align:top;width:150px;white-space:nowrap;">'+label+'</td>'
-      +'<td style="padding:5px 0;font-family:Georgia,serif;font-size:13px;color:#1a1209;line-height:1.6;white-space:pre-wrap;">'+val.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</td></tr>';
-  }
-
-  var src=gRadio('source'),ref=gid('referral-name');
   var grStr=grSame==='Same location'?gid('getting-ready-loc')
-    :grSame==='Different locations'?(n1+'\'s side: '+gid('gr-loc-1')+'\n'+(n2!=='—'?n2:' Partner 2')+'\'s side: '+gid('gr-loc-2')):'—';
+    :grSame==='Different locations'?(n1+''s side: '+gid('gr-loc-1')+'\n'+(n2!=='—'?n2:'Partner 2')+''s side: '+gid('gr-loc-2')):'—';
+  var src=gRadio('source'),ref=gid('referral-name');
 
-  var html='<!DOCTYPE html><html><head><meta charset="UTF-8">'
-    +'<title>Wedding Day Brief — '+couple+'</title>'
-    +'<style>'
-    +'@import url(\'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap\');'
-    +'*{box-sizing:border-box;margin:0;padding:0;}'
-    +'body{font-family:\'Lora\',Georgia,serif;background:#fff;color:#1a1209;-webkit-print-color-adjust:exact;print-color-adjust:exact;}'
-    +'@media print{body{margin:0;}@page{size:A4;margin:18mm 16mm;}}'
-    +'</style></head><body>'
-    +'<div style="max-width:680px;margin:0 auto;padding:48px 32px;">'
+  var pdfStyles = '<style>'
+    + '@import url(\'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap\');'
+    + '*{box-sizing:border-box;margin:0;padding:0;}'
+    + 'body{font-family:\'Lora\',Georgia,serif;background:#fff;color:#111;-webkit-print-color-adjust:exact;print-color-adjust:exact;font-size:13px;line-height:1.6;}'
+    + '.page{max-width:720px;margin:0 auto;padding:48px 40px;}'
+    + '.doc-header{text-align:center;margin-bottom:40px;padding-bottom:28px;border-bottom:3px solid #111;}'
+    + '.doc-eyebrow{font-family:\'Lora\',serif;font-size:9px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:#777;margin-bottom:14px;}'
+    + '.doc-names{font-family:\'Playfair Display\',serif;font-size:38px;font-weight:400;line-height:1.1;letter-spacing:-.01em;margin-bottom:10px;color:#0a0a0a;}'
+    + '.doc-date{font-family:\'Lora\',serif;font-size:14px;color:#444;margin-bottom:4px;}'
+    + '.doc-venue{font-family:\'Lora\',serif;font-size:13px;color:#777;}'
+    + '.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 52px;align-items:start;}'
+    + '.col{}'
+    + '.sec-head{font-family:\'Lora\',serif;font-size:8px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:#aaa;padding:22px 0 8px;border-bottom:2px solid #111;margin-bottom:2px;}'
+    + '.sec-head.first{padding-top:0;}'
+    + 'table{border-collapse:collapse;width:100%;}'
+    + 'tr{border-bottom:1px solid #ebebeb;}'
+    + 'tr:last-child{border-bottom:none;}'
+    + 'td{padding:7px 0;vertical-align:top;}'
+    + '.lbl{font-family:\'Lora\',serif;font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#aaa;width:120px;padding-right:16px;white-space:nowrap;padding-top:9px;}'
+    + '.val{font-family:\'Lora\',serif;font-size:12.5px;color:#1a1a1a;white-space:pre-wrap;line-height:1.6;}'
+    + '.doc-footer{text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid #ddd;font-family:\'Lora\',serif;font-size:10px;color:#bbb;letter-spacing:.12em;font-style:italic;}'
+    + '@media print{body{margin:0;}@page{size:A4;margin:16mm 14mm;}}'
+    + '</style>';
+
+  function pdfSec(t,first){ return '<div class="sec-head'+(first?' first':'')+'">' + t + '</div><table>'; }
+  function pdfEnd(){ return '</table>'; }
+  function pdfRow(l,v){ if(!v||v==='—'||v==='')return''; return '<tr><td class="lbl">'+l+'</td><td class="val">'+String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</td></tr>'; }
+
+  var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Wedding Day Brief — '+couple+'</title>'
+    + pdfStyles + '</head><body><div class="page">'
 
     // Header
-    +'<div style="text-align:center;margin-bottom:40px;padding-bottom:32px;border-bottom:2px solid #1a1209;">'
-    +'<div style="font-family:\'Lora\',serif;font-size:9px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:#8a7a60;margin-bottom:14px;">Wedding Day Brief</div>'
-    +'<div style="font-family:\'Playfair Display\',serif;font-size:40px;font-weight:400;line-height:1.1;letter-spacing:-.01em;margin-bottom:10px;">'+couple.replace(/&/g,'&amp;')+'</div>'
-    +'<div style="font-family:\'Lora\',serif;font-size:14px;color:#5a5044;margin-bottom:4px;">'+dateStr+'</div>'
-    +'<div style="font-family:\'Lora\',serif;font-size:13px;color:#8a7a60;">'+venue.replace(/&/g,'&amp;')+'</div>'
-    +'</div>'
+    + '<div class="doc-header">'
+    + '<div class="doc-eyebrow">Wedding Day Brief</div>'
+    + '<div class="doc-names">'+couple.replace(/&/g,'&amp;')+'</div>'
+    + '<div class="doc-date">'+dateStr+'</div>'
+    + '<div class="doc-venue">'+venue.replace(/&/g,'&amp;')+'</div>'
+    + '</div>'
 
-    // Two-column layout
-    +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:32px 48px;">'
+    // Two-column grid
+    + '<div class="grid">'
 
-    // LEFT COLUMN
-    +'<div>'
-    +'<table style="border-collapse:collapse;width:100%;">'
-    +sec('The Couple')
-    +row('Partner 1', n1+(gRadio('p1role')!=='—'?' ('+gRadio('p1role')+')':''))
-    +row('Partner 2', n2!=='—'?n2+(gRadio('p2role')!=='—'?' ('+gRadio('p2role')+')':''):'')
-    +row('Phone', gid('p1phone'))
-    +row('Email', gid('p1email'))
-    +sec('The Wedding')
-    +row('Date', dateStr)
-    +row('Venue', venue)
-    +row('Address', [gid('venue-addr'),gid('venue-city')].filter(function(x){return x!=='—';}).join(', '))
-    +row('Guests', gid('guest-count'))
-    +row('Ceremony', gRadio('ceremony-type'))
-    +row('Rain backup', gRadio('weather-plan')+(gid('weather-detail')!=='—'?' — '+gid('weather-detail'):''))
-    +sec('Coverage')
-    +row('Arrival', fmtTime(gid('arrival-time')))
-    +row('End time', fmtTime(gid('end-time')))
-    +row('First look', gRadio('first-look'))
-    +row('Covering', gCheckboxes('coverage'))
-    +row('Reception events', gCheckboxes('reception-events'))
-    +row('2nd location', gRadio('second-loc')+(gid('second-loc-name')!=='—'?' — '+gid('second-loc-name'):''))
-    +sec('Logistics')
-    +row('Venue contact', gid('venue-contact')+(gid('venue-contact-phone')!=='—'?' · '+gid('venue-contact-phone'):''))
-    +row('Emergency contact', gid('emergency-contact-name')+(gid('emergency-contact-phone')!=='—'?' · '+gid('emergency-contact-phone'):''))
-    +row('Getting ready', grStr)
-    +row('Vendor meal', gRadio('vendor-meal'))
-    +row('Parking', gid('parking-notes'))
-    +row('Restrictions', gid('venue-restrictions'))
-    +row('Lighting notes', gid('lighting-notes'))
-    +'</table></div>'
+    // LEFT
+    + '<div class="col">'
+    + pdfSec('The Couple', true)
+    + pdfRow('Partner 1', n1+(gRadio('p1role')!=='—'?' ('+gRadio('p1role')+')':''))
+    + pdfRow('Partner 2', n2!=='—'?n2+(gRadio('p2role')!=='—'?' ('+gRadio('p2role')+')':''):'')
+    + pdfRow('Phone', gid('p1phone'))
+    + pdfRow('Email', gid('p1email'))
+    + pdfEnd()
+    + pdfSec('The Wedding')
+    + pdfRow('Date', dateStr)
+    + pdfRow('Venue', venue)
+    + pdfRow('Address', [gid('venue-addr'),gid('venue-city')].filter(function(x){return x!=='—';}).join(', '))
+    + pdfRow('Guests', gid('guest-count'))
+    + pdfRow('Ceremony', gRadio('ceremony-type'))
+    + pdfRow('Rain backup', gRadio('weather-plan')+(gid('weather-detail')!=='—'?' — '+gid('weather-detail'):''))
+    + pdfEnd()
+    + pdfSec('Coverage')
+    + pdfRow('Arrival', fmtTime(gid('arrival-time')))
+    + pdfRow('End time', fmtTime(gid('end-time')))
+    + pdfRow('First look', gRadio('first-look'))
+    + pdfRow('Covering', gCheckboxes('coverage'))
+    + pdfRow('Reception', gCheckboxes('reception-events'))
+    + pdfRow('2nd location', gRadio('second-loc')+(gid('second-loc-name')!=='—'?' — '+gid('second-loc-name'):''))
+    + pdfEnd()
+    + pdfSec('Ceremony')
+    + pdfRow('Structure', gid('ceremony-structure'))
+    + pdfEnd()
+    + pdfSec('Logistics')
+    + pdfRow('Venue contact', gid('venue-contact')+(gid('venue-contact-phone')!=='—'?' · '+gid('venue-contact-phone'):''))
+    + pdfRow('Emergency', gid('emergency-contact-name')+(gid('emergency-contact-phone')!=='—'?' · '+gid('emergency-contact-phone'):''))
+    + pdfRow('Getting ready', grStr)
+    + pdfRow('Vendor meal', gRadio('vendor-meal'))
+    + pdfRow('Parking', gid('parking-notes'))
+    + pdfRow('Restrictions', gid('venue-restrictions'))
+    + pdfRow('Lighting', gid('lighting-notes'))
+    + pdfEnd()
+    + '</div>'
 
-    // RIGHT COLUMN
-    +'<div>'
-    +'<table style="border-collapse:collapse;width:100%;">'
-    +sec('Ceremony')
-    +row('Structure', gid('ceremony-structure'))
-    +sec('Bridal Party')
-    +row(n1+'\'s side', side1.length?side1.map(function(m){return m.role?m.name+' ('+m.role+')':m.name;}).join('\n'):'')
-    +row((n2!=='—'?n2:'Partner 2')+'\'s side', side2.length?side2.map(function(m){return m.role?m.name+' ('+m.role+')':m.name;}).join('\n'):'')
-    +row('Flower girl / Ring bearer', gid('flower-kids'))
-    +row('Officiant', gid('officiant'))
-    +sec('Shot List')
-    +row('Family formals', shotText!=='—'?shotText:'')
-    +row('Additional', gid('family-combos'))
-    +row('Must-haves', gid('must-haves'))
-    +row('Do not photograph', gid('do-not-photo'))
-    +row('Family dynamics', gid('family-dynamics'))
-    +row('Special notes', gid('special-notes'))
-    +sec('Vendor Contacts')
-    +(vlines.length?vlines.map(function(v){var i=v.indexOf(':');return row(v.slice(0,i),v.slice(i+2));}).join(''):'')
-    +row('Other vendors', gid('other-vendors'))
-    +sec('Timeline')
-    +row('', gid('timeline-detail'))
-    +sec('Vision')
-    +row('Vibe', gRadio('vibe'))
-    +row('Edit style', gRadio('edit-style'))
-    +row('Inspiration', gid('inspiration'))
-    +row('Notes', gid('anything-else'))
-    +'</table></div>'
+    // RIGHT
+    + '<div class="col">'
+    + pdfSec('Bridal Party', true)
+    + pdfRow(n1+''s side', side1.length?side1.map(function(m){return m.role?m.name+' ('+m.role+')':m.name;}).join('\n'):'')
+    + pdfRow((n2!=='—'?n2:'Partner 2')+''s side', side2.length?side2.map(function(m){return m.role?m.name+' ('+m.role+')':m.name;}).join('\n'):'')
+    + pdfRow('Flower girl / Ring bearer', gid('flower-kids'))
+    + pdfRow('Officiant', gid('officiant'))
+    + pdfEnd()
+    + pdfSec('Shot List')
+    + pdfRow('Family formals', shotText!=='—'?shotText:'')
+    + pdfRow('Additional', gid('family-combos'))
+    + pdfRow('Must-haves', gid('must-haves'))
+    + pdfRow('Do not photograph', gid('do-not-photo'))
+    + pdfRow('Family dynamics', gid('family-dynamics'))
+    + pdfRow('Special notes', gid('special-notes'))
+    + pdfEnd()
+    + pdfSec('Vendor Contacts')
+    + (vlines.length?vlines.map(function(v){var i=v.indexOf(':');return pdfRow(v.slice(0,i),v.slice(i+2));}).join(''):'')
+    + pdfRow('Other', gid('other-vendors'))
+    + pdfEnd()
+    + pdfSec('Timeline')
+    + pdfRow('Day-of', gid('timeline-detail'))
+    + pdfEnd()
+    + pdfSec('Vision')
+    + pdfRow('Vibe', gRadio('vibe'))
+    + pdfRow('Edit style', gRadio('edit-style'))
+    + pdfRow('Inspiration', gid('inspiration'))
+    + pdfRow('Notes', gid('anything-else'))
+    + pdfEnd()
+    + '</div>'
+    + '</div>'
 
-    +'</div>'// end grid
+    + '<div class="doc-footer">Prepared with JD Meyers Productions &nbsp;·&nbsp; jdmeyersjr.com</div>'
+    + '</div>'
+    + '<script>window.onload=function(){window.print();}<\/script>'
+    + '</body></html>';
 
-    +'<div style="text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid #e8e0d0;font-family:\'Lora\',serif;font-size:10px;color:#b8a484;letter-spacing:.12em;font-style:italic;">Prepared with JD Meyers Productions &nbsp;·&nbsp; jdmeyersjr.com</div>'
-    +'</div>'
-    +'<script>window.onload=function(){window.print();}<\/script>'
-    +'</body></html>';
-
-  var win=window.open('','_blank','width=840,height=1000');
+  var win=window.open('','_blank','width=860,height=1100');
   win.document.write(html); win.document.close();
 }
-
 // ── INIT ──
 function init(){
+  initTimeSelects();
   initParty(); buildVendors(); buildShotPeople('Partner 1','Partner 2'); updateProgress();
   var shotTA=document.getElementById('shotListTextarea'); if(shotTA) shotTA.addEventListener('input',updateShotNudge);
   document.querySelectorAll('input[name="source"]').forEach(function(r){r.addEventListener('change',function(){document.getElementById('referral-wrap').classList.toggle('visible',this.value==='Referral');});});
@@ -1805,7 +1864,18 @@ function init(){
   document.querySelectorAll('input[name="second-loc"]').forEach(function(r){r.addEventListener('change',function(){document.getElementById('second-loc-detail').classList.toggle('visible',this.value==='Yes');});});
   document.querySelectorAll('input[name="gr-same"]').forEach(function(r){r.addEventListener('change',function(){document.getElementById('gr-same-detail').classList.toggle('visible',this.value==='Same location');document.getElementById('gr-split-detail').classList.toggle('visible',this.value==='Different locations');});});
   document.querySelectorAll('input,textarea').forEach(function(el){el.addEventListener('input',function(){this.classList.remove('invalid');var e=document.getElementById('err-'+this.id);if(e)e.style.display='none';});});
-  document.querySelectorAll('input[name="package"]').forEach(function(r){r.addEventListener('change',function(){var endEl=document.getElementById('end-time');var arrival=document.getElementById('arrival-time').value;if(arrival&&!endEl.value)suggestEndTime();});});
+  document.querySelectorAll('input[name="package"]').forEach(function(r){r.addEventListener('change',function(){
+    var pkg=this.value;
+    var defaults=TIME_DEFAULTS[pkg];
+    var arrEl=document.getElementById('arrival-time');
+    var endEl=document.getElementById('end-time');
+    if(defaults&&!arrEl.value){
+      arrEl.value=defaults.arrival;
+      var hint=document.getElementById('arrival-hint');
+      if(hint)hint.textContent=defaults.note+' — adjust freely';
+    }
+    suggestEndTime();
+  });});
   document.querySelectorAll('input[name="reception-events"]').forEach(function(r){r.addEventListener('change',checkTimeWarning);});
 }
 document.addEventListener('DOMContentLoaded', init);
