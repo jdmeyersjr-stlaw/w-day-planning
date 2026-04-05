@@ -124,8 +124,9 @@ input.invalid{border-bottom-color:#e05555!important;animation:shake .35s ease;}
 .p1-pill-input,.p2-pill-input{display:none;}
 .p1-pill-label,.p2-pill-label{font-family:var(--body);font-size:12px;color:var(--accent3);border:1px solid var(--line2);border-radius:100px;padding:5px 16px;cursor:pointer;background:var(--bg2);transition:all .2s;user-select:none;display:inline-flex;}
 .p1-pill-label:hover,.p2-pill-label:hover{border-color:var(--line3);color:var(--accent);}
-.p1-pill-input:checked+.p1-pill-label{background:var(--p1);border-color:var(--p1);color:#fff;font-weight:500;box-shadow:0 3px 12px var(--p1-shadow);}
-.p2-pill-input:checked+.p2-pill-label{background:var(--p2);border-color:var(--p2);color:#fff;font-weight:500;box-shadow:0 3px 12px var(--p2-shadow);}
+/* Role pills — always use the fixed bride/groom colors regardless of which partner */
+#p1r-bride:checked+.p1-pill-label,#p2r-bride:checked+.p2-pill-label{background:var(--bride-c);border-color:var(--bride-c);color:#fff;font-weight:500;box-shadow:0 3px 12px var(--bride-sh);}
+#p1r-groom:checked+.p1-pill-label,#p2r-groom:checked+.p2-pill-label{background:var(--groom-c);border-color:var(--groom-c);color:#fff;font-weight:500;box-shadow:0 3px 12px var(--groom-sh);}
 
 /* ── QUICK FILL ── */
 .quickfill{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
@@ -1130,8 +1131,8 @@ function syncNames(){
 
 // ── ROLE SYNC ──
 var ROLE_COLORS={
-  Groom:{color:'#7eb8e0',bg:'rgba(126,184,224,.1)',border:'rgba(126,184,224,.3)',shadow:'rgba(126,184,224,.2)',sideTag:'Groomsmen',honor:['Best Man','Best Woman'],standard:['Groomsman','Groomsmaid'],all:['Best Man','Best Woman','Groomsman','Groomsmaid']},
-  Bride:{color:'#d4a0c8',bg:'rgba(212,160,200,.1)',border:'rgba(212,160,200,.3)',shadow:'rgba(212,160,200,.2)',sideTag:'Bridesmaids',honor:['Maid of Honor','Matron of Honor','Man of Honor'],standard:['Bridesmaid','Junior Bridesmaid'],all:['Maid of Honor','Matron of Honor','Man of Honor','Bridesmaid','Junior Bridesmaid']}
+  Groom:{color:'#4d5b87',bg:'rgba(77,91,135,.18)',border:'rgba(77,91,135,.5)',shadow:'rgba(77,91,135,.35)',sideTag:'Groomsmen',honor:['Best Man','Best Woman'],standard:['Groomsman','Groomsmaid'],all:['Best Man','Best Woman','Groomsman','Groomsmaid']},
+  Bride:{color:'#815582',bg:'rgba(129,85,130,.18)',border:'rgba(129,85,130,.5)',shadow:'rgba(129,85,130,.35)',sideTag:'Bridesmaids',honor:['Maid of Honor','Matron of Honor','Man of Honor'],standard:['Bridesmaid','Junior Bridesmaid'],all:['Maid of Honor','Matron of Honor','Man of Honor','Bridesmaid','Junior Bridesmaid']}
 };
 var NEUTRAL={color:'#e8e8e8',bg:'rgba(232,232,232,.08)',border:'rgba(232,232,232,.25)',shadow:'rgba(232,232,232,.15)'};
 var ROLE_SUGGESTIONS={side1:['Maid of Honor','Bridesmaid','Bridesmaid','Bridesmaid','Bridesmaid','Bridesmaid'],side2:['Best Man','Groomsman','Groomsman','Groomsman','Groomsman','Groomsman']};
