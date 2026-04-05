@@ -29,13 +29,13 @@
   /* Partner role colors */
   --p1:      #e8e8e8; --p1-bg:rgba(232,232,232,.08); --p1-border:rgba(232,232,232,.25); --p1-shadow:rgba(232,232,232,.15);
   --p2:      #e8e8e8; --p2-bg:rgba(232,232,232,.08); --p2-border:rgba(232,232,232,.25); --p2-shadow:rgba(232,232,232,.15);
-  --groom-c: #7eb8e0; --groom-bg:rgba(126,184,224,.1); --groom-bd:rgba(126,184,224,.3); --groom-sh:rgba(126,184,224,.2);
-  --bride-c: #d4a0c8; --bride-bg:rgba(212,160,200,.1); --bride-bd:rgba(212,160,200,.3); --bride-sh:rgba(212,160,200,.2);
-  /* Maroon accent */
-  --maroon:  #8b2020;
-  --maroon2: #a83030;
-  --maroon3: rgba(139,32,32,.18);
-  --maroon4: rgba(139,32,32,.08);
+  --groom-c: #1a3a6b; --groom-bg:rgba(26,58,107,.2); --groom-bd:rgba(26,58,107,.55); --groom-sh:rgba(26,58,107,.4);
+  --bride-c: #3d1060; --bride-bg:rgba(61,16,96,.2); --bride-bd:rgba(61,16,96,.55); --bride-sh:rgba(61,16,96,.4);
+  /* Premium muted maroon accent */
+  --maroon:  #6b1a1a;
+  --maroon2: #7d2020;
+  --maroon3: rgba(107,26,26,.22);
+  --maroon4: rgba(107,26,26,.09);
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -1503,6 +1503,9 @@ function exportPDF(){
 
 // ── INIT ──
 function init(){
+  // Move venue dropdown to body so it escapes all stacking contexts
+  var vd = document.getElementById('venueDropdown');
+  if (vd && vd.parentNode !== document.body) document.body.appendChild(vd);
   initParty();buildVendors();buildShotPeople('Partner 1','Partner 2');updateProgress();
 
   // Build time selects with neutral defaults
