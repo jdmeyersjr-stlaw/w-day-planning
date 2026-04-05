@@ -302,6 +302,14 @@ input.invalid{border-bottom-color:#e05555!important;animation:shake .35s ease;}
 
 /* ── SUCCESS ── */
 .success-screen{display:none;text-align:center;padding:120px 24px;}
+.success-actions{display:flex;flex-direction:column;align-items:center;gap:14px;margin-top:36px;animation:riseIn .6s ease .5s both;}
+.success-export-wrap{display:flex;align-items:center;gap:10px;}
+.success-export-label{font-family:var(--body);font-size:12px;color:var(--accent3);font-style:italic;cursor:pointer;user-select:none;display:flex;align-items:center;gap:8px;}
+.success-export-label input[type="checkbox"]{display:none;}
+.success-check-box{width:15px;height:15px;flex-shrink:0;border:1px solid var(--line3);border-radius:3px;background:var(--bg3);display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.success-export-label input:checked ~ .success-check-box{background:var(--maroon);border-color:var(--maroon);}
+.success-check-box::after{content:'';display:none;width:4px;height:7px;border:1.5px solid #fff;border-top:none;border-left:none;transform:rotate(42deg) translateY(-1px);}
+.success-export-label input:checked ~ .success-check-box::after{display:block;}
 .success-mark{width:72px;height:72px;border:1px solid var(--line3);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 36px;font-size:28px;color:var(--accent2);animation:popIn .6s cubic-bezier(.22,1,.36,1) both;}
 .success-title{font-family:var(--serif);font-size:46px;font-weight:400;color:var(--white);margin-bottom:16px;animation:riseIn .6s ease .2s both;}
 .success-sub{font-family:var(--body);font-size:15px;font-weight:400;color:var(--accent2);line-height:1.8;max-width:420px;margin:0 auto;animation:riseIn .6s ease .35s both;}
@@ -373,7 +381,15 @@ input.invalid{border-bottom-color:#e05555!important;animation:shake .35s ease;}
 <div class="success-screen" id="successScreen">
   <div class="success-mark">✓</div>
   <div class="success-title" id="successTitle">All set.</div>
-  <p class="success-sub" id="successSub">I have everything I need to show up fully prepared. I'll follow up if anything needs clarifying. Text me anytime at (315) 244-4155.</p>
+  <p class="success-sub" id="successSub">This gives us a great starting point. I'll reach out to set up a quick call so we can go through everything together before the day.</p>
+  <div class="success-actions">
+    <button type="button" class="btn-export" onclick="exportPDFFromSuccess()" style="margin:0 auto;">Export PDF Brief</button>
+    <label class="success-export-label">
+      <input type="checkbox" id="includePhotoDetailsSuccess">
+      <span class="success-check-box"></span>
+      Include photography details
+    </label>
+  </div>
 </div>
 
 <!-- ══ 1: COUPLE ══ -->
@@ -1351,7 +1367,7 @@ function showSuccess(){
   var dateStr=fmtDate(gid('wed-date'));
   var title=document.getElementById('successTitle');var sub=document.getElementById('successSub');
   if(title)title.textContent='All set, '+couple+'.';
-  if(sub)sub.textContent='I have everything I need to show up fully prepared.'+(dateStr!=='—'?' I\'ll be there on '+dateStr+'.':'')+' I\'ll follow up if anything needs clarifying. Text me anytime at (315) 244-4155.';
+  if(sub)sub.textContent='This gives us a great starting point.'+(dateStr!=='—'?' I\'ll be there on '+dateStr+'.':'')+' I\'ll reach out to set up a quick call so we can go through everything together before the day.';
   document.querySelectorAll('.form-section').forEach(function(s){s.style.display='none';});
   document.getElementById('progressOuter').style.display='none';
   document.getElementById('successScreen').style.display='block';
@@ -1553,6 +1569,14 @@ function exportPDF(){
 
   var win=window.open('','_blank','width=860,height=1100');
   win.document.write(html);win.document.close();
+}
+
+function exportPDFFromSuccess(){
+  // Sync the success page checkbox to the main one and call exportPDF
+  var successCb = document.getElementById('includePhotoDetailsSuccess');
+  var mainCb = document.getElementById('includePhotoDetails');
+  if (mainCb && successCb) mainCb.checked = successCb.checked;
+  exportPDF();
 }
 
 // ── INIT ──
