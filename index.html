@@ -218,10 +218,17 @@ input.invalid{border-bottom-color:#e05555!important;animation:shake .35s ease;}
 .person-toggle:checked+.person-label{background:var(--bg5);border-color:var(--line3);color:var(--white);box-shadow:inset 0 0 0 1px var(--line3);}
 .person-label.token-p1{border-color:var(--p1-border);color:var(--p1);}
 .person-label.token-p1:hover{background:var(--p1-bg);}
-.person-toggle.token-p1:checked+.person-label.token-p1{background:var(--p1);border-color:var(--p1);color:var(--bg);}
+.person-toggle.token-p1:checked+.person-label.token-p1{background:var(--p1);border-color:var(--p1);color:#fff;}
 .person-label.token-p2{border-color:var(--p2-border);color:var(--p2);}
 .person-label.token-p2:hover{background:var(--p2-bg);}
-.person-toggle.token-p2:checked+.person-label.token-p2{background:var(--p2);border-color:var(--p2);color:var(--bg);}
+.person-toggle.token-p2:checked+.person-label.token-p2{background:var(--p2);border-color:var(--p2);color:#fff;}
+/* Honor companion tokens — lighter shade of partner color */
+.person-label.token-honor-p1{border-color:rgba(192,132,245,.4);color:var(--honor-p1);}
+.person-label.token-honor-p1:hover{background:rgba(192,132,245,.08);}
+.person-toggle.token-honor-p1:checked+.person-label.token-honor-p1{background:var(--honor-p1);border-color:var(--honor-p1);color:#1a0a2a;}
+.person-label.token-honor-p2{border-color:rgba(91,155,213,.4);color:var(--honor-p2);}
+.person-label.token-honor-p2:hover{background:rgba(91,155,213,.08);}
+.person-toggle.token-honor-p2:checked+.person-label.token-honor-p2{background:var(--honor-p2);border-color:var(--honor-p2);color:#0a1828;}
 .shot-build-row{display:flex;gap:8px;align-items:center;margin-bottom:4px;}
 .shot-preview{flex:1;font-family:var(--body);font-size:13px;color:var(--dim);font-style:italic;background:var(--bg3);border:1px solid var(--line);border-radius:4px;padding:9px 13px;min-height:40px;display:flex;align-items:center;transition:color .2s;}
 .shot-preview.has-content{color:var(--accent2);font-style:normal;}
@@ -439,7 +446,7 @@ input.invalid{border-bottom-color:#e05555!important;animation:shake .35s ease;}
     <div class="field">
       <label class="field-label" for="venue-name">Venue Name <span class="req">*</span></label>
       <div class="venue-wrap">
-        <input type="text" id="venue-name" placeholder="Start typing to search venues…" oninput="onVenueInput()" onblur="onVenueBlur()" autocomplete="off">
+        <input type="text" id="venue-name" placeholder="Start typing to search venues…" oninput="onVenueInput()" onkeydown="onVenueKeydown(event)" onblur="onVenueBlur()" autocomplete="off" spellcheck="false">
         <div id="venueDropdown"></div>
       </div>
       <span class="field-error" id="err-venue-name">Enter a venue to continue.</span>
@@ -493,7 +500,7 @@ input.invalid{border-bottom-color:#e05555!important;animation:shake .35s ease;}
     <div class="field-row">
       <div class="field">
         <label class="field-label">My Arrival Time <span class="req">*</span></label>
-        <div class="time-select-wrap" id="arrival-selects">
+        <div class="time-picker-wrap" id="arrival-selects">
           <!-- Built by JS -->
         </div>
         <input type="hidden" id="arrival-time">
@@ -502,7 +509,7 @@ input.invalid{border-bottom-color:#e05555!important;animation:shake .35s ease;}
       </div>
       <div class="field">
         <label class="field-label">Coverage End Time</label>
-        <div class="time-select-wrap" id="end-selects">
+        <div class="time-picker-wrap" id="end-selects">
           <!-- Built by JS -->
         </div>
         <input type="hidden" id="end-time">
@@ -1005,63 +1012,123 @@ var PACKAGE_HOURS = {
   'Premiere (no hour cap — from $2,800)': 12
 };
 
+function fmtTimeLabel(h, m) {
+  var h12 = h % 12 || 12;
+  var ampm = h >= 12 ? 'PM' : 'AM';
+  return h12 + ':' + String(m).padStart(2,'0') + ' ' + ampm;
+}
+
 function buildTimeSelect(wrapperId, hiddenId, defaultH, defaultM, onChange) {
   var wrap = document.getElementById(wrapperId);
+  if (!wrap) return;
   wrap.innerHTML = '';
 
-  // Hour select
-  var hourSel = document.createElement('select');
-  hourSel.style.flex = '1';
-  for (var h = 6; h <= 23; h++) {
-    var opt = document.createElement('option');
-    opt.value = h;
-    var disp = (h % 12 || 12) + ' ' + (h >= 12 ? 'PM' : 'AM');
-    opt.textContent = disp;
-    if (h === defaultH) opt.selected = true;
-    hourSel.appendChild(opt);
+  var selectedH = defaultH, selectedM = defaultM;
+  var hiddenEl = document.getElementById(hiddenId);
+
+  // Button
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'time-picker-btn';
+  btn.setAttribute('data-picker', hiddenId);
+
+  function getLabel() {
+    return fmtTimeLabel(selectedH, selectedM);
   }
 
-  // Minute select (quarterly)
-  var minSel = document.createElement('select');
-  minSel.style.minWidth = '70px';
-  [0, 15, 30, 45].forEach(function(m) {
-    var opt = document.createElement('option');
-    opt.value = m;
-    opt.textContent = ':' + String(m).padStart(2,'0');
-    if (m === defaultM) opt.selected = true;
-    minSel.appendChild(opt);
+  btn.innerHTML = '<span class="tp-val">' + getLabel() + '</span><span class="tp-arrow">▼</span>';
+  if (hiddenEl) hiddenEl.value = String(selectedH).padStart(2,'0') + ':' + String(selectedM).padStart(2,'0');
+
+  // Dropdown
+  var drop = document.createElement('div');
+  drop.className = 'time-picker-dropdown';
+  drop.setAttribute('data-for', hiddenId);
+
+  // Build options 6 AM – 11:45 PM
+  var lastHour = -1;
+  for (var h = 6; h <= 23; h++) {
+    for (var m = 0; m < 60; m += 15) {
+      if (h !== lastHour) {
+        var hlbl = document.createElement('div');
+        hlbl.className = 'time-hour-label';
+        hlbl.textContent = (h % 12 || 12) + ' ' + (h >= 12 ? 'PM' : 'AM');
+        drop.appendChild(hlbl);
+        lastHour = h;
+      }
+      var opt = document.createElement('div');
+      opt.className = 'time-option' + (h === selectedH && m === selectedM ? ' selected' : '');
+      opt.textContent = fmtTimeLabel(h, m);
+      opt.setAttribute('data-h', h);
+      opt.setAttribute('data-m', m);
+      opt.addEventListener('mousedown', function(e) {
+        e.preventDefault();
+        var oh = parseInt(this.getAttribute('data-h'));
+        var om = parseInt(this.getAttribute('data-m'));
+        selectedH = oh; selectedM = om;
+        // Update button label
+        btn.querySelector('.tp-val').textContent = getLabel();
+        // Mark selected
+        drop.querySelectorAll('.time-option').forEach(function(o) { o.classList.remove('selected'); });
+        this.classList.add('selected');
+        // Update hidden
+        if (hiddenEl) hiddenEl.value = String(oh).padStart(2,'0') + ':' + String(om).padStart(2,'0');
+        // Close
+        closePicker(drop, btn);
+        if (onChange) onChange();
+      });
+      drop.appendChild(opt);
+    }
+  }
+
+  // Open/close toggle
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var isOpen = drop.classList.contains('open');
+    // Close all other pickers
+    document.querySelectorAll('.time-picker-dropdown.open').forEach(function(d) {
+      d.classList.remove('open');
+      var b = document.querySelector('.time-picker-btn[data-picker="' + d.getAttribute('data-for') + '"]');
+      if (b) b.classList.remove('open');
+    });
+    if (!isOpen) {
+      drop.classList.add('open');
+      btn.classList.add('open');
+      // Scroll to selected
+      var sel = drop.querySelector('.time-option.selected');
+      if (sel) setTimeout(function() { sel.scrollIntoView({block:'center'}); }, 30);
+    }
   });
 
-  function update() {
-    var h = parseInt(hourSel.value);
-    var m = parseInt(minSel.value);
-    var padded = String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0');
-    document.getElementById(hiddenId).value = padded;
-    if (onChange) onChange();
-  }
-
-  hourSel.addEventListener('change', update);
-  minSel.addEventListener('change', update);
-
-  wrap.appendChild(hourSel);
-  wrap.appendChild(minSel);
-
-  // Set hidden value immediately
-  update();
+  wrap.appendChild(btn);
+  wrap.appendChild(drop);
 }
+
+function closePicker(drop, btn) {
+  drop.classList.remove('open');
+  if (btn) btn.classList.remove('open');
+}
+
+// Close pickers when clicking outside
+document.addEventListener('click', function() {
+  document.querySelectorAll('.time-picker-dropdown.open').forEach(function(d) {
+    d.classList.remove('open');
+    var b = document.querySelector('.time-picker-btn[data-picker="' + d.getAttribute('data-for') + '"]');
+    if (b) b.classList.remove('open');
+  });
+});
 
 function onPackageChange() {
   var pkg = gRadio('package');
   if (!pkg || !PACKAGE_DEFAULTS[pkg]) return;
   var def = PACKAGE_DEFAULTS[pkg];
-  // Rebuild arrival with default for this package
   buildTimeSelect('arrival-selects','arrival-time', def.arrivalH, def.arrivalM, onTimeChange);
-  // Auto-set end time
   var endH = def.arrivalH + def.endOffsetHrs;
   if (endH > 23) endH = 23;
   buildTimeSelect('end-selects','end-time', endH, def.arrivalM, onTimeChange);
-  var hint = document.getElementById('end-hint');
-  if (hint) hint.textContent = 'Auto-suggested from your '+def.endOffsetHrs+'-hour package — adjust freely';
+  var arrHint = document.getElementById('arrival-hint');
+  if (arrHint) arrHint.textContent = 'Default for your package — adjust freely';
+  var endHint = document.getElementById('end-hint');
+  if (endHint) endHint.textContent = 'Auto-suggested from your ' + def.endOffsetHrs + '-hour package — adjust freely';
   checkTimeWarning();
 }
 
@@ -1193,8 +1260,9 @@ function buildShotPeople(n1,n2){
   var tokens=[[n1+' & '+n2,''],[n1,'token-p1'],[n2,'token-p2']];
   var s1=getPartyData('side1');var s2=getPartyData('side2');
   var moh=s1.find(function(m){return m.name;});var bm=s2.find(function(m){return m.name;});
-  if(moh)tokens.push([moh.role?moh.name+' ('+moh.role+')':moh.name,'token-p1']);
-  if(bm)tokens.push([bm.role?bm.name+' ('+bm.role+')':bm.name,'token-p2']);
+  // Honor roles use a lighter companion color (token-honor-p1 / token-honor-p2), name only
+  if(moh)tokens.push([moh.name,'token-honor-p1']);
+  if(bm)tokens.push([bm.name,'token-honor-p2']);
   [[n1+"'s Parents",'token-p1'],[n1+"'s Mom",'token-p1'],[n1+"'s Dad",'token-p1'],[n1+"'s Siblings",'token-p1'],
    [n2+"'s Parents",'token-p2'],[n2+"'s Mom",'token-p2'],[n2+"'s Dad",'token-p2'],[n2+"'s Siblings",'token-p2'],
    ['Both families',''],['Immediate families',''],['Full wedding party',''],['Bridal party only',''],['Groomsmen only','']
