@@ -500,19 +500,21 @@ input.invalid{border-bottom-color:#e05555!important;animation:shake .35s ease;}
     <div class="field-row">
       <div class="field">
         <label class="field-label">My Arrival Time <span class="req">*</span></label>
-        <div class="time-picker-wrap" id="arrival-selects">
-          <!-- Built by JS -->
+        <div class="time-picker-wrap">
+          <select id="arrival-time" onchange="onTimeChange()">
+            <option value="">Select time…</option>
+          </select>
         </div>
-        <input type="hidden" id="arrival-time">
         <span class="field-hint" id="arrival-hint">When you'd like me on-site</span>
         <span class="field-error" id="err-arrival-time">Set an arrival time to continue.</span>
       </div>
       <div class="field">
         <label class="field-label">Coverage End Time</label>
-        <div class="time-picker-wrap" id="end-selects">
-          <!-- Built by JS -->
+        <div class="time-picker-wrap">
+          <select id="end-time" onchange="onTimeChange()">
+            <option value="">Select time…</option>
+          </select>
         </div>
-        <input type="hidden" id="end-time">
         <span class="field-hint" id="end-hint">Approximate wrap time</span>
       </div>
     </div>
@@ -1018,113 +1020,34 @@ function fmtTimeLabel(h, m) {
   return h12 + ':' + String(m).padStart(2,'0') + ' ' + ampm;
 }
 
-function buildTimeSelect(wrapperId, hiddenId, defaultH, defaultM, onChange) {
-  var wrap = document.getElementById(wrapperId);
-  if (!wrap) return;
-  wrap.innerHTML = '';
-
-  var selectedH = defaultH, selectedM = defaultM;
-  var hiddenEl = document.getElementById(hiddenId);
-
-  // Button
-  var btn = document.createElement('button');
-  btn.type = 'button';
-  btn.className = 'time-picker-btn';
-  btn.setAttribute('data-picker', hiddenId);
-
-  function getLabel() {
-    return fmtTimeLabel(selectedH, selectedM);
-  }
-
-  btn.innerHTML = '<span class="tp-val">' + getLabel() + '</span><span class="tp-arrow">▼</span>';
-  if (hiddenEl) hiddenEl.value = String(selectedH).padStart(2,'0') + ':' + String(selectedM).padStart(2,'0');
-
-  // Dropdown
-  var drop = document.createElement('div');
-  drop.className = 'time-picker-dropdown';
-  drop.setAttribute('data-for', hiddenId);
-
-  // Build options 6 AM – 11:45 PM
-  var lastHour = -1;
+function buildTimeSelect(selectId, defaultH, defaultM) {
+  var sel = document.getElementById(selectId);
+  if (!sel) return;
+  var current = sel.value;
+  sel.innerHTML = '<option value="">Select time…</option>';
   for (var h = 6; h <= 23; h++) {
+    var grp = document.createElement('optgroup');
+    grp.label = (h % 12 || 12) + (h >= 12 ? ' PM' : ' AM');
     for (var m = 0; m < 60; m += 15) {
-      if (h !== lastHour) {
-        var hlbl = document.createElement('div');
-        hlbl.className = 'time-hour-label';
-        hlbl.textContent = (h % 12 || 12) + ' ' + (h >= 12 ? 'PM' : 'AM');
-        drop.appendChild(hlbl);
-        lastHour = h;
-      }
-      var opt = document.createElement('div');
-      opt.className = 'time-option' + (h === selectedH && m === selectedM ? ' selected' : '');
+      var val = String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0');
+      var opt = document.createElement('option');
+      opt.value = val;
       opt.textContent = fmtTimeLabel(h, m);
-      opt.setAttribute('data-h', h);
-      opt.setAttribute('data-m', m);
-      opt.addEventListener('mousedown', function(e) {
-        e.preventDefault();
-        var oh = parseInt(this.getAttribute('data-h'));
-        var om = parseInt(this.getAttribute('data-m'));
-        selectedH = oh; selectedM = om;
-        // Update button label
-        btn.querySelector('.tp-val').textContent = getLabel();
-        // Mark selected
-        drop.querySelectorAll('.time-option').forEach(function(o) { o.classList.remove('selected'); });
-        this.classList.add('selected');
-        // Update hidden
-        if (hiddenEl) hiddenEl.value = String(oh).padStart(2,'0') + ':' + String(om).padStart(2,'0');
-        // Close
-        closePicker(drop, btn);
-        if (onChange) onChange();
-      });
-      drop.appendChild(opt);
+      if (h === defaultH && m === defaultM) opt.selected = true;
+      grp.appendChild(opt);
     }
+    sel.appendChild(grp);
   }
-
-  // Open/close toggle
-  btn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    var isOpen = drop.classList.contains('open');
-    // Close all other pickers
-    document.querySelectorAll('.time-picker-dropdown.open').forEach(function(d) {
-      d.classList.remove('open');
-      var b = document.querySelector('.time-picker-btn[data-picker="' + d.getAttribute('data-for') + '"]');
-      if (b) b.classList.remove('open');
-    });
-    if (!isOpen) {
-      drop.classList.add('open');
-      btn.classList.add('open');
-      // Scroll to selected
-      var sel = drop.querySelector('.time-option.selected');
-      if (sel) setTimeout(function() { sel.scrollIntoView({block:'center'}); }, 30);
-    }
-  });
-
-  wrap.appendChild(btn);
-  wrap.appendChild(drop);
 }
-
-function closePicker(drop, btn) {
-  drop.classList.remove('open');
-  if (btn) btn.classList.remove('open');
-}
-
-// Close pickers when clicking outside
-document.addEventListener('click', function() {
-  document.querySelectorAll('.time-picker-dropdown.open').forEach(function(d) {
-    d.classList.remove('open');
-    var b = document.querySelector('.time-picker-btn[data-picker="' + d.getAttribute('data-for') + '"]');
-    if (b) b.classList.remove('open');
-  });
-});
 
 function onPackageChange() {
   var pkg = gRadio('package');
   if (!pkg || !PACKAGE_DEFAULTS[pkg]) return;
   var def = PACKAGE_DEFAULTS[pkg];
-  buildTimeSelect('arrival-selects','arrival-time', def.arrivalH, def.arrivalM, onTimeChange);
+  buildTimeSelect('arrival-time', def.arrivalH, def.arrivalM);
   var endH = def.arrivalH + def.endOffsetHrs;
   if (endH > 23) endH = 23;
-  buildTimeSelect('end-selects','end-time', endH, def.arrivalM, onTimeChange);
+  buildTimeSelect('end-time', endH, def.arrivalM);
   var arrHint = document.getElementById('arrival-hint');
   if (arrHint) arrHint.textContent = 'Default for your package — adjust freely';
   var endHint = document.getElementById('end-hint');
@@ -1575,8 +1498,8 @@ function init(){
   initParty();buildVendors();buildShotPeople('Partner 1','Partner 2');updateProgress();
 
   // Build time selects with neutral defaults
-  buildTimeSelect('arrival-selects','arrival-time',13,0,onTimeChange);
-  buildTimeSelect('end-selects','end-time',17,0,onTimeChange);
+  buildTimeSelect('arrival-time', 13, 0);
+  buildTimeSelect('end-time', 17, 0);
 
   var shotTA=document.getElementById('shotListTextarea');if(shotTA)shotTA.addEventListener('input',updateShotNudge);
 
