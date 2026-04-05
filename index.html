@@ -29,13 +29,13 @@
   /* Partner role colors */
   --p1:      #e8e8e8; --p1-bg:rgba(232,232,232,.08); --p1-border:rgba(232,232,232,.25); --p1-shadow:rgba(232,232,232,.15);
   --p2:      #e8e8e8; --p2-bg:rgba(232,232,232,.08); --p2-border:rgba(232,232,232,.25); --p2-shadow:rgba(232,232,232,.15);
-  --groom-c: #1a3a6b; --groom-bg:rgba(26,58,107,.2); --groom-bd:rgba(26,58,107,.55); --groom-sh:rgba(26,58,107,.4);
-  --bride-c: #3d1060; --bride-bg:rgba(61,16,96,.2); --bride-bd:rgba(61,16,96,.55); --bride-sh:rgba(61,16,96,.4);
-  /* Premium muted maroon accent */
-  --maroon:  #6b1a1a;
-  --maroon2: #7d2020;
-  --maroon3: rgba(107,26,26,.22);
-  --maroon4: rgba(107,26,26,.09);
+  --groom-c: #4d5b87; --groom-bg:rgba(77,91,135,.18); --groom-bd:rgba(77,91,135,.5); --groom-sh:rgba(77,91,135,.35);
+  --bride-c: #815582; --bride-bg:rgba(129,85,130,.18); --bride-bd:rgba(129,85,130,.5); --bride-sh:rgba(129,85,130,.35);
+  /* Warm terracotta accent */
+  --maroon:  #8c3d3c;
+  --maroon2: #a84848;
+  --maroon3: rgba(140,61,60,.22);
+  --maroon4: rgba(140,61,60,.09);
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -124,8 +124,8 @@ input.invalid{border-bottom-color:#e05555!important;animation:shake .35s ease;}
 .p1-pill-input,.p2-pill-input{display:none;}
 .p1-pill-label,.p2-pill-label{font-family:var(--body);font-size:12px;color:var(--accent3);border:1px solid var(--line2);border-radius:100px;padding:5px 16px;cursor:pointer;background:var(--bg2);transition:all .2s;user-select:none;display:inline-flex;}
 .p1-pill-label:hover,.p2-pill-label:hover{border-color:var(--line3);color:var(--accent);}
-.p1-pill-input:checked+.p1-pill-label{background:var(--p1);border-color:var(--p1-border);color:var(--bg);font-weight:500;box-shadow:0 3px 12px var(--p1-shadow);}
-.p2-pill-input:checked+.p2-pill-label{background:var(--p2);border-color:var(--p2-border);color:var(--bg);font-weight:500;box-shadow:0 3px 12px var(--p2-shadow);}
+.p1-pill-input:checked+.p1-pill-label{background:var(--p1);border-color:var(--p1);color:#fff;font-weight:500;box-shadow:0 3px 12px var(--p1-shadow);}
+.p2-pill-input:checked+.p2-pill-label{background:var(--p2);border-color:var(--p2);color:#fff;font-weight:500;box-shadow:0 3px 12px var(--p2-shadow);}
 
 /* ── QUICK FILL ── */
 .quickfill{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
@@ -228,12 +228,12 @@ input.invalid{border-bottom-color:#e05555!important;animation:shake .35s ease;}
 .person-label.token-p2:hover{background:var(--p2-bg);}
 .person-toggle.token-p2:checked+.person-label.token-p2{background:var(--p2);border-color:var(--p2);color:#fff;}
 /* Honor companion tokens — lighter shade of partner color */
-.person-label.token-honor-p1{border-color:rgba(192,132,245,.4);color:var(--honor-p1);}
-.person-label.token-honor-p1:hover{background:rgba(192,132,245,.08);}
-.person-toggle.token-honor-p1:checked+.person-label.token-honor-p1{background:var(--honor-p1);border-color:var(--honor-p1);color:#1a0a2a;}
-.person-label.token-honor-p2{border-color:rgba(91,155,213,.4);color:var(--honor-p2);}
-.person-label.token-honor-p2:hover{background:rgba(91,155,213,.08);}
-.person-toggle.token-honor-p2:checked+.person-label.token-honor-p2{background:var(--honor-p2);border-color:var(--honor-p2);color:#0a1828;}
+.person-label.token-honor-p1{border-color:rgba(176,122,178,.4);color:var(--honor-p1);}
+.person-label.token-honor-p1:hover{background:rgba(176,122,178,.08);}
+.person-toggle.token-honor-p1:checked+.person-label.token-honor-p1{background:var(--honor-p1);border-color:var(--honor-p1);color:#1a0a1a;}
+.person-label.token-honor-p2{border-color:rgba(109,127,176,.4);color:var(--honor-p2);}
+.person-label.token-honor-p2:hover{background:rgba(109,127,176,.08);}
+.person-toggle.token-honor-p2:checked+.person-label.token-honor-p2{background:var(--honor-p2);border-color:var(--honor-p2);color:#0a0f1e;}
 .shot-build-row{display:flex;gap:8px;align-items:center;margin-bottom:4px;}
 .shot-preview{flex:1;font-family:var(--body);font-size:13px;color:var(--dim);font-style:italic;background:var(--bg3);border:1px solid var(--line);border-radius:4px;padding:9px 13px;min-height:40px;display:flex;align-items:center;transition:color .2s;}
 .shot-preview.has-content{color:var(--accent2);font-style:normal;}
@@ -275,6 +275,28 @@ input.invalid{border-bottom-color:#e05555!important;animation:shake .35s ease;}
 .btn-export{background:var(--bg3);color:var(--accent2);border:1px solid var(--line2);}
 .btn-export:hover{background:var(--bg4);border-color:var(--line3);color:var(--white);}
 .nav-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.pdf-toggle-wrap{display:flex;align-items:center;gap:9px;margin-right:4px;cursor:pointer;user-select:none;}
+.pdf-toggle-wrap input[type="checkbox"]{display:none;}
+.pdf-toggle-box{
+  width:16px;height:16px;flex-shrink:0;
+  border:1px solid var(--line3);border-radius:3px;
+  background:var(--bg3);
+  display:flex;align-items:center;justify-content:center;
+  transition:all .15s;
+}
+.pdf-toggle-wrap input:checked ~ .pdf-toggle-box{
+  background:var(--maroon);border-color:var(--maroon);
+}
+.pdf-toggle-box::after{
+  content:'';display:none;
+  width:5px;height:8px;
+  border:1.5px solid #fff;border-top:none;border-left:none;
+  transform:rotate(42deg) translateY(-1px);
+}
+.pdf-toggle-wrap input:checked ~ .pdf-toggle-box::after{display:block;}
+.pdf-toggle-label{font-family:var(--body);font-size:12px;font-weight:400;color:var(--accent3);font-style:italic;transition:color .15s;}
+.pdf-toggle-wrap:hover .pdf-toggle-label{color:var(--accent2);}
+.pdf-toggle-wrap:hover .pdf-toggle-box{border-color:var(--accent3);}
 .field-error{font-family:var(--body);font-size:12px;color:#e05555;display:none;margin-top:-4px;}
 
 /* ── SUCCESS ── */
@@ -893,7 +915,12 @@ input.invalid{border-bottom-color:#e05555!important;animation:shake .35s ease;}
   <div class="section-nav">
     <button class="btn-back" onclick="prevStep(7)">Logistics</button>
     <div class="nav-actions">
-      <button type="button" class="btn-export" onclick="exportPDF()">Export PDF Brief</button>
+      <label class="pdf-toggle-wrap">
+        <input type="checkbox" id="includePhotoDetails">
+        <span class="pdf-toggle-box"></span>
+        <span class="pdf-toggle-label">Include photography details</span>
+      </label>
+      <button type="button" class="btn-export" onclick="exportPDF()">Export PDF</button>
       <button class="btn-submit" id="submitBtn" onclick="submitForm()">Send to JD</button>
     </div>
   </div>
@@ -1117,6 +1144,13 @@ function syncRoles(){
   var root=document.documentElement;
   root.style.setProperty('--p1',p1.color);root.style.setProperty('--p1-bg',p1.bg);root.style.setProperty('--p1-border',p1.border);root.style.setProperty('--p1-shadow',p1.shadow);
   root.style.setProperty('--p2',p2.color);root.style.setProperty('--p2-bg',p2.bg);root.style.setProperty('--p2-border',p2.border);root.style.setProperty('--p2-shadow',p2.shadow);
+  // Update name input underlines on couple page
+  var n1el=document.getElementById('p1name');var n2el=document.getElementById('p2name');
+  if(n1el) n1el.style.borderBottomColor = r1!=='—' ? p1.color : '';
+  if(n2el) n2el.style.borderBottomColor = r2!=='—' ? p2.color : '';
+  // Update role pill label text color for legibility against dark bg
+  document.querySelectorAll('.p1-pill-input:checked + .p1-pill-label').forEach(function(el){ el.style.color = '#fff'; });
+  document.querySelectorAll('.p2-pill-input:checked + .p2-pill-label').forEach(function(el){ el.style.color = '#fff'; });
   var tag1=document.getElementById('p1-side-tag');if(tag1)tag1.textContent=r1!=='—'?(ROLE_COLORS[r1]||{sideTag:'Bridesmaids'}).sideTag:'Bridesmaids';
   var tag2=document.getElementById('p2-side-tag');if(tag2)tag2.textContent=r2!=='—'?(ROLE_COLORS[r2]||{sideTag:'Groomsmen'}).sideTag:'Groomsmen';
   ROLE_SUGGESTIONS.side1=buildRoleSuggestFor(r1,'side1');ROLE_SUGGESTIONS.side2=buildRoleSuggestFor(r2,'side2');
@@ -1385,6 +1419,7 @@ function submitForm(){
 
 // ── PDF EXPORT ──
 function exportPDF(){
+  var includePhoto = document.getElementById('includePhotoDetails') && document.getElementById('includePhotoDetails').checked;
   var n1=gid('p1name'),n2=gid('p2name');
   var couple=n2!=='—'?n1+' & '+n2:n1;
   var dateStr=fmtDate(gid('wed-date'));
@@ -1393,111 +1428,129 @@ function exportPDF(){
   var vlines=VENDORS.map(vendorLine).filter(Boolean);
   var grSame=gRadio('gr-same');
   var shotText=gid('shotListTextarea');
-
-  // ── PDF STYLES ──
-  var css='@import url(\'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap\');'
-    +'*{box-sizing:border-box;margin:0;padding:0;}'
-    +'body{font-family:\'Lora\',Georgia,serif;background:#fff;color:#1a1a1a;-webkit-print-color-adjust:exact;print-color-adjust:exact;font-size:12px;line-height:1.55;}'
-    +'@media print{body{margin:0;}@page{size:A4;margin:16mm 14mm;}}'
-    +'.doc{max-width:700px;margin:0 auto;padding:40px 32px;}'
-    // Cover
-    +'.cover{text-align:center;padding-bottom:28px;margin-bottom:28px;border-bottom:3px solid #1a1a1a;}'
-    +'.cover-label{font-family:\'Lora\',serif;font-size:9px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:#888;margin-bottom:12px;}'
-    +'.cover-name{font-family:\'Playfair Display\',serif;font-size:36px;font-weight:400;line-height:1.1;letter-spacing:-.01em;color:#1a1a1a;margin-bottom:8px;}'
-    +'.cover-date{font-family:\'Lora\',serif;font-size:14px;color:#555;margin-bottom:3px;}'
-    +'.cover-venue{font-family:\'Lora\',serif;font-size:12px;color:#888;}'
-    // Two-column grid
-    +'.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 36px;}'
-    +'.col{}'
-    // Section
-    +'.sec{margin-bottom:20px;}'
-    +'.sec-title{font-family:\'Lora\',serif;font-size:8px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#1a1a1a;padding-bottom:6px;border-bottom:2px solid #1a1a1a;margin-bottom:10px;}'
-    // Row
-    +'.row{display:flex;gap:0;margin-bottom:5px;border-bottom:1px solid #f0f0f0;padding-bottom:5px;}'
-    +'.row:last-child{border-bottom:none;}'
-    +'.row-label{font-family:\'Lora\',serif;font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#888;width:110px;flex-shrink:0;padding-top:1px;}'
-    +'.row-val{font-family:\'Lora\',serif;font-size:12px;color:#1a1a1a;flex:1;white-space:pre-wrap;line-height:1.5;}'
-    // Shot list
-    +'.shotlist{font-family:\'Lora\',serif;font-size:12px;color:#1a1a1a;white-space:pre-wrap;line-height:1.65;background:#f8f8f8;padding:12px 14px;border-left:3px solid #1a1a1a;}'
-    // Full-width section
-    +'.full{grid-column:1/-1;}'
-    // Footer
-    +'.footer{text-align:center;font-family:\'Lora\',serif;font-size:9px;color:#aaa;letter-spacing:.1em;margin-top:28px;padding-top:16px;border-top:1px solid #e0e0e0;font-style:italic;}';
-
-  function row(label,val){
-    if(!val||val==='—'||val==='')return'';
-    return '<div class="row"><div class="row-label">'+label+'</div><div class="row-val">'+String(val).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</div></div>';
-  }
-  function sec(title,rows,full){
-    if(!rows.trim())return'';
-    return'<div class="sec'+(full?' full':'')+'"><div class="sec-title">'+title+'</div>'+rows+'</div>';
-  }
-
-  var src=gRadio('source'),ref=gid('referral-name');
   var grStr=grSame==='Same location'?gid('getting-ready-loc')
     :grSame==='Different locations'?(n1+"'s side: "+gid('gr-loc-1')+'\n'+(n2!=='—'?n2:'Partner 2')+"'s side: "+gid('gr-loc-2')):'—';
 
-  // Left column
-  var leftHTML=
-    sec('The Couple',
-      row('Partner 1',n1+(gRadio('p1role')!=='—'?' ('+gRadio('p1role')+')':''))+
-      row('Partner 2',n2!=='—'?n2+(gRadio('p2role')!=='—'?' ('+gRadio('p2role')+')':''):'')+
-      row('Phone',gid('p1phone'))+row('Email',gid('p1email')))+
-    sec('The Wedding',
-      row('Date',dateStr)+row('Venue',venue)+
-      row('Address',[gid('venue-addr'),gid('venue-city')].filter(function(x){return x!=='—';}).join(', '))+
-      row('Guests',gid('guest-count'))+row('Ceremony',gRadio('ceremony-type'))+
-      row('Rain backup',gRadio('weather-plan')+(gid('weather-detail')!=='—'?' — '+gid('weather-detail'):'')))+
-    sec('Coverage',
-      row('Arrival',fmtTime(gid('arrival-time')))+row('End time',fmtTime(gid('end-time')))+
-      row('First look',gRadio('first-look'))+row('Covering',gCheckboxes('coverage'))+
-      row('Reception',gCheckboxes('reception-events'))+
-      row('2nd location',gRadio('second-loc')+(gid('second-loc-name')!=='—'?' — '+gid('second-loc-name'):'')))+
-    sec('Logistics',
-      row('Venue contact',gid('venue-contact')+(gid('venue-contact-phone')!=='—'?' · '+gid('venue-contact-phone'):'')+
-        (gid('emergency-contact-name')!=='—'?'\nEmergency: '+gid('emergency-contact-name')+(gid('emergency-contact-phone')!=='—'?' · '+gid('emergency-contact-phone'):''):''  ))+
-      row('Getting ready',grStr)+row('Vendor meal',gRadio('vendor-meal'))+
-      row('Parking',gid('parking-notes'))+row('Restrictions',gid('venue-restrictions'))+row('Lighting',gid('lighting-notes')));
+  var pdfStyles = '<style>'
+    + '@import url(\'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap\');'
+    + '*{box-sizing:border-box;margin:0;padding:0;}'
+    + 'body{font-family:\'Lora\',Georgia,serif;background:#fff;color:#111;-webkit-print-color-adjust:exact;print-color-adjust:exact;font-size:13px;line-height:1.6;}'
+    + '.page{max-width:720px;margin:0 auto;padding:48px 40px;}'
+    + '.doc-header{text-align:center;margin-bottom:40px;padding-bottom:28px;border-bottom:3px solid #111;}'
+    + '.doc-eyebrow{font-family:\'Lora\',serif;font-size:9px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:#777;margin-bottom:14px;}'
+    + '.doc-names{font-family:\'Playfair Display\',serif;font-size:38px;font-weight:400;line-height:1.1;letter-spacing:-.01em;margin-bottom:10px;color:#0a0a0a;}'
+    + '.doc-date{font-family:\'Lora\',serif;font-size:14px;color:#444;margin-bottom:4px;}'
+    + '.doc-venue{font-family:\'Lora\',serif;font-size:13px;color:#777;}'
+    + '.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 52px;align-items:start;}'
+    + '.col{}'
+    + '.sec-head{font-family:\'Lora\',serif;font-size:8px;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:#aaa;padding:22px 0 8px;border-bottom:2px solid #111;margin-bottom:2px;}'
+    + '.sec-head.first{padding-top:0;}'
+    + 'table{border-collapse:collapse;width:100%;}'
+    + 'tr{border-bottom:1px solid #ebebeb;}'
+    + 'tr:last-child{border-bottom:none;}'
+    + 'td{padding:7px 0;vertical-align:top;}'
+    + '.lbl{font-family:\'Lora\',serif;font-size:9.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#aaa;width:120px;padding-right:16px;white-space:nowrap;padding-top:9px;}'
+    + '.val{font-family:\'Lora\',serif;font-size:12.5px;color:#1a1a1a;white-space:pre-wrap;line-height:1.6;}'
+    + '.doc-footer{text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid #ddd;font-family:\'Lora\',serif;font-size:10px;color:#bbb;letter-spacing:.12em;font-style:italic;}'
+    + '.photo-note{background:#f8f4f0;border-left:3px solid #8c3d3c;padding:10px 14px;margin-bottom:20px;font-family:\'Lora\',serif;font-size:11px;color:#555;font-style:italic;}'
+    + '@media print{body{margin:0;}@page{size:A4;margin:16mm 14mm;}}'
+    + '</style>';
 
-  // Right column
-  var p1side = side1.length?side1.map(function(m){return m.role?m.name+' ('+m.role+')':m.name;}).join('\n'):'';
-  var p2side = side2.length?side2.map(function(m){return m.role?m.name+' ('+m.role+')':m.name;}).join('\n'):'';
-  var rightHTML=
-    sec('Ceremony',row('Structure',gid('ceremony-structure')))+
-    sec('Bridal Party',
-      row(n1+"'s side",p1side)+row((n2!=='—'?n2:'Partner 2')+"'s side",p2side)+
-      row('Flower girl / Ring bearer',gid('flower-kids'))+row('Officiant',gid('officiant')))+
-    sec('Vision & Style',
-      row('Vibe',gRadio('vibe'))+row('Edit style',gRadio('edit-style'))+
-      row('Inspiration',gid('inspiration'))+row('Notes',gid('anything-else')))+
-    sec('Vendor Contacts',
-      (vlines.length?vlines.map(function(v){var i=v.indexOf(':');return row(v.slice(0,i),v.slice(i+2));}).join(''):'')+
-      row('Other',gid('other-vendors')));
+  function pdfSec(t,first){ return '<div class="sec-head'+(first?' first':'')+'">'+t+'</div><table>'; }
+  function pdfEnd(){ return '</table>'; }
+  function pdfRow(l,v){ if(!v||v==='—'||v==='')return''; return '<tr><td class="lbl">'+l+'</td><td class="val">'+String(v).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</td></tr>'; }
 
-  // Full-width sections
-  var fullHTML='';
-  if(shotText!=='—'){
-    fullHTML+='<div class="sec full"><div class="sec-title">Family Formals Shot List</div>'
-      +'<div class="shotlist">'+shotText.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</div>';
-    if(gid('family-combos')!=='—') fullHTML+='<div style="margin-top:8px;">'+row('Additional',gid('family-combos'))+'</div>';
-    fullHTML+='</div>';
+  // LEFT COLUMN — always included
+  var leftHTML = ''
+    + pdfSec('The Couple', true)
+    + pdfRow('Partner 1', n1+(gRadio('p1role')!=='—'?' ('+gRadio('p1role')+')':''))
+    + pdfRow('Partner 2', n2!=='—'?n2+(gRadio('p2role')!=='—'?' ('+gRadio('p2role')+')':''):'')
+    + pdfRow('Phone', gid('p1phone'))
+    + pdfRow('Email', gid('p1email'))
+    + pdfEnd()
+    + pdfSec('The Wedding')
+    + pdfRow('Date', dateStr)
+    + pdfRow('Venue', venue)
+    + pdfRow('Address', [gid('venue-addr'),gid('venue-city')].filter(function(x){return x!=='—';}).join(', '))
+    + pdfRow('Guests', gid('guest-count'))
+    + pdfRow('Ceremony', gRadio('ceremony-type'))
+    + pdfRow('Rain backup', gRadio('weather-plan')+(gid('weather-detail')!=='—'?' — '+gid('weather-detail'):''))
+    + pdfEnd()
+    + pdfSec('Coverage')
+    + pdfRow('Arrival', fmtTime(gid('arrival-time')))
+    + pdfRow('End time', fmtTime(gid('end-time')))
+    + pdfRow('First look', gRadio('first-look'))
+    + pdfRow('Covering', gCheckboxes('coverage'))
+    + pdfRow('Reception', gCheckboxes('reception-events'))
+    + pdfRow('Ceremony notes', gid('ceremony-structure'))
+    + pdfRow('2nd location', gRadio('second-loc')+(gid('second-loc-name')!=='—'?' — '+gid('second-loc-name'):''))
+    + pdfEnd()
+    + pdfSec('Logistics')
+    + pdfRow('Venue contact', gid('venue-contact')+(gid('venue-contact-phone')!=='—'?' · '+gid('venue-contact-phone'):''))
+    + pdfRow('Emergency', gid('emergency-contact-name')+(gid('emergency-contact-phone')!=='—'?' · '+gid('emergency-contact-phone'):''))
+    + pdfRow('Getting ready', grStr)
+    + pdfRow('Vendor meal', gRadio('vendor-meal'))
+    + pdfRow('Parking', gid('parking-notes'))
+    + pdfRow('Restrictions', gid('venue-restrictions'))
+    + pdfEnd();
+
+  // RIGHT COLUMN — always included
+  var rightHTML = ''
+    + pdfSec('Bridal Party', true)
+    + pdfRow(n1+"'s side", side1.length?side1.map(function(m){return m.role?m.name+' ('+m.role+')':m.name;}).join('\n'):'')
+    + pdfRow((n2!=='—'?n2:'Partner 2')+"'s side", side2.length?side2.map(function(m){return m.role?m.name+' ('+m.role+')':m.name;}).join('\n'):'')
+    + pdfRow('Flower girl / Ring bearer', gid('flower-kids'))
+    + pdfRow('Officiant', gid('officiant'))
+    + pdfEnd()
+    + pdfSec('Vendor Contacts')
+    + (vlines.length?vlines.map(function(v){var i=v.indexOf(':');return pdfRow(v.slice(0,i),v.slice(i+2));}).join(''):'')
+    + pdfRow('Other', gid('other-vendors'))
+    + pdfEnd()
+    + pdfSec('Timeline')
+    + pdfRow('Day-of', gid('timeline-detail'))
+    + pdfEnd();
+
+  // PHOTO SECTION — only if checkbox checked
+  var photoNote = '';
+  var photoHTML = '';
+  if (includePhoto) {
+    photoHTML = '<div style="margin-top:32px;">'
+      + '<div class="sec-head" style="margin-bottom:8px;">Photography Details</div>'
+      + '<div class="grid">'
+      + '<div class="col"><table>'
+      + pdfRow('Shot list', shotText!=='—'?shotText:'')
+      + pdfRow('Additional', gid('family-combos'))
+      + pdfRow('Must-haves', gid('must-haves'))
+      + pdfRow('Do not photograph', gid('do-not-photo'))
+      + '</table></div>'
+      + '<div class="col"><table>'
+      + pdfRow('Family dynamics', gid('family-dynamics'))
+      + pdfRow('Special notes', gid('special-notes'))
+      + pdfRow('Lighting notes', gid('lighting-notes'))
+      + pdfRow('Vibe', gRadio('vibe'))
+      + pdfRow('Edit style', gRadio('edit-style'))
+      + pdfRow('Inspiration', gid('inspiration'))
+      + pdfRow('Anything else', gid('anything-else'))
+      + '</table></div>'
+      + '</div></div>';
   }
-  var mustHaves=[row('Must-haves',gid('must-haves')),row('Do not photograph',gid('do-not-photo')),row('Family dynamics',gid('family-dynamics')),row('Special notes',gid('special-notes'))].join('');
-  if(mustHaves.trim()) fullHTML+=sec('Key Shots & People',mustHaves,true);
-  var timeline=gid('timeline-detail');
-  if(timeline!=='—') fullHTML+='<div class="sec full"><div class="sec-title">Day-of Timeline</div><div class="shotlist">'+timeline.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</div></div>';
 
-  var html='<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Wedding Day Brief — '+couple+'</title>'
-    +'<style>'+css+'</style></head><body><div class="doc">'
-    +'<div class="cover"><div class="cover-label">Wedding Day Brief</div>'
-    +'<div class="cover-name">'+couple.replace(/&/g,'&amp;')+'</div>'
-    +'<div class="cover-date">'+dateStr+'</div>'
-    +'<div class="cover-venue">'+venue.replace(/&/g,'&amp;')+'</div></div>'
-    +'<div class="grid"><div class="col">'+leftHTML+'</div><div class="col">'+rightHTML+'</div>'+fullHTML+'</div>'
-    +'<div class="footer">Prepared with JD Meyers Productions &nbsp;·&nbsp; jdmeyersjr.com</div>'
-    +'</div><script>window.onload=function(){window.print();}<\/script></body></html>';
+  var html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Wedding Day Brief — '+couple+'</title>'
+    + pdfStyles + '</head><body><div class="page">'
+    + '<div class="doc-header">'
+    + '<div class="doc-eyebrow">Wedding Day Brief</div>'
+    + '<div class="doc-names">'+couple.replace(/&/g,'&amp;')+'</div>'
+    + '<div class="doc-date">'+dateStr+'</div>'
+    + '<div class="doc-venue">'+venue.replace(/&/g,'&amp;')+'</div>'
+    + '</div>'
+    + '<div class="grid"><div class="col">'+leftHTML+'</div><div class="col">'+rightHTML+'</div></div>'
+    + photoHTML
+    + '<div class="doc-footer">Prepared with JD Meyers Productions &nbsp;·&nbsp; jdmeyersjr.com</div>'
+    + '</div>'
+    + '<script>window.onload=function(){window.print();}<\/script>'
+    + '</body></html>';
 
-  var win=window.open('','_blank','width=860,height:1000');
+  var win=window.open('','_blank','width=860,height=1100');
   win.document.write(html);win.document.close();
 }
 
